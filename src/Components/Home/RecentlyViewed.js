@@ -3,7 +3,7 @@ import MainCardHeader from "../Utility/MainCardHeader";
 
 const RecentlyViewed = () => {
   return (
-    <div className="bg-white  rounded-md flex flex-col gap-5 p-5">
+    <div className="bg-white   flex flex-col gap-5 p-5">
       <MainCardHeader name="Recently Viewed" />
 
       <div className="flex gap-5 w-full  no-scrollbar  overflow-scroll">

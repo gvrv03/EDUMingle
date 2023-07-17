@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className=" flex flex-col gap-5 ">
+    <main className=" flex flex-col gap-2 ">
       <Category/>
       <SlideShow />
       <RecentlyViewed/>

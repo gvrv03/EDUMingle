@@ -1,7 +1,8 @@
+import { createUserURL, SendSMSToUserURL } from "@/helper/allLinks";
 import axios from "axios";
 
 export const SendSMSToUser = async (number, OTP) => {
-  const url = "http://localhost:3000/api/Auth/SendOTP";
+  const url = SendSMSToUserURL;
 
   const res = await axios.post(url, { phoneNo: number, OTP: OTP });
 
@@ -9,7 +10,7 @@ export const SendSMSToUser = async (number, OTP) => {
 };
 
 export const createUser = async (number) => {
-  const url = "http://localhost:3000/api/Auth/SignIn";
+  const url = createUserURL;
   const data = {
     phoneNo: number,
   };

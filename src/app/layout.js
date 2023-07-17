@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
           <UserAuthContexProvider>
             <Toaster />
             <NavBar />
-            <main className=" px-5 md:px-0 container  pb-5 pt-36  md:pt-24  m-auto  text-xs md:text-sm  ">
+            <main className="  md:px-0 container  pb-2 pt-32  md:pt-20  m-auto  text-xs md:text-sm  ">
               {children}
             </main>
             <Footer />

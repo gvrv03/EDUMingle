@@ -6,7 +6,7 @@ import "react-slideshow-image/dist/styles.css";
 const SlideShow = () => {
   const slideRef = useRef();
   return (
-    <div className="bg-white rounded-md  p-5">
+    <div className="bg-white  p-5">
       <Slide indicators={true} arrows={false} ref={slideRef}>
         <div className=" rounded-md">
           <img
