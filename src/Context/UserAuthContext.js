@@ -62,7 +62,7 @@ export function UserAuthContexProvider({ children }) {
     await sendSMS(number);
   };
 
-  console.log(userDetails);
+  // console.log(userDetails);
   //-------------------get User detail -------------------
   const fetchUserDetail = useCallback(async (token) => {
     try {
