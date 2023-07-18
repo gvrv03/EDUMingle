@@ -13,7 +13,6 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
-
     await signInUser(email, password);
     return setloading(false);
   };
