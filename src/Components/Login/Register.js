@@ -57,6 +57,7 @@ const Register = () => {
         <select
           onChange={onChange}
           value={userData.gender}
+          required={true}
           name="gender"
           className="p-2  outline-none py-3 "
         >
@@ -65,6 +66,7 @@ const Register = () => {
         </select>
         <input
           type="text"
+          required={true}
           onChange={onChange}
           value={userData.name}
           name="name"
@@ -77,6 +79,7 @@ const Register = () => {
           type="email"
           onChange={onChange}
           value={userData.email}
+          required={true}
           name="email"
           className="p-2 w-full outline-none py-3 "
           placeholder="Email"
@@ -86,6 +89,7 @@ const Register = () => {
         <input
           type="date"
           onChange={onChange}
+          required={true}
           value={userData.dob}
           name="dob"
           className="p-2 w-full outline-none py-3 "
@@ -99,6 +103,7 @@ const Register = () => {
             setpassword(e.target.value);
           }}
           value={password}
+          required={true}
           name="password"
           className="p-2 w-full outline-none py-3 "
           placeholder="Password"
@@ -123,6 +128,7 @@ const Register = () => {
                 setuserOTP(e.target.value);
               }}
               className="p-2 w-full outline-none py-3 "
+              required={true}
               placeholder="Enter OTP"
             />
           </div>

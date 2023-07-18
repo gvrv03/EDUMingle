@@ -56,6 +56,7 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(response?.data?.message);
       }
     } catch (error) {
+      console.log(error);
       return toast.error(error?.response?.data?.errorMsg);
     }
   };
