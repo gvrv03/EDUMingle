@@ -3,6 +3,7 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
+      default: "User",
     },
     gender: {
       type: String,
@@ -17,9 +18,6 @@ const userSchema = new mongoose.Schema(
       default: "N/A",
     },
     image: {
-      type: String,
-    },
-    password: {
       type: String,
     },
     role: {

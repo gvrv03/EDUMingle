@@ -6,9 +6,11 @@ const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
   const [signInModal, setsignInModal] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
-      setsignInModal(true);
-    }, 30000);
+    if (!localStorage.getItem("token")) {
+      setTimeout(() => {
+        setsignInModal(true);
+      }, 30000);
+    }
   }, []);
 
   return (

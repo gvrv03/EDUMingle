@@ -18,8 +18,9 @@
 }
 
 :root {
-  --primaryColor: #d61609;
-  --secondaryColor: blue;
+  --primaryColor: blue;
+  --secondaryColor: #d61609;
+  --bgColor: rgb(242, 239, 255);
   --tirtiaryColor: yellow;
 }
 
@@ -30,13 +31,17 @@
   background-color: var(--primaryColor);
 }
 
+.bgGround {
+  background-color: var(--bgColor);
+}
+
 .pBtn {
   background-color: var(--primaryColor);
   font-weight: 700;
   color: white;
 }
 body {
-  background-color: rgb(242, 239, 255);
+  background-color: var(--bgColor);
 }
 
 /* Custom scrollbar */

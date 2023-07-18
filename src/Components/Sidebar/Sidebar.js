@@ -3,8 +3,11 @@ import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import Divider from "@mui/material/Divider";
 import { useRouter } from "next/navigation";
 import TopNav, { Legal } from "@/NavItem/TopNav";
+import { useUserAuth } from "@/Context/UserAuthContext";
 const Sidebar = () => {
   const router = useRouter();
+  const { userDetails, signOut } = useUserAuth();
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -30,42 +33,30 @@ const Sidebar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
       onClick={toggleDrawer(anchor, false)}
     >
-      {/* {!isLogin ? (
-        <></>
-      ) : (
-        <div className="p-5  flex   gap-5 flex-col bg-blue-900 text-white  ">
-          <div  className=" font-semibold text-sky-50 text-left " >Welcome !</div>
-          <div className="items-center    flex   gap-5   ">
-            <div className="w-14 h-14   overflow-hidden  border-white border-4  rounded-full">
-              <img
-                src={user?.image}
-                className="w-full h-full"
-                alt=""
-                srcSet=""
-              />
-            </div>
-            <div className="h-full flex flex-col justify-between items-start gap-2">
-              <h1 className="font-semibold">{user?.name}</h1>
-              <button
-                onClick={() => {
-                  router.push("/MyAccount");
-                }}
-                className="font-light  text-gray-100 text-sm "
-              >
-                {" "}
-                <i className="uil uil-user" /> My Account
-              </button>
-            </div>
-          </div>
+      {userDetails?.isLogin ? (
+        <div className="flex justify-between w-full p-5 bg-blue-900 text-white ">
+          {" "}
           <button
-            onClick={signOut}
-            className="bgpColor   text-white p-2 rounded-sm flex gap-2 justify-center items-center "
+            onClick={() => {
+              if (userDetails?.isLogin) {
+                return router.push("/MyAccount");
+              }
+              return setsignInModal(true);
+            }}
+            className="flex items-center gap-4     "
           >
-            {" "}
-            <i className="uil uil-signout" /> <span> Sign Out</span>
+            <i className="uil uil-user" />{" "}
+            <span className="">Hey {userDetails?.User?.name} </span>
+          </button>
+          <button onClick={signOut}>
+            <i className="uil uil-sign-out-alt text-xl" />
           </button>
         </div>
-      )} */}
+      ) : (
+        <button className="w-full p-5 flex items-center gap-4   bg-blue-900 text-white  ">
+          <i className="uil uil-user" /> <span className="">Sign In</span>
+        </button>
+      )}
       <div className=" px-5  ">
         {TopNav.map((text, index) => (
           <button
@@ -100,7 +91,7 @@ const Sidebar = () => {
   return (
     <>
       <button onClick={toggleDrawer("left", true)}>
-        <i className="uil uil-bars text-xl" />
+        <i className="uil uil-bars  text-xl" />
       </button>
 
       <SwipeableDrawer
