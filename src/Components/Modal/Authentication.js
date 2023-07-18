@@ -23,7 +23,7 @@ const Authentication = () => {
             {/* <!-- Modal header --> */}
             <div className="flex items-center    justify-between mb-5  pb-2 border-b rounded-t">
               {/* <!-- SignIn SignUp Navigation--> */}
-              <div className=" text-base md:text-lg  text-gray-900 ">
+              <div className=" text-   md:text-lg  text-gray-900 ">
                 <button
                   onClick={() => {
                     setisLoginState(true);
