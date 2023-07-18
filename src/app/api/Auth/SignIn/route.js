@@ -33,7 +33,7 @@ export async function POST(request) {
         errorMsg: error.message,
       },
       {
-        status: 404,
+        status: 500,
       }
     );
   }
