@@ -1,15 +1,15 @@
 "use client";
 import { useUserAuth } from "@/Context/UserAuthContext";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const MyAccountlayout = ({ children }) => {
   const { userDetails } = useUserAuth();
-  const router = useRouter();
-  if (!userDetails?.isLogin) {
-    router.push("/");
+
+  if (userDetails?.isLogin) {
+    return <div> {children} </div>;
+  } else {
+    return <div className="p-5 bg-white"  >You Need to Login</div>;
   }
-  return <div> {children} </div>;
 };
 
 export default MyAccountlayout;
