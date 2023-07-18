@@ -3,38 +3,29 @@ import bcrypt from "bcrypt";
 import User from "@/Modal/User";
 import jwt from "jsonwebtoken";
 initDB();
-
 import { NextResponse } from "next/server";
-
 export async function POST(request) {
   try {
     const Data = await request.json();
-    const { phoneNo, hash, OTP } = Data;
-    const checkOTP = await bcrypt.compare(OTP.toString(), hash);
-    if (checkOTP) {
-      const checkUser = await User.findOne({ phoneNo });
-      if (checkUser) {
-        return NextResponse.json({
-          isSuccess: true,
-          userExist: true,
-          User: checkUser,
-          message: "Login Success",
-          token: genToken(checkUser?._id),
-        });
-      }
-      const userAdd = await User.create({
-        phoneNo,
-        image: "/img/maleUser.svg",
-      });
+    const { email, password } = Data;
+
+    const findUser = await User.findOne({ email });
+
+    if (!findUser) {
+      throw new Error("User not Found");
+    }
+    const checkPassword = await bcrypt.compare(password, findUser.password);
+
+    if (checkPassword) {
       return NextResponse.json({
         isSuccess: true,
-        userExist: false,
+        userExist: true,
         message: "Login Success",
-        token: genToken(userAdd?._id),
+        token: genToken(findUser?._id),
       });
     }
 
-    throw new Error("Invalid OTP");
+    throw new Error("Invalid Credentials");
   } catch (error) {
     return NextResponse.json(
       {
@@ -47,20 +38,6 @@ export async function POST(request) {
     );
   }
 }
-
-export const GET = async (request) => {
-  try {
-    const allUser = await User.find();
-    return NextResponse.json(allUser);
-  } catch (error) {
-    return NextResponse.json(
-      { msg: "Internal Server Error" },
-      {
-        status: 500,
-      }
-    );
-  }
-};
 
 const genToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "2160h" });

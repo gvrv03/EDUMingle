@@ -6,12 +6,16 @@ import { useEffect } from "react";
 import { useState } from "react";
 import {
   checkUser,
+  checkUserExists,
   createUser,
   SendSMSToUser,
+  SignIn,
 } from "@/API/Authentication/Auth";
 import { toast } from "react-hot-toast";
+import { useAppStore } from "./UseStoreContext";
 const userAuthContext = createContext();
 export function UserAuthContexProvider({ children }) {
+  const { setsignInModal } = useAppStore();
   const [userDetails, setuserDetails] = useState({});
   const [otpSend, setotpSend] = useState(false);
   const [timer, setTimer] = useState(0);
@@ -30,7 +34,32 @@ export function UserAuthContexProvider({ children }) {
     return toast.error(res?.data?.message);
   };
 
-  //-------------------SEND SMS to User -------------------
+  const isUserExist = async (phone, email) => {
+    try {
+      const response = await checkUserExists(phone, email);
+      if (response?.data?.isUnique) {
+        return await sendSMS(phone);
+      }
+    } catch (error) {
+      return toast.error(error?.response?.data?.errorMsg);
+    }
+  };
+
+  const signInUser = async (email, password) => {
+    try {
+      const response = await SignIn(email, password);
+      if (response?.data?.isSuccess) {
+        localStorage.setItem("token", response?.data?.token);
+        await fetchUserDetail(response?.data?.token);
+        setsignInModal(false);
+        return toast.success(response?.data?.message);
+      }
+    } catch (error) {
+      return toast.error(error?.response?.data?.errorMsg);
+    }
+  };
+
+  //-------------------Sign Out User -------------------
   const signOut = async () => {
     localStorage.removeItem("token");
     setuserDetails({});
@@ -43,13 +72,21 @@ export function UserAuthContexProvider({ children }) {
   };
 
   //-------------------Create A User -------------------
-  const createNewUser = async (userOTP, number) => {
+  const createNewUser = async (userOTP, number, userData, password) => {
     try {
-      const res = await createUser(number, OTPHash, userOTP);
+      const res = await createUser(
+        number,
+        OTPHash,
+        userOTP,
+        userData,
+        password
+      );
       if (res?.isSuccess) {
         localStorage.setItem("token", res?.token);
         await fetchUserDetail(res?.token);
         setotpSend(false);
+        setsignInModal(false);
+
         return toast.success(res?.message);
       }
     } catch (error) {
@@ -104,6 +141,8 @@ export function UserAuthContexProvider({ children }) {
         resendOTP,
         createNewUser,
         userDetails,
+        isUserExist,
+        signInUser,
       }}
     >
       {children}

@@ -13,6 +13,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "N/A",
     },
+    dob: {
+      type: String,
+      default: "N/A",
+    },
+    password: {
+      type: String,
+    },
     phoneNo: {
       type: String,
       default: "N/A",

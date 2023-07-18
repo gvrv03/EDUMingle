@@ -1,3 +1,4 @@
+import { Fast2SMSSend } from "@/API/Authentication/Auth";
 import initDB from "@/helper/initDB";
 import User from "@/Modal/User";
 import bcrypt from "bcrypt";
@@ -16,28 +17,9 @@ export async function POST(request) {
     const OTP = random.integer(1000, 9999);
 
     console.log("OTP is: ", OTP);
-
     const userExist = await User.findOne({ phoneNo });
     const hashedOTP = await bcrypt.hash(OTP.toString(), saltRounds);
-
-    const data = {
-      variables_values: OTP.toString(),
-      route: "otp",
-      numbers: phoneNo,
-    };
-    const url = `https://www.fast2sms.com/dev/bulkV2`;
-    const headers = {
-      authorization: process.env.FAST2SMSAPI,
-      "Content-Type": "application/json",
-    };
-
-    const res = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(data),
-    });
-    const result = await res.json();
-
+    const result = await Fast2SMSSend(phoneNo, OTP.toString());
     if (result.return) {
       return NextResponse.json({
         userExist: userExist ? true : false,
@@ -46,7 +28,6 @@ export async function POST(request) {
         message: result.message[0],
       });
     }
-
     return NextResponse.json({
       isSuccess: false,
       message: result.message,
