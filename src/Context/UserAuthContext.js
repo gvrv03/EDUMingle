@@ -48,6 +48,7 @@ export function UserAuthContexProvider({ children }) {
   const signInUser = async (email, password) => {
     try {
       const response = await SignIn(email, password);
+      console.log(response);
       if (response?.data?.isSuccess) {
         localStorage.setItem("token", response?.data?.token);
         await fetchUserDetail(response?.data?.token);
