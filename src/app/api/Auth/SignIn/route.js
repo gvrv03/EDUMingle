@@ -24,8 +24,8 @@ export async function POST(request) {
         token: genToken(findUser?._id),
       });
     }
-
     throw new Error("Invalid Credentials");
+
   } catch (error) {
     return NextResponse.json(
       {

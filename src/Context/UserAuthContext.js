@@ -34,6 +34,7 @@ export function UserAuthContexProvider({ children }) {
     return toast.error(res?.data?.message);
   };
 
+  //------------------Check User Exists------------------
   const isUserExist = async (phone, email) => {
     try {
       const response = await checkUserExists(phone, email);
@@ -45,19 +46,21 @@ export function UserAuthContexProvider({ children }) {
     }
   };
 
+  //------------------Sign In User------------------
   const signInUser = async (email, password) => {
     try {
       const response = await SignIn(email, password);
       console.log(response);
-      if (response?.data?.isSuccess) {
-        localStorage.setItem("token", response?.data?.token);
-        await fetchUserDetail(response?.data?.token);
+      if (response?.isSuccess) {
+        localStorage.setItem("token", response?.token);
+        await fetchUserDetail(response?.token);
         setsignInModal(false);
-        return toast.success(response?.data?.message);
+        return toast.success(response?.message);
       }
+      return toast.error(response?.errorMsg);
     } catch (error) {
       console.log(error);
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error(error?.message);
     }
   };
 
@@ -88,7 +91,6 @@ export function UserAuthContexProvider({ children }) {
         await fetchUserDetail(res?.token);
         setotpSend(false);
         setsignInModal(false);
-
         return toast.success(res?.message);
       }
     } catch (error) {

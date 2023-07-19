@@ -59,7 +59,7 @@ const Register = () => {
           value={userData.gender}
           required={true}
           name="gender"
-          className="p-2  outline-none py-3 "
+          className="p-2   text-sm outline-none py-3 "
         >
           <option value="male">Mr.</option>
           <option value="female">Miss.</option>
@@ -70,7 +70,7 @@ const Register = () => {
           onChange={onChange}
           value={userData.name}
           name="name"
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full  text-sm outline-none py-3 "
           placeholder="Name"
         />
       </div>
@@ -81,7 +81,7 @@ const Register = () => {
           value={userData.email}
           required={true}
           name="email"
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full  text-sm outline-none py-3 "
           placeholder="Email"
         />
       </div>
@@ -92,7 +92,7 @@ const Register = () => {
           required={true}
           value={userData.dob}
           name="dob"
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full  text-sm outline-none py-3 "
           placeholder="Email"
         />
       </div>
@@ -105,7 +105,7 @@ const Register = () => {
           value={password}
           required={true}
           name="password"
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full  text-sm outline-none py-3 "
           placeholder="Password"
         />
       </div>
@@ -127,7 +127,7 @@ const Register = () => {
               onChange={(e) => {
                 setuserOTP(e.target.value);
               }}
-              className="p-2 w-full outline-none py-3 "
+              className="p-2 w-full  text-sm outline-none py-3 "
               required={true}
               placeholder="Enter OTP"
             />

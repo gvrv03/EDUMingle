@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useUserAuth } from "@/Context/UserAuthContext";
-import { toast } from "react-hot-toast";
-import PhoneInput from "react-phone-input-2";
 import DefaultBTN from "../Utility/DefaultBTN";
 import "react-phone-input-2/lib/style.css";
+import { toast } from "react-hot-toast";
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -13,6 +12,10 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setloading(true);
+    if (email.length === 0 || password.length === 0) {
+      toast.error("Fill the Fields");
+      return setloading(false);
+    }
     await signInUser(email, password);
     return setloading(false);
   };
@@ -28,7 +31,7 @@ const Login = () => {
           value={email}
           name="email"
           required={true}
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full text-sm  outline-none py-3 "
           placeholder="Email"
         />
       </div>
@@ -41,12 +44,14 @@ const Login = () => {
           value={password}
           name="password"
           required={true}
-          className="p-2 w-full outline-none py-3 "
+          className="p-2 w-full text-sm  outline-none py-3 "
           placeholder="Password"
         />
       </div>
-      <div  className="w-full text-base ">
-        <button className="float-right  pColor font-semibold" >Forgot Password ?</button>
+      <div className="w-full  ">
+        <button className="float-right  pColor font-semibold">
+          Forgot Password ?
+        </button>
       </div>
       <DefaultBTN
         btnStyle=" px-5 py-3  w-full rounded-md pBtn"
