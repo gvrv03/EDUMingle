@@ -8,7 +8,7 @@ const UserProfile = () => {
   const { userDetails } = useUserAuth();
   return (
     <div className="flex flex-col  bg-white  ">
-      <div className="flex items-center  bg-white p-5 gap-2 justify-start">
+      <div className="flex items-center  bg-white p-5 border-b  gap-2 justify-start">
         <button className="md:hidden block">
           <i className="uil uil-angle-left-b pColor text-xl" />
         </button>
@@ -108,7 +108,7 @@ const UserProfile = () => {
               What happens when I update my email address (or mobile number)?
             </h4>
             <p>
-              Your login email id (or mobile number) changes, likewise. You'll
+              Your login email id (or mobile number) changes, likewise. You will
               receive all your account related communication on your updated
               email address (or mobile number).
             </p>
@@ -130,8 +130,8 @@ const UserProfile = () => {
               email address (or mobile number)?
             </h4>
             <p>
-              Updating your email address (or mobile number) doesn't invalidate
-              your account. Your account remains fully functional. You'll
+              Updating your email address (or mobile number) does not invalidate
+              your account. Your account remains fully functional. You will
               continue seeing your Order history, saved information and personal
               details.
             </p>
