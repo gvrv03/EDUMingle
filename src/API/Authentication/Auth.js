@@ -8,7 +8,6 @@ import {
 } from "@/helper/allLinks";
 import axios from "axios";
 
-
 //------------------Send Via Fast 2 SMS------------------
 export const Fast2SMSSend = async (phoneNo, OTP) => {
   const url = Fast2SMSURL;
@@ -30,7 +29,6 @@ export const Fast2SMSSend = async (phoneNo, OTP) => {
   return result;
 };
 
-
 //------------------Send Via API------------------
 export const SendSMSToUser = async (number) => {
   const url = SendSMSToUserURL;
@@ -38,16 +36,15 @@ export const SendSMSToUser = async (number) => {
   return res;
 };
 
-
-
 //------------------Sign in User------------------
 export const SignIn = async (email, password) => {
   const url = signInUserURL;
-  const res = await axios.post(url, { email, password });
-  console.log(email,password);
-  console.log(res);
+  console.log(email, password);
 
-  return res;
+  const res = await axios.post(url, { email, password });
+  console.log(email, password);
+
+  return await res.data;
 };
 
 //------------------Check ser Exists------------------
@@ -56,7 +53,6 @@ export const checkUserExists = async (number, email) => {
   const res = await axios.post(url, { phoneNo: number, email });
   return res;
 };
-
 
 //------------------Create new User------------------
 export const createUser = async (number, hash, OTP, userData, password) => {
@@ -71,7 +67,6 @@ export const createUser = async (number, hash, OTP, userData, password) => {
   const res = await axios.post(url, data);
   return await res?.data;
 };
-
 
 //------------------Check User------------------
 export const checkUser = async (token) => {

@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   return (
-    <form className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
       <div className="w-full border rounded-md">
         <input
           type="email"
@@ -56,7 +56,6 @@ const Login = () => {
       <DefaultBTN
         btnStyle=" px-5 py-3  w-full rounded-md pBtn"
         nameBtn="Sign In"
-        func={handleSubmit}
         loading={loading}
       />
     </form>

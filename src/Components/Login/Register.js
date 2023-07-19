@@ -52,7 +52,11 @@ const Register = () => {
     return setloading(false);
   };
   return (
-    <form className="flex flex-col gap-5">
+    <form
+      onSubmit={!otpSend ? sendOTPtoUser : verifyOTP}
+      className="flex flex-col gap-5"
+      
+    >
       <div className="w-full gap-5 flex border rounded-md">
         <select
           onChange={onChange}
@@ -114,6 +118,7 @@ const Register = () => {
         <PhoneInput
           country={"in"}
           onlyCountries={["in"]}
+          required={true}
           value={phoneNo ? phoneNo : ""}
           onChange={(phone) => setphoneNo(phone)}
         />
@@ -146,7 +151,6 @@ const Register = () => {
           <DefaultBTN
             btnStyle=" px-5 py-3  w-full rounded-md pBtn"
             nameBtn="Sign Up"
-            func={verifyOTP}
             loading={loading}
           />
         </>
