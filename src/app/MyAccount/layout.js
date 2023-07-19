@@ -2,7 +2,7 @@
 import NavigationMyAcc from "@/Components/MyAccount/NavigationMyAcc";
 import { useUserAuth } from "@/Context/UserAuthContext";
 import { UserAccountNav } from "@/NavItem/TopNav";
-import React from "react";
+import React, { memo } from "react";
 
 const MyAccountlayout = ({ children }) => {
   const { signOut, userDetails } = useUserAuth();
@@ -25,23 +25,6 @@ const MyAccountlayout = ({ children }) => {
               </h2>
             </div>
           </div>
-          {/* <div className="bg-white p-5 w-full flex-col flex  gap-5">
-            {UserAccountNav.map((item, index) => {
-              return (
-                <button
-                  key={index}
-                  onClick={() => {
-                    router.push(item.location);
-                    setnavbar(false);
-                  }}
-                  className="flex gap-2"
-                >
-                  <i className={`${item.icon}`} />
-                  <h1>{item.name}</h1>{" "}
-                </button>
-              );
-            })}
-          </div> */}
           <div className="w-full" >
             <NavigationMyAcc />
           </div>
@@ -62,4 +45,4 @@ const MyAccountlayout = ({ children }) => {
   }
 };
 
-export default MyAccountlayout;
+export default memo(MyAccountlayout);

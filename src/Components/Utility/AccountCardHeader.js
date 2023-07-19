@@ -1,9 +1,9 @@
 import React, { memo } from "react";
 
-const MainCardHeader = ({ name }) => {
+const MainCardHeader = ({ name,styleCus }) => {
   return (
     <div className="flex justify-between" >
-      <h2 className="font-semibold text-base ">{name}</h2>
+      <h2 className={`${styleCus}`}  >{name}</h2>
     </div>
   );
 };

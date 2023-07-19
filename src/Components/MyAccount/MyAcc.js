@@ -1,13 +1,13 @@
 "use client";
 import { useUserAuth } from "@/Context/UserAuthContext";
-import React from "react";
+import React, { memo } from "react";
 import AccountCardHeader from "../Utility/AccountCardHeader";
 import NavigationMyAcc from "./NavigationMyAcc";
 
 const MyAcc = () => {
   const { signOut } = useUserAuth();
   return (
-    <div className="flex-col flex gap-2">
+    <div className="flex-col  md:hidden flex gap-2">
       <div className="bg-white grid grid-cols-2 gap-5 p-5">
         <button className="w-full border p-2 rounded-sm font-medium text-base text-left ">
           {" "}
@@ -42,4 +42,4 @@ const MyAcc = () => {
   );
 };
 
-export default MyAcc;
+export default memo(MyAcc);

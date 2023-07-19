@@ -23,6 +23,7 @@ export async function POST(request) {
           isAdmin: getUser.role === process.env.ADMIN_KEY ? true : false,
           isRoot: getUser.role === process.env.ROOT_KEY ? true : false,
           User: getUser,
+          token: token,
         },
         {
           status: 200,

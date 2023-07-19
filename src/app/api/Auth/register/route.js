@@ -15,11 +15,15 @@ export async function POST(request) {
 
     if (checkOTP) {
       const userAdd = await User.create({
+        image:
+          userData.gender === "male"
+            ? "/img/maleUser.svg"
+            : "/img/femaleUser.svg",
         phoneNo,
         ...userData,
         password: hashPassword,
-        image: "/img/maleUser.svg",
       });
+      
       return NextResponse.json({
         isSuccess: true,
         userExist: false,

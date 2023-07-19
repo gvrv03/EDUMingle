@@ -1,13 +1,23 @@
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { memo } from "react";
 import AccountCardHeader from "../Utility/AccountCardHeader";
 
 const NavigationMyAcc = () => {
+  const router = useRouter();
   return (
     <>
-      <div className="bg-white  w-full flex flex-col gap-2 p-5">
-        <AccountCardHeader name="Account Setting" />
+      <div className="bg-white  w-full flex flex-col gap-5 p-5">
+        <AccountCardHeader
+          styleCus="font-semibold text-base"
+          name="Account Setting"
+        />
         <div className="flex-col flex gap-2">
-          <button className="flex  justify-between  items-center w-full">
+          <button
+            onClick={() => {
+              router.push("/MyAccount/EditProfile");
+            }}
+            className="flex  justify-between  items-center w-full"
+          >
             <span className="flex gap-5 items-center ">
               <i className="uil uil-user text-lg pColor " />
               <span className="text-base font-normal">Edit Profile</span>
@@ -33,8 +43,11 @@ const NavigationMyAcc = () => {
         </div>
       </div>
 
-      <div className="bg-white  w-full flex flex-col gap-2 p-5">
-        <AccountCardHeader name="My Activity" />
+      <div className="bg-white  w-full flex flex-col gap-5 p-5">
+        <AccountCardHeader
+          styleCus="font-semibold text-base"
+          name="My Activity"
+        />
         <div className="flex-col flex gap-2">
           <button className="flex  justify-between  items-center w-full">
             <span className="flex gap-5 items-center ">
@@ -53,8 +66,11 @@ const NavigationMyAcc = () => {
         </div>
       </div>
 
-      <div className="bg-white  w-full flex flex-col gap-2 p-5">
-        <AccountCardHeader name="Feedbacks & Information" />
+      <div className="bg-white  w-full flex flex-col gap-5 p-5">
+        <AccountCardHeader
+          styleCus="font-semibold text-base"
+          name="Feedbacks & Information"
+        />
         <div className="flex-col flex gap-2">
           <button className="flex  justify-between  items-center w-full">
             <span className="flex gap-5  items-center ">
@@ -78,4 +94,4 @@ const NavigationMyAcc = () => {
   );
 };
 
-export default NavigationMyAcc;
+export default memo(NavigationMyAcc);

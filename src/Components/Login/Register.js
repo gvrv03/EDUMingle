@@ -32,7 +32,8 @@ const Register = () => {
     });
   }
 
-  const sendOTPtoUser = async () => {
+  const sendOTPtoUser = async (e) => {
+    e.preventDefault();
     setloading(true);
     if (phoneNo.length < 9) {
       toast.error("Enter the number");
@@ -42,7 +43,9 @@ const Register = () => {
     return setloading(false);
   };
 
-  const verifyOTP = async () => {
+  const verifyOTP = async (e) => {
+    e.preventDefault();
+
     setloading(true);
     if (!userOTP) {
       toast.error("Enter the OTP");
@@ -54,8 +57,8 @@ const Register = () => {
   return (
     <form
       onSubmit={!otpSend ? sendOTPtoUser : verifyOTP}
+      method="POST"
       className="flex flex-col gap-5"
-      
     >
       <div className="w-full gap-5 flex border rounded-md">
         <select
@@ -160,7 +163,6 @@ const Register = () => {
         <DefaultBTN
           btnStyle=" px-5 py-3  w-full rounded-md pBtn"
           nameBtn="Send OTP"
-          func={sendOTPtoUser}
           loading={loading}
         />
       )}

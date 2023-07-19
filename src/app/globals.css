@@ -17,8 +17,10 @@
   }
 }
 
+
+
 :root {
-  --primaryColor: blue;
+  --primaryColor: red;
   --secondaryColor: #d61609;
   --bgColor: rgb(242, 239, 255);
   --tirtiaryColor: yellow;

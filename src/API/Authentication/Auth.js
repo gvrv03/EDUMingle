@@ -40,7 +40,7 @@ export const SendSMSToUser = async (number) => {
 export const SignIn = async (email, password) => {
   const url = signInUserURL;
   const res = await axios.post(url, { email, password });
-  return await res.data;
+  return await res?.data;
 };
 
 //------------------Check ser Exists------------------
@@ -53,14 +53,15 @@ export const checkUserExists = async (number, email) => {
 //------------------Create new User------------------
 export const createUser = async (number, hash, OTP, userData, password) => {
   const url = createUserURL;
-  const data = {
+  const dataUser = {
     phoneNo: number,
     hash: hash,
     OTP: OTP,
     userData: userData,
     password: password,
   };
-  const res = await axios.post(url, data);
+  const res = await axios.post(url, dataUser);
+  console.log(res);
   return await res?.data;
 };
 
