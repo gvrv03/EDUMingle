@@ -51,13 +51,12 @@ export function UserAuthContexProvider({ children }) {
     try {
       const response = await SignIn(email, password);
       console.log(response);
-      if (response?.isSuccess) {
-        localStorage.setItem("token", response?.token);
-        await fetchUserDetail(response?.token);
+      if (response?.data?.isSuccess) {
+        localStorage.setItem("token", response?.data?.token);
+        await fetchUserDetail(response?.data?.token);
         setsignInModal(false);
-        return toast.success(response?.message);
+        return toast.success(response?.data?.message);
       }
-      return toast.error(response?.errorMsg);
     } catch (error) {
       console.log(error);
       return toast.error(error?.message);
