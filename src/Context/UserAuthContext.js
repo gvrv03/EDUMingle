@@ -50,7 +50,6 @@ export function UserAuthContexProvider({ children }) {
   const signInUser = async (email, password) => {
     try {
       const response = await SignIn(email, password);
-      console.log(response);
       if (response?.isSuccess) {
         localStorage.setItem("token", response?.token);
         await fetchUserDetail(response?.token);
@@ -58,7 +57,6 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(response?.message);
       }
     } catch (error) {
-      console.log(error);
       return toast.error(error?.response?.data?.errorMsg);
     }
   };

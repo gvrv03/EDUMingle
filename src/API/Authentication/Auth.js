@@ -39,11 +39,7 @@ export const SendSMSToUser = async (number) => {
 //------------------Sign in User------------------
 export const SignIn = async (email, password) => {
   const url = signInUserURL;
-  console.log(email, password);
-
   const res = await axios.post(url, { email, password });
-  console.log(email, password);
-
   return await res.data;
 };
 
