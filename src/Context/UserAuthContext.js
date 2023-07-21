@@ -129,7 +129,7 @@ export function UserAuthContexProvider({ children }) {
       localStorage.setItem("userRole", res?.User?.role);
       setuserDetails({ ...res });
     } catch (error) {
-      console.log(error?.response?.data.errorMsg);
+      console.log(error?.response)
       toast.custom((t) => (
         <div
           className={`${
