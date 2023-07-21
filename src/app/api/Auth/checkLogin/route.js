@@ -14,10 +14,22 @@ export async function POST(request) {
     const res = await jwt.verify(token, process.env.JWT_SECRET);
     if (res) {
       const getUser = await User.findById(res?.id);
+      const hashAdminRole = await bcrypt.compare(
+        process.env.ADMIN_KEY,
+        getUser.role
+      );
+
+      const hashRootRole = await bcrypt.compare(
+        process.env.ROOT_KEY,
+        getUser.role
+      );
+
       return NextResponse.json(
         {
           isSuccess: true,
           isLogin: true,
+          isAdmin: hashAdminRole ? true : false,
+          isRoot: hashRootRole ? true : false,
           User: getUser,
           token: token,
         },

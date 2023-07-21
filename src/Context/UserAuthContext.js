@@ -5,11 +5,13 @@ import baseUrl from "@/helper/baseUrl";
 import { useEffect } from "react";
 import { useState } from "react";
 import {
+  checkAuthorized,
   checkUser,
   checkUserExists,
   createUser,
   SendSMSToUser,
   SignIn,
+  UpdateUser,
 } from "@/API/Authentication/Auth";
 import { toast } from "react-hot-toast";
 import { useAppStore } from "./UseStoreContext";
@@ -52,6 +54,8 @@ export function UserAuthContexProvider({ children }) {
       const response = await SignIn(email, password);
       if (response?.isSuccess) {
         localStorage.setItem("token", response?.token);
+        localStorage.setItem("id", response?.userID);
+        localStorage.setItem("userRole", response?.userRole);
         await fetchUserDetail(response?.token);
         setsignInModal(false);
         return toast.success(response?.message);
@@ -64,6 +68,8 @@ export function UserAuthContexProvider({ children }) {
   //-------------------Sign Out User -------------------
   const signOut = async () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userRole");
+    localStorage.removeItem("id");
     setuserDetails({});
   };
 
@@ -96,6 +102,19 @@ export function UserAuthContexProvider({ children }) {
     }
   };
 
+  //-------------------Update A User -------------------
+  const updateUser = async (id, userData) => {
+    try {
+      const res = await UpdateUser(id, userData);
+      if (res?.isSuccess) {
+        await fetchUserDetail(userDetails?.token);
+        return toast.success(res?.message);
+      }
+    } catch (error) {
+      return toast.error(error?.response?.data?.errorMsg);
+    }
+  };
+
   //-------------------Resend OTP-------------------
   const resendOTP = async (number) => {
     await sendSMS(number);
@@ -106,6 +125,9 @@ export function UserAuthContexProvider({ children }) {
   const fetchUserDetail = useCallback(async (token) => {
     try {
       const res = await checkUser(token);
+
+      localStorage.setItem("id", res?.User?._id);
+      localStorage.setItem("userRole", res?.User?.role);
       setuserDetails({ ...res });
     } catch (error) {
       console.log(error?.response?.data.errorMsg);
@@ -181,7 +203,7 @@ export function UserAuthContexProvider({ children }) {
         userDetails,
         isUserExist,
         signInUser,
-        
+        updateUser,
       }}
     >
       {children}

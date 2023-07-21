@@ -3,21 +3,39 @@ import { useUserAuth } from "@/Context/UserAuthContext";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import AccountCardHeader from "../Utility/AccountCardHeader";
+import DefaultBTN from "../Utility/DefaultBTN";
 
 const UserProfile = () => {
+  const [disablePersonal, setdisablePersonal] = useState(true);
+  const [loading, setloading] = useState(false);
   const [disable, setdisable] = useState(true);
   const router = useRouter();
-  const { userDetails } = useUserAuth();
+  const { userDetails, updateUser } = useUserAuth();
+  const [userData, setuserData] = useState({});
+  function onChange(e) {
+    setuserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  const handleUpdateUser = async (e) => {
+    e.preventDefault();
+    setloading(true);
+    await updateUser(userDetails?.User?._id, { ...userData });
+    setloading(false);
+  };
+
   return (
     <div className="flex flex-col  bg-white  ">
-      <div className="flex items-center   text-white  bgPColor p-5 py-2    gap-2 justify-start">
+      <div className="flex items-center   text-black  bg-gray-50 p-5 py-2    gap-2 justify-start">
         <button
           onClick={() => {
             router.push("/MyAccount");
           }}
-          className="md:hidden block"
+          className="md:hidden block pColor "
         >
-          <i className="uil uil-angle-left-b text-2xl" />
+          <i className="uil uil-angle-left-b -ml-3 text-2xl" />
         </button>
         <AccountCardHeader
           styleCus="font-semibold text-lg"
@@ -32,27 +50,27 @@ const UserProfile = () => {
           />
           <button
             onClick={() => {
-              if (disable) {
-                setdisable(false);
+              if (disablePersonal) {
+                setdisablePersonal(false);
               } else {
-                setdisable(true);
+                setdisablePersonal(true);
               }
             }}
-            className="pColor "
+            className="pColor text-xs "
           >
             Edit
           </button>
         </div>
         <div className="mt-2 flex  flex-col md:flex-row w-full  items-center gap-5 ">
-          <div className=" w-[20%]  h-full grid place-items-center  ">
+          <div className=" md:mr-5  h-full  grid place-items-center  ">
             <div className="relative">
               <img
                 src={userDetails?.User?.image}
                 alt={userDetails?.User?.name}
                 className="w-20"
               />
-              {!disable && (
-                <button className="pColor absolute bottom-0 -right-4 ">
+              {!disablePersonal && (
+                <button className="pColor text-xs absolute bottom-0 -right-4 ">
                   Edit
                 </button>
               )}
@@ -63,9 +81,13 @@ const UserProfile = () => {
               <div className="gap-2 flex   items-center rounded border  p-2 ">
                 <i className="uil uil-user pColor text-lg " />
                 <input
-                  disabled={disable}
+                  disabled={disablePersonal}
                   type="text"
-                  value={userDetails?.User?.name}
+                  value={
+                    userData.name ? userData?.name : userDetails?.User?.name
+                  }
+                  onChange={onChange}
+                  name="name"
                   className="px-2 disabled:bg-white disabled:text-gray-500  outline-none w-full "
                 />
               </div>
@@ -73,8 +95,10 @@ const UserProfile = () => {
                 <i className="uil uil-calender pColor text-lg " />
                 <input
                   type="date"
-                  disabled={disable}
-                  value={userDetails?.User?.dob}
+                  disabled={disablePersonal}
+                  value={userData.dob ? userData?.dob : userDetails?.User?.dob}
+                  onChange={onChange}
+                  name="dob"
                   className="px-2 disabled:bg-white disabled:text-gray-500  outline-none w-full "
                 />
               </div>
@@ -82,8 +106,14 @@ const UserProfile = () => {
                 <i className="uil uil-venus pColor text-lg " />
 
                 <select
-                  disabled={disable}
-                  value={userDetails?.User?.dob}
+                  disabled={disablePersonal}
+                  value={
+                    userData.gender
+                      ? userData?.gender
+                      : userDetails?.User?.gender
+                  }
+                  onChange={onChange}
+                  name="gender"
                   className="px-2 disabled:bg-white disabled:text-gray-500  outline-none w-full "
                 >
                   <option value="male">Male</option>
@@ -94,6 +124,16 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      {!disablePersonal && (
+        <div className="bg-white flex flex-col gap-2 p-5">
+          <DefaultBTN
+            btnStyle="pBtn px-10 rounded-md  py-1 w-fit"
+            nameBtn="Save"
+            func={handleUpdateUser}
+            loading={loading}
+          />
+        </div>
+      )}{" "}
       <div className="p-5 bg-white">
         <AccountCardHeader
           styleCus="font-semibold text-base"
@@ -124,12 +164,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      {!disable && (
-        <div class="bg-white flex flex-col gap-2 p-5">
-          <button className="pBtn px-10 rounded-md  py-2 w-fit">Save</button>
-        </div>
-      )}{" "}
-      <div class="bg-white flex flex-col gap-2 p-5">
+      <div className="bg-white flex flex-col gap-2 p-5">
         <AccountCardHeader styleCus="font-semibold text-base" name="FAQs" />
 
         <div className="flex-col gap-2 flex justify-between">

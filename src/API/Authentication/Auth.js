@@ -1,7 +1,7 @@
 import {
   checkUserExistURL,
   checkUserURL,
-  createUserURL,
+  RegisterUserURL,
   Fast2SMSURL,
   SendSMSToUserURL,
   signInUserURL,
@@ -43,6 +43,13 @@ export const SignIn = async (email, password) => {
   return await res?.data;
 };
 
+//------------------Sign in User------------------
+export const UpdateUser = async (ID, userData) => {
+  const url = RegisterUserURL;
+  const res = await axios.put(url, { ID, userData });
+  return await res?.data;
+};
+
 //------------------Check ser Exists------------------
 export const checkUserExists = async (number, email) => {
   const url = checkUserExistURL;
@@ -52,7 +59,7 @@ export const checkUserExists = async (number, email) => {
 
 //------------------Create new User------------------
 export const createUser = async (number, hash, OTP, userData, password) => {
-  const url = createUserURL;
+  const url = RegisterUserURL;
   const dataUser = {
     phoneNo: number,
     hash: hash,

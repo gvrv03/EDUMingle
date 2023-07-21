@@ -11,7 +11,7 @@ const NavigationMyAcc = () => {
           styleCus="font-semibold text-base"
           name="Account Setting"
         />
-        <div className="flex-col flex gap-2">
+        <div className="flex-col   flex gap-2">
           <button
             onClick={() => {
               router.push("/MyAccount/EditProfile");

@@ -47,6 +47,34 @@ export async function POST(request) {
     );
   }
 }
+export async function PUT(request) {
+  try {
+    const Data = await request.json();
+    const { ID, userData } = Data;
+    const checkUser = await User.findByIdAndUpdate(ID, userData);
+    if (checkUser) {
+      return NextResponse.json({
+        isSuccess: true,
+        userExist: true,
+        isUpdated: true,
+        message: "User Updated",
+      });
+    }
+
+    throw new Error("User Not Found");
+  } catch (error) {
+    return NextResponse.json(
+      {
+        isSuccess: false,
+        isUpdated: false,
+        errorMsg: error.message,
+      },
+      {
+        status: 404,
+      }
+    );
+  }
+}
 
 export const GET = async (request) => {
   try {
