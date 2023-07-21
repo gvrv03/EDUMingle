@@ -103,7 +103,7 @@ export function UserAuthContexProvider({ children }) {
   };
 
   //-------------------Update A User -------------------
-  const updateUser = async (id, userData) => {
+  const updateUserDetail = async (id, userData) => {
     try {
       const res = await UpdateUser(id, userData);
       if (res?.isSuccess) {
@@ -125,7 +125,6 @@ export function UserAuthContexProvider({ children }) {
   const fetchUserDetail = useCallback(async (token) => {
     try {
       const res = await checkUser(token);
-
       localStorage.setItem("id", res?.User?._id);
       localStorage.setItem("userRole", res?.User?.role);
       setuserDetails({ ...res });
@@ -203,7 +202,7 @@ export function UserAuthContexProvider({ children }) {
         userDetails,
         isUserExist,
         signInUser,
-        updateUser,
+        updateUserDetail,
       }}
     >
       {children}

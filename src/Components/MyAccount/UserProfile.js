@@ -10,7 +10,7 @@ const UserProfile = () => {
   const [loading, setloading] = useState(false);
   const [disable, setdisable] = useState(true);
   const router = useRouter();
-  const { userDetails, updateUser } = useUserAuth();
+  const { userDetails, updateUserDetail } = useUserAuth();
   const [userData, setuserData] = useState({});
   function onChange(e) {
     setuserData({
@@ -22,7 +22,7 @@ const UserProfile = () => {
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     setloading(true);
-    await updateUser(userDetails?.User?._id, { ...userData });
+    await updateUserDetail(userDetails?.User?._id, userData);
     setloading(false);
   };
 
