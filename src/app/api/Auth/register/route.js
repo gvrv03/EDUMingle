@@ -9,8 +9,9 @@ import { NextResponse } from "next/server";
 export async function POST(request) {
   try {
     const Data = await request.json();
-    const { phoneNo, hash, OTP, userData, password } = Data;
+    const { phoneNo, hash, OTP, userData, password, role } = Data;
     const checkOTP = await bcrypt.compare(OTP.toString(), hash);
+    const userRole = await bcrypt.hash(role ? role : "user", saltRounds);
     const hashPassword = await bcrypt.hash(password, saltRounds);
 
     if (checkOTP) {
@@ -21,9 +22,10 @@ export async function POST(request) {
             : "/img/femaleUser.svg",
         phoneNo,
         ...userData,
+        role: userRole,
         password: hashPassword,
       });
-      
+
       return NextResponse.json({
         isSuccess: true,
         userExist: false,

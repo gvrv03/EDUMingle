@@ -12,16 +12,12 @@ export async function POST(request) {
     const { token } = Data;
 
     const res = await jwt.verify(token, process.env.JWT_SECRET);
-    console.log(res);
-
     if (res) {
       const getUser = await User.findById(res?.id);
       return NextResponse.json(
         {
           isSuccess: true,
           isLogin: true,
-          isAdmin: getUser.role === process.env.ADMIN_KEY ? true : false,
-          isRoot: getUser.role === process.env.ROOT_KEY ? true : false,
           User: getUser,
           token: token,
         },

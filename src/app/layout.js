@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
             <Authentication />
             <Toaster />
             <NavBar />
-            <main className="  md:px-0 container  pb-2 pt-[64px]  md:pt-20   m-auto  text-xs md:text-sm  ">
+            <main className="  md:px-0 container  pb-2 pt-[64px]  md:pt-20   m-auto  text-sm md:text-base">
               {children}
             </main>
             {/* <Footer /> */}
