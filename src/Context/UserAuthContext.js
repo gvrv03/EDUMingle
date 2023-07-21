@@ -150,6 +150,10 @@ export function UserAuthContexProvider({ children }) {
                 <p className="mt-1 text-sm text-gray-500">
                   You need To Login Again
                 </p>
+                < p  className="text-[7px]" >
+                {error?.response?.data.errorMsg}
+
+                </>
               </div>
             </div>
           </div>

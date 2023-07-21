@@ -38,6 +38,8 @@ export async function POST(request) {
         }
       );
     }
+
+    throw new Error("User Not Found");
   } catch (error) {
     return NextResponse.json(
       {

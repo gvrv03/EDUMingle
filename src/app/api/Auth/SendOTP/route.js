@@ -19,26 +19,26 @@ export async function POST(request) {
     console.log("OTP is: ", OTP);
     const userExist = await User.findOne({ phoneNo });
     const hashedOTP = await bcrypt.hash(OTP.toString(), saltRounds);
-    // const result = await Fast2SMSSend(phoneNo, OTP.toString());
-    // if (result.return) {
-    //   return NextResponse.json({
-    //     userExist: userExist ? true : false,
-    //     hash: hashedOTP,
-    //     isSuccess: true,
-    //     message: result.message[0],
-    //   });
-    // }
-    // return NextResponse.json({
-    //   isSuccess: false,
-    //   message: result.message,
-    // });
-
+    const result = await Fast2SMSSend(phoneNo, OTP.toString());
+    if (result.return) {
+      return NextResponse.json({
+        userExist: userExist ? true : false,
+        hash: hashedOTP,
+        isSuccess: true,
+        message: result.message[0],
+      });
+    }
     return NextResponse.json({
-      userExist: userExist ? true : false,
-      hash: hashedOTP,
-      isSuccess: true,
-      message: "OTP Send",
+      isSuccess: false,
+      message: result.message,
     });
+
+    // return NextResponse.json({
+    //   userExist: userExist ? true : false,
+    //   hash: hashedOTP,
+    //   isSuccess: true,
+    //   message: "OTP Send",
+    // });
   } catch (error) {
     return NextResponse.json(
       {

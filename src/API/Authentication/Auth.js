@@ -43,7 +43,7 @@ export const SignIn = async (email, password) => {
   return await res?.data;
 };
 
-//------------------Sign in User------------------
+//------------------Update User------------------
 export const UpdateUser = async (ID, userData) => {
   const url = RegisterUserURL;
   const res = await axios.put(url, { ID, userData });
@@ -68,7 +68,6 @@ export const createUser = async (number, hash, OTP, userData, password) => {
     password: password,
   };
   const res = await axios.post(url, dataUser);
-  console.log(res);
   return await res?.data;
 };
 
