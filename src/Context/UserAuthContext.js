@@ -27,20 +27,20 @@ export function UserAuthContexProvider({ children }) {
   //-------------------SEND SMS to User -------------------
   const sendSMS = async (number) => {
     const res = await SendSMSToUser(number.slice(2));
-    if (res?.data?.isSuccess) {
-      setOTPHash(res?.data?.hash);
+    if (res?.isSuccess) {
+      setOTPHash(res?.hash);
       setotpSend(true);
       startTimer();
-      return toast.success(res?.data?.message);
+      return toast.success(res?.message);
     }
-    return toast.error(res?.data?.message);
+    return toast.error(res?.message);
   };
 
   //------------------Check User Exists------------------
   const isUserExist = async (phone, email) => {
     try {
       const response = await checkUserExists(phone, email);
-      if (response?.data?.isUnique) {
+      if (response?.isUnique) {
         return await sendSMS(phone);
       }
     } catch (error) {

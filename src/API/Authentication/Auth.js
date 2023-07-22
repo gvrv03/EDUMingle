@@ -33,7 +33,7 @@ export const Fast2SMSSend = async (phoneNo, OTP) => {
 export const SendSMSToUser = async (number) => {
   const url = SendSMSToUserURL;
   const res = await axios.post(url, { phoneNo: number });
-  return res;
+  return await res?.data;
 };
 
 //------------------Sign in User------------------
@@ -54,7 +54,7 @@ export const UpdateUser = async (ID, userData) => {
 export const checkUserExists = async (number, email) => {
   const url = checkUserExistURL;
   const res = await axios.post(url, { phoneNo: number, email });
-  return res;
+  return await res?.data;
 };
 
 //------------------Create new User------------------
