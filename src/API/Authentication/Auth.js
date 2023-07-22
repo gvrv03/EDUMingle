@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   checkUserExistURL,
   checkUserURL,
@@ -6,7 +7,6 @@ import {
   SendSMSToUserURL,
   signInUserURL,
 } from "@/helper/allLinks";
-import axios from "axios";
 
 //------------------Send Via Fast 2 SMS------------------
 export const Fast2SMSSend = async (phoneNo, OTP) => {
