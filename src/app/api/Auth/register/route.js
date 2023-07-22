@@ -30,6 +30,8 @@ export async function POST(request) {
         isSuccess: true,
         userExist: false,
         message: "Register Success",
+        userID: findUser?._id,
+        userRole: findUser?.role,
         token: genToken(userAdd?._id),
       });
     }

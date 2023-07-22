@@ -21,11 +21,12 @@ export async function POST(request) {
         isSuccess: true,
         userExist: true,
         message: "Login Success",
+        userID: findUser?._id,
+        userRole: findUser?.role,
         token: genToken(findUser?._id),
       });
     }
     throw new Error("Invalid Credentials");
-
   } catch (error) {
     return NextResponse.json(
       {

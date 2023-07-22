@@ -92,6 +92,8 @@ export function UserAuthContexProvider({ children }) {
       console.log(res);
       if (res?.isSuccess) {
         localStorage.setItem("token", res?.token);
+        localStorage.setItem("id", response?.userID);
+        localStorage.setItem("userRole", response?.userRole);
         await fetchUserDetail(res?.token);
         setotpSend(false);
         setsignInModal(false);
@@ -129,7 +131,7 @@ export function UserAuthContexProvider({ children }) {
       localStorage.setItem("userRole", res?.User?.role);
       setuserDetails({ ...res });
     } catch (error) {
-      console.log(error?.response)
+      console.log(error?.response);
       toast.custom((t) => (
         <div
           className={`${
