@@ -74,9 +74,9 @@ export const createUser = async (number, hash, OTP, userData, password) => {
 //------------------Check User------------------
 export const checkUser = async (token) => {
   const url = checkUserURL;
-  const data = {
+  const dataUser = {
     token: token,
   };
-  const res = await axios.post(url, data);
+  const res = await axios.post(url, dataUser);
   return await res?.data;
 };

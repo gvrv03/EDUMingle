@@ -89,11 +89,10 @@ export function UserAuthContexProvider({ children }) {
         userData,
         password
       );
-      console.log(res);
       if (res?.isSuccess) {
         localStorage.setItem("token", res?.token);
-        localStorage.setItem("id", response?.userID);
-        localStorage.setItem("userRole", response?.userRole);
+        localStorage.setItem("id", res?.userID);
+        localStorage.setItem("userRole", res?.userRole);
         await fetchUserDetail(res?.token);
         setotpSend(false);
         setsignInModal(false);
@@ -147,7 +146,9 @@ export function UserAuthContexProvider({ children }) {
                 />
               </div>
               <div className="ml-3 flex-1 ">
-                <p className="mt-1 text-sm text-gray-500">Hey, <span  >User</span></p>{" "}
+                <p className="mt-1 text-sm text-gray-500">
+                  Hey, <span>User</span>
+                </p>{" "}
                 <p className="mt-1 text-sm text-gray-500">
                   You need To Login Again
                 </p>

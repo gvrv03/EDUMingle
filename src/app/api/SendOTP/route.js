@@ -14,7 +14,7 @@ export async function POST(request) {
     const { phoneNo } = Data;
 
     const random = new Random();
-    const OTP = random.integer(1000, 9999);
+    const OTP = random.integer(100000, 999999);
 
     console.log("OTP is: ", OTP);
     const userExist = await User.findOne({ phoneNo });
