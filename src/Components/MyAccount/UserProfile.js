@@ -203,13 +203,7 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
-      <div className="w-full bg-white ">
-        <img
-          className="w-full"
-          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
-          alt=""
-        />
-      </div>
+      
     </div>
   );
 };

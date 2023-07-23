@@ -45,8 +45,8 @@ const Sidebar = () => {
             }}
             className="flex items-center gap-4     "
           >
-            <i className="uil uil-user" />{" "}
-            <span className="">Hey {userDetails?.User?.name} </span>
+            <img src= {userDetails?.User?.image} className="w-8 border rounded-full"   alt= {userDetails?.User?.name} />
+            <span className="">Hey, {userDetails?.User?.name} </span>
           </button>
           <button onClick={signOut}>
             <i className="uil uil-sign-out-alt text-xl" />

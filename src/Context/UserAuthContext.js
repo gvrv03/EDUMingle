@@ -106,7 +106,7 @@ export function UserAuthContexProvider({ children }) {
   //-------------------Update A User -------------------
   const updateUserDetail = async (id, userData) => {
     try {
-      const res = await UpdateUser(id, userData);
+      const res = await UpdateUser(id, userData,userDetails?.token);
       if (res?.isSuccess) {
         await fetchUserDetail(userDetails?.token);
         return toast.success(res?.message);

@@ -40,10 +40,10 @@ const NavBar = () => {
               </div>
             </div>
             <div className="flex  justify-end w-full  gap-5">
-              <form className="w-[60%]    flex items-center px-2 bg-gray-100   rounded ">
+              <form className="w-[60%]    flex items-center px-2 border  rounded ">
                 <input
                   type="search"
-                  className="w-full bg-gray-100 outline-none  text-xs p-2"
+                  className="w-full bg-transparent outline-none  text-xs p-2"
                   placeholder="Search..."
                 />
 

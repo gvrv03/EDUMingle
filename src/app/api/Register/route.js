@@ -6,6 +6,7 @@ initDB();
 const saltRounds = 10;
 
 import { NextResponse } from "next/server";
+import Authentication from "@/Middleware/Authentication";
 export async function POST(request) {
   try {
     const Data = await request.json();
@@ -47,9 +48,9 @@ export async function POST(request) {
     );
   }
 }
-export async function PUT(request) {
+export const PUT = Authentication(async (req, res) => {
   try {
-    const Data = await request.json();
+    const Data = await req.json();
     const { ID, userData } = Data;
     const checkUser = await User.findByIdAndUpdate(ID, userData);
     if (checkUser) {
@@ -74,7 +75,7 @@ export async function PUT(request) {
       }
     );
   }
-}
+});
 
 export const GET = async (request) => {
   try {

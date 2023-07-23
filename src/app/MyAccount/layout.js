@@ -25,7 +25,8 @@ const MyAccountlayout = ({ children }) => {
               </h2>
             </div>
           </div>
-          <div className="w-full" >
+
+          <div className="w-full bg-white ">
             <NavigationMyAcc />
           </div>
 
@@ -37,6 +38,13 @@ const MyAccountlayout = ({ children }) => {
         </aside>
         <main className=" w-full md:w-[80.7%] absolute right-0 text-justify">
           <div className="mt-0">{children}</div>{" "}
+          <div className="w-full bg-white ">
+            <img
+              className="w-full"
+              src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
+              alt=""
+            />
+          </div>
         </main>
       </div>
     );

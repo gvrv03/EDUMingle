@@ -44,9 +44,12 @@ export const SignIn = async (email, password) => {
 };
 
 //------------------Update User------------------
-export const UpdateUser = async (ID, userData) => {
+export const UpdateUser = async (ID, userData, token) => {
   const url = RegisterUserURL;
-  const res = await axios.put(url, { ID, userData });
+  const headers = {
+    Authorization: "Bearer " + token,
+  };
+  const res = await axios.put(url, { ID, userData }, {headers});
   return await res?.data;
 };
 
