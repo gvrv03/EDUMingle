@@ -26,18 +26,14 @@ export function UserAuthContexProvider({ children }) {
 
   //-------------------SEND SMS to User -------------------
   const sendSMS = async (number) => {
-    try {
-      const res = await SendSMSToUser(number.slice(2));
-      if (res?.isSuccess) {
-        setOTPHash(res?.hash);
-        setotpSend(true);
-        startTimer();
-        return toast.success(res?.message);
-      }
-      return toast.error(res?.errorMsg);
-    } catch (error) {
-      return toast.error(error?.message);
+    const res = await SendSMSToUser(number.slice(2));
+    if (res?.isSuccess) {
+      setOTPHash(res?.hash);
+      setotpSend(true);
+      startTimer();
+      return toast.success(res?.message);
     }
+    return toast.error(res?.message);
   };
 
   //------------------Check User Exists------------------
@@ -47,9 +43,8 @@ export function UserAuthContexProvider({ children }) {
       if (response?.isUnique) {
         return await sendSMS(phone);
       }
-      return toast.error(response?.errorMsg);
     } catch (error) {
-      return toast.error(error?.message);
+      return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
@@ -59,13 +54,14 @@ export function UserAuthContexProvider({ children }) {
       const response = await SignIn(email, password);
       if (response?.isSuccess) {
         localStorage.setItem("token", response?.token);
+        localStorage.setItem("id", response?.userID);
+        localStorage.setItem("userRole", response?.userRole);
         await fetchUserDetail(response?.token);
         setsignInModal(false);
         return toast.success(response?.message);
       }
-      return toast.error(response?.errorMsg);
     } catch (error) {
-      return toast.error(error?.message);
+      return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
@@ -93,16 +89,18 @@ export function UserAuthContexProvider({ children }) {
         userData,
         password
       );
+      console.log(res);
       if (res?.isSuccess) {
         localStorage.setItem("token", res?.token);
+        localStorage.setItem("id", response?.userID);
+        localStorage.setItem("userRole", response?.userRole);
         await fetchUserDetail(res?.token);
         setotpSend(false);
         setsignInModal(false);
         return toast.success(res?.message);
       }
-      return toast.error(res?.errorMsg);
     } catch (error) {
-      return toast.error(error?.message);
+      return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
@@ -114,9 +112,8 @@ export function UserAuthContexProvider({ children }) {
         await fetchUserDetail(userDetails?.token);
         return toast.success(res?.message);
       }
-      return toast.error(res?.errorMsg);
     } catch (error) {
-      return toast.error(error?.message);
+      return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
@@ -130,14 +127,10 @@ export function UserAuthContexProvider({ children }) {
   const fetchUserDetail = useCallback(async (token) => {
     try {
       const res = await checkUser(token);
-      if (res?.isSuccess) {
-        localStorage.setItem("id", res?.User?._id);
-        localStorage.setItem("userRole", res?.User?.role);
-        return setuserDetails({ ...res });
-      }
-      return toast.error(res?.errorMsg);
+      localStorage.setItem("id", res?.User?._id);
+      localStorage.setItem("userRole", res?.User?.role);
+      setuserDetails({ ...res });
     } catch (error) {
-      console.log(error?.message);
       toast.custom((t) => (
         <div
           className={`${
@@ -154,7 +147,7 @@ export function UserAuthContexProvider({ children }) {
                 />
               </div>
               <div className="ml-3 flex-1 ">
-                <p className="mt-1 text-sm text-gray-500">Hey, User</p>{" "}
+                <p className="mt-1 text-sm text-gray-500">Hey, <span  >User</span></p>{" "}
                 <p className="mt-1 text-sm text-gray-500">
                   You need To Login Again
                 </p>
