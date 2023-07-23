@@ -21,8 +21,6 @@ export async function POST(request) {
         isSuccess: true,
         userExist: true,
         message: "Login Success",
-        userID: findUser?._id,
-        userRole: findUser?.role,
         token: genToken(findUser?._id),
       });
     }
