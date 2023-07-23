@@ -1,6 +1,7 @@
 "use client";
 import { useUserAuth } from "@/Context/UserAuthContext";
 import { useAppStore } from "@/Context/UseStoreContext";
+import TopNav, { Legal } from "@/NavItem/TopNav";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { memo } from "react";
@@ -99,6 +100,34 @@ const NavBar = () => {
               </button>
             </div>
           </div> */}
+        </div>
+      </nav>
+      <nav className="bg-white fixed z-50  w-full hidden left-0 top-16     border-gray-200">
+        <div className="container justify-between flex gap-5 m-auto">
+          {TopNav.map((text, index) => (
+            <button
+              className=" text-left  py-2 flex gap-5  hover:bg-red-500 hover:text-white px-5 rounded-md"
+              key={index}
+              onClick={() => {
+                router.push(text.location);
+              }}
+            >
+              {/* <i className={`${text.icon}`} /> */}
+              <span className="text-sm font-semibold " > {text.name}</span>{" "}
+            </button>
+          ))}
+          {Legal.map((text, index) => (
+            <button
+              className=" text-left    py-2 flex gap-5 hover:bg-red-500 hover:text-white px-5 rounded-md "
+              key={index}
+              onClick={() => {
+                router.push(text.location);
+              }}
+            >
+              {/* <i className={`${text.icon}`} /> */}
+              <span className="text-sm font-semibold " > {text.name}</span>{" "}
+            </button>
+          ))}
         </div>
       </nav>
     </>

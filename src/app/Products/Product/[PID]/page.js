@@ -48,18 +48,18 @@ const ProductDetal = () => {
       <div className="p-5 bg-white flex-col flex gap-5 ">
         <MainCardHeader name="Related Product" />
         <div className="flex gap-5 w-full  no-scrollbar  overflow-x-scroll ">
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
+          <ProductCard styleOBJ="w-40"  />
         </div>
       </div>
     </div>
