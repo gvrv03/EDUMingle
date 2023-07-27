@@ -1,20 +1,12 @@
 import { fetchProducts } from "@/API/Products/ProductAPI";
-import { ProductsURL } from "@/helper/allLinks";
 import React from "react";
 import Pegination from "../Utility/Pegination";
 
 import ProductCard from "./ProductCard";
 
 export default async function Allproducts({ page, setpage }) {
-  const res = await fetchProducts({ page: page, limit: 10, queryObj: {} });
+  const res = await fetchProducts({ page: page, limit: 10 });
   const { products, totalPages } = await res;
-  if (products && products === undefined) {
-    return (
-      <div className="h-screen w-full grid place-items-center  bg-white ">
-        Error occuured
-      </div>
-    );
-  }
 
   return (
     <>
