@@ -7,8 +7,8 @@ import Register from "../Login/Register";
 
 const Authentication = () => {
   const [isLoginState, setisLoginState] = useState(true);
-  const { signInModal, setsignInModal } = useAppStore();
-  const { userDetails } = useUserAuth();
+  const { userDetails,signInModal, setsignInModal } = useAppStore();
+  
   return (
     <>
       {!userDetails?.isLogin && (

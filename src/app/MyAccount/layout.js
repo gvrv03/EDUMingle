@@ -1,12 +1,13 @@
 "use client";
 import NavigationMyAcc from "@/Components/MyAccount/NavigationMyAcc";
 import { useUserAuth } from "@/Context/UserAuthContext";
+import { useAppStore } from "@/Context/UseStoreContext";
 import { UserAccountNav } from "@/NavItem/TopNav";
 import React, { memo } from "react";
 
 const MyAccountlayout = ({ children }) => {
-  const { signOut, userDetails } = useUserAuth();
-
+  const { signOut } = useUserAuth();
+const {userDetails} = useAppStore()
   if (userDetails?.isLogin) {
     return (
       <div className=" container m-auto relative justify-between flex gap-2 ">
@@ -36,11 +37,11 @@ const MyAccountlayout = ({ children }) => {
             </button>
           </div>
         </aside>
-        <main className=" w-full md:w-[80.7%] absolute right-0 text-justify">
+        <main className=" w-full   bg-white md:w-[80.7%] absolute right-0 text-justify">
           <div className="mt-0">{children}</div>{" "}
-          <div className="w-full bg-white ">
+          <div className="w-full pt-5 bottom relative bg-white ">
             <img
-              className="w-full"
+              className="w-full "
               src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/myProfileFooter_4e9fe2.png"
               alt=""
             />

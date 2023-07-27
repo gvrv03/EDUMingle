@@ -48,11 +48,17 @@ export async function POST(request) {
     );
   }
 }
-export const PUT = Authentication(async (req, res) => {
+export const PUT = Authentication(async (req, userid) => {
   try {
     const Data = await req.json();
-    const { ID, userData } = Data;
-    const checkUser = await User.findByIdAndUpdate(ID, userData);
+    const { userData } = Data;
+    const checkUser = await User.findByIdAndUpdate(userid, {
+      ...userData,
+      image:
+        userData?.gender === "male"
+          ? "/img/maleUser.svg"
+          : "/img/femaleUser.svg",
+    });
     if (checkUser) {
       return NextResponse.json({
         isSuccess: true,

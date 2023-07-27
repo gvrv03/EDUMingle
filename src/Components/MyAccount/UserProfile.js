@@ -1,5 +1,6 @@
 "use client";
 import { useUserAuth } from "@/Context/UserAuthContext";
+import { useAppStore } from "@/Context/UseStoreContext";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import AccountCardHeader from "../Utility/AccountCardHeader";
@@ -10,8 +11,10 @@ const UserProfile = () => {
   const [loading, setloading] = useState(false);
   const [disable, setdisable] = useState(true);
   const router = useRouter();
-  const { userDetails, updateUserDetail } = useUserAuth();
+  const {  updateUserDetail } = useUserAuth();
   const [userData, setuserData] = useState({});
+  const {userDetails} = useAppStore()
+
   function onChange(e) {
     setuserData({
       ...userData,
@@ -22,7 +25,7 @@ const UserProfile = () => {
   const handleUpdateUser = async (e) => {
     e.preventDefault();
     setloading(true);
-    await updateUserDetail(userDetails?.User?._id, userData);
+    await updateUserDetail(userData);
     setloading(false);
   };
 
@@ -77,7 +80,7 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="flex-col flex  md:w-auto w-full  gap-2">
-            <div className="grid grid-cols-2 w-full  gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full  gap-2">
               <div className="gap-2 flex   items-center rounded border  p-2 ">
                 <i className="uil uil-user pColor text-lg " />
                 <input

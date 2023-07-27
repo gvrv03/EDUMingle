@@ -7,3 +7,14 @@ export const signInUserURL = baseUrl + "api/SignInUser";
 export const checkUserExistURL = baseUrl + "api/CheckUserExists";
 export const RegisterUserURL = baseUrl + "api/Register";
 export const checkUserURL = baseUrl + "api/CheckLogin";
+
+// Products
+export const ProductsURL = baseUrl + "api/products";
+export const getSingleProductURL = baseUrl + "api/products/Product/";
+
+
+// Payment
+export const createOrderURL = baseUrl + "api/PaymentGateway/CreateOrder";
+export const downloadProductURL = baseUrl + "api/ProductDown";
+export const getOrderURL = baseUrl + "api/PaymentGateway/GetOrder";
+export const getUserOrderURL = baseUrl + "api/GetUserOrders";

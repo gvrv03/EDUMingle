@@ -4,6 +4,20 @@ import { createContext } from "react";
 
 const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
+  //----------------------------UserDetail State //----------------------------
+  const [userDetails, setuserDetails] = useState({});
+
+  //----------------------------All User Orders State //----------------------------
+  const [userOrders, setuserOrders] = useState({
+    data: [],
+    isLoading: false,
+    error: null,
+    count: 0,
+    totatlPages: 0,
+  });
+
+  //----------------------------SignInModal State //----------------------------
+  //----------------------------SignInModal State //----------------------------
   const [signInModal, setsignInModal] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -14,7 +28,16 @@ export function UseStoreContextProvider({ children }) {
   }, []);
 
   return (
-    <useStoreContext.Provider value={{ signInModal, setsignInModal }}>
+    <useStoreContext.Provider
+      value={{
+        signInModal,
+        setsignInModal,
+        userDetails,
+        setuserDetails,
+        userOrders,
+        setuserOrders,
+      }}
+    >
       {children}
     </useStoreContext.Provider>
   );

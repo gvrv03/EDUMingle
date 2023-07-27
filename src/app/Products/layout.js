@@ -5,7 +5,6 @@ import { UserAccountNav } from "@/NavItem/TopNav";
 import React, { memo } from "react";
 
 const Productslayout = ({ children }) => {
-  const { signOut, userDetails } = useUserAuth();
 
   return (
     <div className=" container m-auto relative justify-between flex gap-2 ">

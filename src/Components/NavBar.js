@@ -9,8 +9,8 @@ import Sidebar from "./Sidebar/Sidebar";
 
 const NavBar = () => {
   const router = useRouter();
-  const { userDetails } = useUserAuth();
-  const { setsignInModal } = useAppStore();
+
+  const { setsignInModal, userDetails } = useAppStore();
   return (
     <>
       <nav className="bg-white fixed z-50  w-full left-0    md:px-0 px-5  border-gray-200">
@@ -41,7 +41,7 @@ const NavBar = () => {
               </div>
             </div>
             <div className="flex  justify-end w-full  gap-5">
-              <form className="w-[60%]    flex items-center px-2 border  rounded ">
+              <form className="w-[100%]    flex items-center px-2 border  rounded ">
                 <input
                   type="search"
                   className="w-full bg-transparent outline-none  text-xs p-2"
@@ -52,9 +52,11 @@ const NavBar = () => {
                   <i className="uil uil-search pColor text-lg" />
                 </button>
               </form>
-              <div className="flex justify-between items-center gap-2">
-                <button>
+
+              <div className="flex justify-between items-center gap-2 md:gap-5">
+                <button className="flex items-center gap-1 font-semibold">
                   <i className="uil text-2xl pColor  uil-shopping-cart" />
+                  <span className="md:block hidden">Cart</span>
                 </button>
 
                 <button
@@ -64,12 +66,18 @@ const NavBar = () => {
                     }
                     return setsignInModal(true);
                   }}
+                  className="flex items-center gap-1 font-semibold"
                 >
                   <i
                     className={`uil text-2xl pColor ${
                       userDetails?.isLogin ? "uil-user-check  " : "uil-user"
                     } `}
                   />
+                  <span className="md:block hidden">
+                    {userDetails?.User?.name
+                      ? userDetails?.User?.name?.split(" ")
+                      : "User"}
+                  </span>
                 </button>
               </div>
             </div>
@@ -113,7 +121,7 @@ const NavBar = () => {
               }}
             >
               {/* <i className={`${text.icon}`} /> */}
-              <span className="text-sm font-semibold " > {text.name}</span>{" "}
+              <span className="text-sm font-semibold "> {text.name}</span>{" "}
             </button>
           ))}
           {Legal.map((text, index) => (
@@ -125,7 +133,7 @@ const NavBar = () => {
               }}
             >
               {/* <i className={`${text.icon}`} /> */}
-              <span className="text-sm font-semibold " > {text.name}</span>{" "}
+              <span className="text-sm font-semibold "> {text.name}</span>{" "}
             </button>
           ))}
         </div>

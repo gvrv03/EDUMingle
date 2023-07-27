@@ -10,10 +10,9 @@ const Authentication = (handler) => async (req, res) => {
     const token = authorization.split("Bearer ")[1];
     const decodedToken = await jwt.verify(token, process.env.JWT_SECRET);
     if (decodedToken) {
-      return handler(req, res);
-    } else {
-      throw new Error("You need to Login !");
+      return handler(req, decodedToken?.id);
     }
+    throw new Error("You need to Login !");
   } catch (error) {
     return NextResponse.json(
       {

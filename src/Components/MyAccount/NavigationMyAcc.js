@@ -7,7 +7,12 @@ const NavigationMyAcc = () => {
   return (
     <div className="gap-2     md:gap-5 p-0 md:p-5  flex flex-col ">
       <div className="bg-white grid grid-cols-2 gap-5 p-5 md:p-0  ">
-        <button className="w-full border p-1 px-2 rounded-sm font-medium   text-base  md:text-xs text-left ">
+        <button
+          onClick={() => {
+            router.push("/MyAccount/Orders");
+          }}
+          className="w-full border p-1 px-2 rounded-sm font-medium   text-base  md:text-xs text-left "
+        >
           {" "}
           <i className="uil uil-shopping-cart pColor text-lg mr-2" />{" "}
           <span>Orders</span>

@@ -3,32 +3,22 @@ import React, { memo, useRef } from "react";
 import { Slide, SlideshowRef } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 
-const ProductSlideShow = () => {
+const ProductSlideShow = ({ images, thumbnail }) => {
   const slideRef = useRef();
+  console.log(images);
   return (
     <div className="bg-white  w-96  ">
       <Slide indicators={true} arrows={false} ref={slideRef}>
-        <div className="h-96   w-full md:w-96 rounded-md">
-          <img
-            className="  rounded-md "
-            src="  https://m.media-amazon.com/images/I/71qjUzUt+ML._SX679_.jpg"
-            alt=""
-          />
+        <div className="h-full   w-full md:w-96 rounded-md">
+          <img className="  rounded-md " src={thumbnail} alt="" />
         </div>
-        <div className="h-96   w-full md:w-96 rounded-md">
-          <img
-            className="  rounded-md "
-            src="https://m.media-amazon.com/images/I/51iv-60kraL._SX679_.jpg"
-            alt=""
-          />
-        </div>
-        <div className="h-96   w-full md:w-96 rounded-md">
-          <img
-            className="  rounded-md "
-            src="  https://m.media-amazon.com/images/I/51yteiP577L._SX679_.jpg"
-            alt=""
-          />
-        </div>
+        {images.map((image, index) => {
+          return (
+            <div key={index} className="h-full   w-full md:w-96 rounded-md">
+              <img className="  rounded-md " src={image} alt="" />
+            </div>
+          );
+        })}
       </Slide>
     </div>
   );

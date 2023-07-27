@@ -44,12 +44,12 @@ export const SignIn = async (email, password) => {
 };
 
 //------------------Update User------------------
-export const UpdateUser = async (ID, userData, token) => {
+export const UpdateUser = async (userData) => {
   const url = RegisterUserURL;
   const headers = {
-    Authorization: "Bearer " + token,
+    Authorization: "Bearer " + localStorage.getItem("token"),
   };
-  const res = await axios.put(url, { ID, userData }, {headers});
+  const res = await axios.put(url, { userData }, { headers });
   return await res?.data;
 };
 
@@ -75,10 +75,10 @@ export const createUser = async (number, hash, OTP, userData, password) => {
 };
 
 //------------------Check User------------------
-export const checkUser = async (token) => {
+export const checkUser = async () => {
   const url = checkUserURL;
   const dataUser = {
-    token: token,
+    token: localStorage.getItem("token"),
   };
   const res = await axios.post(url, dataUser);
   return await res?.data;

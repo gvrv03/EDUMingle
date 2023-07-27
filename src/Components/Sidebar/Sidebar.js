@@ -4,9 +4,12 @@ import Divider from "@mui/material/Divider";
 import { useRouter } from "next/navigation";
 import TopNav, { Legal } from "@/NavItem/TopNav";
 import { useUserAuth } from "@/Context/UserAuthContext";
+import { useAppStore } from "@/Context/UseStoreContext";
 const Sidebar = () => {
   const router = useRouter();
-  const { userDetails, signOut } = useUserAuth();
+  const {  signOut } = useUserAuth();
+  const {userDetails} = useAppStore()
+
 
   const [state, setState] = React.useState({
     top: false,

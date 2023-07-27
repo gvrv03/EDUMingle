@@ -1,0 +1,44 @@
+import { fetchProducts } from "@/API/Products/ProductAPI";
+import { ProductsURL } from "@/helper/allLinks";
+import React from "react";
+import Pegination from "../Utility/Pegination";
+
+import ProductCard from "./ProductCard";
+
+export default async function Allproducts({ page, setpage }) {
+  const res = await fetchProducts({ page: page, limit: 10, queryObj: {} });
+  const { products, totalPages } = await res;
+  if (products && products === undefined) {
+    return (
+      <div className="h-screen w-full grid place-items-center  bg-white ">
+        Error occuured
+      </div>
+    );
+  }
+
+  return (
+    <>
+      {products?.length === 0 && (
+        <div className="w-full h-90 grid place-items-center bg-white mt-5">
+          No Product Found
+        </div>
+      )}
+      <section className="grid  grid-cols-2 mt-10 md:mt-0 md:grid-cols-5 w-full gap-5">
+        {products?.map((product, index) => {
+          return (
+            <ProductCard
+              key={index}
+              id={product._id}
+              fullTitle={product.title}
+              title={product.title.substring(0, 40) + "..."}
+              thumbnail={product.thumbnail}
+              price={product.pricing.price}
+              comAtPrice={product.pricing.comAtPrice}
+            />
+          );
+        })}
+      </section>
+      <Pegination page={page} totalPages={totalPages} setpage={setpage} />
+    </>
+  );
+}

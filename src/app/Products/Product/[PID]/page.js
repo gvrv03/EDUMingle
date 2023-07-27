@@ -1,13 +1,17 @@
 import ProductCard from "@/Components/Product/ProductCard";
 import ProductHome from "@/Components/ProductDetail/ProductHome";
 import MainCardHeader from "@/Components/Utility/MainCardHeader";
+import { getSingleProductURL } from "@/helper/allLinks";
+import axios from "axios";
 import React from "react";
 
-const ProductDetal = () => {
+const ProductDetal = async ({ searchParams }) => {
+  const res = await axios.get(getSingleProductURL + searchParams.product);
+  const product = await res?.data;
+
   return (
     <div className="container  flex-col flex gap-2 m-auto">
-      <ProductHome />
-
+      <ProductHome  product={product} />
       <div className="p-5  flex gap-5 flex-col md:flex-row md:gap-10 bg-white">
         <div className="flex-col flex gap-3">
           <h1 className="font-semibold text-base">Top Brand</h1>
@@ -32,7 +36,7 @@ const ProductDetal = () => {
           <h1 className="font-semibold text-base">
             Highly rated by customers for
           </h1>
-          <div className="flex gap-2 mt-5" >
+          <div className="flex gap-2 mt-5">
             <div className="p-2 flex gap-1  bg-gray-100 w-fit">
               <i className="uil uil-thumbs-up" />
               <span>value for money</span>
@@ -45,7 +49,7 @@ const ProductDetal = () => {
         </div>
       </div>
 
-      <div className="p-5 bg-white flex-col flex gap-5 ">
+      {/* <div className="p-5 bg-white flex-col flex gap-5 ">
         <MainCardHeader name="Related Product" />
         <div className="flex gap-5 w-full  no-scrollbar  overflow-x-scroll ">
           <ProductCard styleOBJ="w-40"  />
@@ -61,7 +65,7 @@ const ProductDetal = () => {
           <ProductCard styleOBJ="w-40"  />
           <ProductCard styleOBJ="w-40"  />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

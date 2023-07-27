@@ -1,7 +1,6 @@
 "use client";
 import { useCallback, useContext } from "react";
 import { createContext } from "react";
-import baseUrl from "@/helper/baseUrl";
 import { useEffect } from "react";
 import { useState } from "react";
 import {
@@ -18,7 +17,7 @@ import { useAppStore } from "./UseStoreContext";
 const userAuthContext = createContext();
 export function UserAuthContexProvider({ children }) {
   const { setsignInModal } = useAppStore();
-  const [userDetails, setuserDetails] = useState({});
+  const { userDetails, setuserDetails } = useAppStore();
   const [otpSend, setotpSend] = useState(false);
   const [timer, setTimer] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -93,7 +92,7 @@ export function UserAuthContexProvider({ children }) {
         localStorage.setItem("token", res?.token);
         localStorage.setItem("id", res?.userID);
         localStorage.setItem("userRole", res?.userRole);
-        await fetchUserDetail(res?.token);
+        await fetchUserDetail();
         setotpSend(false);
         setsignInModal(false);
         return toast.success(res?.message);
@@ -104,11 +103,11 @@ export function UserAuthContexProvider({ children }) {
   };
 
   //-------------------Update A User -------------------
-  const updateUserDetail = async (id, userData) => {
+  const updateUserDetail = async (userData) => {
     try {
-      const res = await UpdateUser(id, userData,userDetails?.token);
+      const res = await UpdateUser(userData);
       if (res?.isSuccess) {
-        await fetchUserDetail(userDetails?.token);
+        await fetchUserDetail();
         return toast.success(res?.message);
       }
     } catch (error) {
@@ -123,9 +122,9 @@ export function UserAuthContexProvider({ children }) {
 
   // console.log(userDetails);
   //-------------------get User detail -------------------
-  const fetchUserDetail = useCallback(async (token) => {
+  const fetchUserDetail = useCallback(async () => {
     try {
-      const res = await checkUser(token);
+      const res = await checkUser();
       localStorage.setItem("id", res?.User?._id);
       localStorage.setItem("userRole", res?.User?.role);
       setuserDetails({ ...res });
@@ -174,7 +173,7 @@ export function UserAuthContexProvider({ children }) {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      fetchUserDetail(localStorage.getItem("token"));
+      fetchUserDetail();
     }
   }, []);
 
@@ -201,7 +200,6 @@ export function UserAuthContexProvider({ children }) {
         signOut,
         resendOTP,
         createNewUser,
-        userDetails,
         isUserExist,
         signInUser,
         updateUserDetail,

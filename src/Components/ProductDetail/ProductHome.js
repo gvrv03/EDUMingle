@@ -1,21 +1,30 @@
 import React from "react";
+import PaymentInititate from "../Payment/PaymentInititate";
 import ProductSlideShow from "./ProductSlideShow";
 
-const ProductHome = () => {
+const ProductHome = ({ product }) => {
+  const {
+    title,
+    artical,
+    views,
+    thumbnail,
+    images,
+    pricing,
+    productOrganization,
+    description,
+    addeBy,
+    _id,
+    productID,
+  } = product ? product : {};
   return (
     <div className="w-full items-center   bg-white p-5 flex-col md:flex-row flex gap-5">
       <div className="">
-        <ProductSlideShow />
+        <ProductSlideShow thumbnail={thumbnail} images={images} />
       </div>
-
 
       <div className="w-full flex-col flex gap-5   bg-white">
         <div className="border-b pb-2 flex-col flex gap-2 ">
-          <h1 className="font-semibold  text-xl text-justify ">
-            SK PRINTS Magic Mirror Photo Frame with LED Lightnfor Home Decore
-            Customizable Frames for Valentines Day Gift, Anniversary, Birthday
-            and Home Decor
-          </h1>
+          <h1 className="font-semibold  text-xl text-justify ">{title}</h1>
           <h4 className="font-medium text-gray-500">Category: Frame</h4>
         </div>
 
@@ -46,7 +55,7 @@ const ProductHome = () => {
 
         <div className="   rounded-md flex-col flex gap-2 ">
           <span className=" flex items-center gap-2 ">
-            <div className="font-bold" >Size:</div>
+            <div className="font-bold">Size:</div>
             <div className="flex gap-2">
               <button className="border p-1 px-3"> 15 inc </button>
               <button className="border p-1 px-3"> 20 inc </button>
@@ -93,17 +102,15 @@ const ProductHome = () => {
             <button className="w-full rounded-full bg-yellow-400 py-3 font-semibold">
               Add to Cart
             </button>
-            <button className="w-full rounded-full bg-orange-400 py-3 font-semibold">
-              Buy Now
-            </button>
+            <PaymentInititate
+              title={title}
+              amount={pricing?.price}
+              produDID={productID}
+              productDetailID={_id}
+            />
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
   );
 };
