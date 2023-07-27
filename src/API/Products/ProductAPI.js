@@ -1,4 +1,4 @@
-import { ProductsURL } from "@/helper/allLinks";
+import { ProductsURL, savedProductToFavoriteURL } from "@/helper/allLinks";
 import axios from "axios";
 
 export const fetchProducts = async (data) => {
@@ -10,4 +10,19 @@ export const fetchProducts = async (data) => {
     `?page=${page}&limit=${limit}&query=${JSON.stringify(queryObj)}`;
   const res = await axios.get(url);
   return await res?.data;
+};
+
+export const SavedProductAPI = async (productID) => {
+  const headers = {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
+  const response = await axios.post(
+    savedProductToFavoriteURL,
+    {
+      productID: productID,
+      userId: localStorage.getItem("id"),
+    },
+    { headers }
+  );
+  return await response?.data;
 };

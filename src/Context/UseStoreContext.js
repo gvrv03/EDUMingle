@@ -1,6 +1,9 @@
 "use client";
+import { SavedProductAPI } from "@/API/Products/ProductAPI";
+import { savedProductToFavoriteURL } from "@/helper/allLinks";
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
+import { toast } from "react-hot-toast";
 
 const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
@@ -17,6 +20,19 @@ export function UseStoreContextProvider({ children }) {
   });
 
   //----------------------------SignInModal State //----------------------------
+
+  const SavedProduct = async (productID) => {
+    try {
+      const res = await SavedProductAPI(productID);
+      if (res?.isSuccess) {
+        return toast.success(res.message);
+      }
+    } catch (error) {
+      return toast.error(error?.response?.data?.errorMsg);
+    }
+  };
+
+
   //----------------------------SignInModal State //----------------------------
   const [signInModal, setsignInModal] = useState(false);
   useEffect(() => {
@@ -35,6 +51,7 @@ export function UseStoreContextProvider({ children }) {
         userDetails,
         setuserDetails,
         userOrders,
+        SavedProduct,
         setuserOrders,
       }}
     >

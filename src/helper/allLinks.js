@@ -11,7 +11,8 @@ export const checkUserURL = baseUrl + "api/CheckLogin";
 // Products
 export const ProductsURL = baseUrl + "api/products";
 export const getSingleProductURL = baseUrl + "api/products/Product/";
-
+export const savedProductToFavoriteURL = baseUrl + "api/ProductSaved";
+export const checkSavedProductURL = baseUrl + "api/CheckProductSaved";
 
 // Payment
 export const createOrderURL = baseUrl + "api/PaymentGateway/CreateOrder";

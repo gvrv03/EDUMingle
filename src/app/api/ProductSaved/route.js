@@ -4,9 +4,10 @@ import ProductDetail from "@/Modal/ProductDetail";
 initDB();
 
 import { NextResponse } from "next/server";
+import Authentication from "@/Middleware/Authentication";
 
 // --------------To Saved Product--------------
-export const POST = async (request) => {
+export const POST = Authentication(async (request) => {
   try {
     const Data = await request.json();
     const { productID, userId } = Data;
@@ -56,7 +57,7 @@ export const POST = async (request) => {
       }
     );
   }
-};
+});
 
 // --------------To Fetch All Saved Prodct--------------
 export const GET = async (request) => {

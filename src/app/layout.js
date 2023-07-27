@@ -19,6 +19,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
         />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+        />
       </head>
       <body>
         <UseStoreContextProvider>

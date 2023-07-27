@@ -31,44 +31,44 @@ const ProductSort = ({ state, setstate }) => {
           </div>
 
           <div className="flex flex-col gap-5">
-            <div class="flex items-center ">
+            <div className="flex items-center ">
               <input
                 type="radio"
                 name="sortProduct"
-                class="w-4 h-4 pColor  outline-none    "
+                className="w-4 h-4 pColor  outline-none    "
               />
-              <label class="ml-2 text-sm font-medium text-gray-900 ">
+              <label className="ml-2 text-sm font-medium text-gray-900 ">
                 Price Low to High
               </label>
             </div>
-            <div class="flex items-center ">
+            <div className="flex items-center ">
               <input
                 type="radio"
                 name="sortProduct"
-                class="w-4 h-4 pColor  outline-none    "
+                className="w-4 h-4 pColor  outline-none    "
               />
-              <label class="ml-2 text-sm font-medium text-gray-900 ">
+              <label className="ml-2 text-sm font-medium text-gray-900 ">
                 Price High to Low
               </label>
             </div>
-            <div class="flex items-center ">
+            <div className="flex items-center ">
               <input
                 type="radio"
                 name="sortProduct"
                 checked={true}
-                class="w-4 h-4 pColor  outline-none    "
+                className="w-4 h-4 pColor  outline-none    "
               />
-              <label class="ml-2 text-sm font-medium text-gray-900 ">
+              <label className="ml-2 text-sm font-medium text-gray-900 ">
                 Latest First
               </label>
             </div>{" "}
-            <div class="flex items-center ">
+            <div className="flex items-center ">
               <input
                 type="radio"
                 name="sortProduct"
-                class="w-4 h-4 pColor  outline-none    "
+                className="w-4 h-4 pColor  outline-none    "
               />
-              <label class="ml-2 text-sm  font-medium text-gray-900 ">
+              <label className="ml-2 text-sm  font-medium text-gray-900 ">
                 Oldest First
               </label>
             </div>
