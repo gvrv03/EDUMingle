@@ -18,4 +18,4 @@ export const checkSavedProductURL = baseUrl + "api/CheckProductSaved";
 export const createOrderURL = baseUrl + "api/PaymentGateway/CreateOrder";
 export const downloadProductURL = baseUrl + "api/ProductDown";
 export const getOrderURL = baseUrl + "api/PaymentGateway/GetOrder";
-export const getUserOrderURL = baseUrl + "api/getUserOrders";
+export const getUserOrderURL = baseUrl + "api/GetUserOrders";

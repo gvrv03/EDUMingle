@@ -21,7 +21,7 @@ export const getUserOrderAPI = async (data) => {
   const page = data?.page ?? 1;
   const limit = data?.limit ?? 10;
 
-  const url = getUserOrderURL + `?page=${page}&limit=${limit}}`;
+  const url = getUserOrderURL + `?page=${page}&limit=${limit}`;
   const headers = {
     Authorization: "Bearer " + localStorage.getItem("token"),
   };
