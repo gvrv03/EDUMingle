@@ -5,12 +5,15 @@ import Pegination from "../Utility/Pegination";
 import ProductCard from "./ProductCard";
 
 export default async function Allproducts({ page, setpage }) {
-  const res = await fetch(ProductsURL + `?page=${page}&limit=10`);
+  // const res = await fetch(ProductsURL + `?page=${page}&limit=10`);
 
-  const { products, totalPages } = await res.json();
+  // const { products, totalPages } = await res.json();
   return (
     <>
-      {products?.length === 0 && (
+    <div>
+      All Products
+    </div>
+      {/* {products?.length === 0 && (
         <div className="w-full h-90 grid place-items-center bg-white mt-5">
           No Product Found
         </div>
@@ -30,7 +33,7 @@ export default async function Allproducts({ page, setpage }) {
           );
         })}
       </section>
-      <Pegination page={page} totalPages={totalPages} setpage={setpage} />
+      <Pegination page={page} totalPages={totalPages} setpage={setpage} /> */}
     </>
   );
 }
