@@ -37,7 +37,7 @@ const {userDetails} = useAppStore()
             </button>
           </div>
         </aside>
-        <main className=" w-full   bg-white md:w-[80.7%] absolute right-0 text-justify">
+        <main className=" w-full    md:w-[80.7%] absolute right-0 text-justify">
           <div className="mt-0">{children}</div>{" "}
           <div className="w-full pt-5 bottom relative bg-white ">
             <img
