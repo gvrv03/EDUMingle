@@ -7,8 +7,6 @@ initDB();
 import { NextResponse } from "next/server"; // --------------To Fetch All Products--------------
 export const GET = Authentication(async (request, UserID) => {
   try {
-
-
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
     const page = searchParams.get("page"); // Retrieves the value of the 'page' parameter
@@ -21,8 +19,8 @@ export const GET = Authentication(async (request, UserID) => {
     const orders = await Order.find({ User: UserID })
       .populate("Product")
       .sort({ createdAt: -1 })
-      .skip(skipCount)
-      .limit(limit);
+      .skip(parseInt(skipCount))
+      .limit(parseInt(limit));
     if (orders) {
       return NextResponse.json({
         isSuccess: true,
@@ -44,7 +42,4 @@ export const GET = Authentication(async (request, UserID) => {
       }
     );
   }
-
-
-}
-);
+});

@@ -1,14 +1,14 @@
 "use client";
-import { getOrder } from "@/API/Products/OrderAPI";
+import { getOrder, getUserOrderAPI } from "@/API/Products/OrderAPI";
 import { useContext } from "react";
 import { createContext } from "react";
 import { toast } from "react-hot-toast";
 import { useAppStore } from "./UseStoreContext";
 const useOrderContext = createContext();
 export function UseOrderContexProvider({ children }) {
-  const { setuserOrders, userOrders } = useAppStore();
+  const { setuserOrders } = useAppStore();
 
-  const fetchOrders = async (data) => {
+  const fetchUserOrders = async (data) => {
     try {
       setuserOrders({
         data: [],
@@ -17,8 +17,7 @@ export function UseOrderContexProvider({ children }) {
         count: 0,
         totatlPages: 0,
       });
-      const OrderData = await getOrder(data);
-      console.log(OrderData);
+      const OrderData = await getUserOrderAPI(data);
       return setuserOrders({
         data: OrderData?.orders,
         isLoading: false,
@@ -26,12 +25,13 @@ export function UseOrderContexProvider({ children }) {
         totatlPages: OrderData?.totalPages,
       });
     } catch (error) {
+      console.log(error);
       return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
   return (
-    <useOrderContext.Provider value={{ fetchOrders }}>
+    <useOrderContext.Provider value={{ fetchUserOrders }}>
       {children}
     </useOrderContext.Provider>
   );

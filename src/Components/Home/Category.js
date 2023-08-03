@@ -17,7 +17,7 @@ const Category = () => {
 
 const CardCircle = ({ image }) => {
   return (
-    <div className="flex  flex-col items-center justify-center   w-32  md:w-20   gap-2">
+    <div className="flex  flex-col items-center justify-center   w-36  md:w-20   gap-2">
       <img src={image}  alt="img" />
       <p className="font-semibold">Offer</p>
     </div>

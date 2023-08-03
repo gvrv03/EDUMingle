@@ -7,15 +7,13 @@ import DefaultBTN from "../Utility/DefaultBTN";
 import OrderCard from "./OrderCard";
 
 const AllUserOrders = () => {
-  const { fetchOrders } = useOrder();
+  const { fetchUserOrders } = useOrder();
   const { userOrders } = useAppStore();
-  console.log(userOrders);
   const [page, setpage] = useState(1);
   useEffect(() => {
-    fetchOrders({
-      queryObj: { User: localStorage.getItem("id") },
+    fetchUserOrders({
       page: page,
-      limit: 1000,
+      limit: 100,
     });
   }, [page]);
   const { isLoading, data, count } = userOrders ? userOrders : {};

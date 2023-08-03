@@ -21,7 +21,7 @@ const OrderCard = ({ orderDetail }) => {
           <div className="text-xs" >  {moment(orderDetail?.createdAt).format("DD-MM-YYYY")}</div>
         </div>
         <div>
-          <h4 className="text-center font-semibold ">
+          <h4 className="text-center text-xs md:text-sm font-semibold ">
             {" "}
             ₹ {orderDetail?.Product?.pricing?.price}
           </h4>

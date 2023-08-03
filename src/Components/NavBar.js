@@ -20,7 +20,7 @@ const NavBar = () => {
               <div className="md:hidden block">
                 <Sidebar />
               </div>
-              <Link href="https://flowbite.com" className="flex items-center">
+              <Link href="/" className="flex items-center">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
                   className="h-8  md:mr-3 "
