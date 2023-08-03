@@ -1,13 +1,13 @@
-import { fetchProducts } from "@/API/Products/ProductAPI";
+import { ProductsURL } from "@/helper/allLinks";
 import React from "react";
 import Pegination from "../Utility/Pegination";
 
 import ProductCard from "./ProductCard";
 
 export default async function Allproducts({ page, setpage }) {
-  const res = await fetchProducts({ page: page, limit: 10 });
-  const { products, totalPages } = await res;
+  const res = await fetch(ProductsURL + `?page=${page}&limit=10`);
 
+  const { products, totalPages } = await res.json();
   return (
     <>
       {products?.length === 0 && (
