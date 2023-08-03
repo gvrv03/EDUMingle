@@ -9,18 +9,17 @@ export const GET = Authentication(async (request, UserID) => {
   try {
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
-    const page = searchParams.get("page"); // Retrieves the value of the 'page' parameter
-    const limit = searchParams.get("limit"); // Retrieves the value of the 'limit' parameter
+    const page = parseInt(searchParams.get("page")); // Retrieves the value of the 'page' parameter
+    const limit = parseInt(searchParams.get("limit")); // Retrieves the value of the 'limit' parameter
     const skipCount = (page - 1) * limit;
     const orderCount = await Order.countDocuments({ User: UserID }); // Get the total count of blogs
     const totalPages = Math.ceil(orderCount / limit); // Calculate the total number of pages
-
     await ProductDetail.countDocuments();
     const orders = await Order.find({ User: UserID })
       .populate("Product")
       .sort({ createdAt: -1 })
-      .skip(parseInt(skipCount))
-      .limit(parseInt(limit));
+      .skip(skipCount)
+      .limit(limit);
     if (orders) {
       return NextResponse.json({
         isSuccess: true,

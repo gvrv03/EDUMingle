@@ -3,7 +3,6 @@ import { useOrder } from "@/Context/UseOrderContext";
 import { useAppStore } from "@/Context/UseStoreContext";
 import React, { useEffect, useState } from "react";
 import { FullScreenLoader } from "../LoadingSpinner";
-import DefaultBTN from "../Utility/DefaultBTN";
 import OrderCard from "./OrderCard";
 
 const AllUserOrders = () => {

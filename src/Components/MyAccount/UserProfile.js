@@ -115,6 +115,7 @@ const UserProfile = () => {
                       ? userData?.gender
                       : userDetails?.User?.gender
                   }
+                  
                   onChange={onChange}
                   name="gender"
                   className="px-2 disabled:bg-white disabled:text-gray-500  outline-none w-full "
