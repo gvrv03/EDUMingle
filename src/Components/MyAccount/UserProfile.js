@@ -72,11 +72,6 @@ const UserProfile = () => {
                 alt={userDetails?.User?.name}
                 className="w-20"
               />
-              {!disablePersonal && (
-                <button className="pColor text-xs absolute bottom-0 -right-4 ">
-                  Edit
-                </button>
-              )}
             </div>
           </div>
           <div className="flex-col flex  md:w-auto w-full  gap-2">
