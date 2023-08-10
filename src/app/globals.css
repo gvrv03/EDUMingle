@@ -17,6 +17,17 @@
   }
 }
 
+/* Navbar State */
+.sticky-component {
+  /* Define the initial styles of your component */
+  transition: all 0.5s ease;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  /* Add additional styles to make the component sticky */
+}
 
 
 :root {

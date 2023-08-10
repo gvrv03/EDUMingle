@@ -2,18 +2,45 @@
 import { useUserAuth } from "@/Context/UserAuthContext";
 import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
+import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
 const NavBar = () => {
   const router = useRouter();
-
   const { setsignInModal, userDetails } = useAppStore();
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      console.log(scrollPosition);
+      const componentPosition = 200;
+      const threshold = 100; // Adjust this threshold as needed
+
+      if (scrollPosition > componentPosition - threshold) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the scroll event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <>
-      <nav className="bg-white fixed z-50  top-0 w-full left-0    md:px-0 px-5  border-gray-200">
+      <nav
+        className={` ${
+          isSticky ? "sticky" : ""
+        } bg-white  z-50  top-0 w-full transition-all delay-75 ease-linear left-0    md:px-0 px-5  border-gray-200`}
+      >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
             <div className="flex md:w-full  gap-5">
@@ -26,8 +53,8 @@ const NavBar = () => {
                   className="h-8  md:mr-3 "
                   alt="Flowbite Logo"
                 />
-                <span className="self-center hidden md:block  text-2xl font-semibold whitespace-nowrap">
-                  The Minimal
+                <span className="self-center hidden md:block  text-xl font-semibold whitespace-nowrap">
+                  WebEase
                 </span>
               </Link>
               <div className="  hidden md:flex  gap-2  items-center">
@@ -53,56 +80,28 @@ const NavBar = () => {
                 </button>
               </form>
 
-              <div className="flex justify-between items-center gap-2 md:gap-5">
-                <button className="flex items-center  font-semibold">
-                  <i className="uil text-2xl pColor  uil-shopping-cart" />
-                </button>
-
-                <button
+              <div className="flex justify-between items-center gap-2 ">
+                <IconButton color="inherit">
+                  <i className=" text-2xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
+                </IconButton>{" "}
+                <IconButton
+                  color="inherit"
                   onClick={() => {
                     if (userDetails?.isLogin) {
                       return router.push("/MyAccount");
                     }
                     return setsignInModal(true);
                   }}
-                  className="flex items-center  font-semibold"
                 >
                   <i
-                    className={`uil text-2xl pColor ${
+                    className={`uil  text-2xl  w-5 grid place-items-center h-5 pColor pColor ${
                       userDetails?.isLogin ? "uil-user-check  " : "uil-user"
                     } `}
                   />
-                 
-                </button>
+                </IconButton>
               </div>
             </div>
           </div>
-          {/* <div className="flex justify-between md:w-auto  w-full  gap-5  items-center">
-            <div className="w-full md:w-auto  border   rounded-md ">
-              <input
-                type="search"
-                className="w-full md:w-auto outline-none  text-xs p-2"
-                placeholder="Search..."
-              />
-            </div>
-            <div className="flex gap-2 items-center ">
-              {!userDetails?.isLogin && (
-                <button
-                  onClick={() => {
-                    setsignInModal(true);
-                  }}
-                >
-                  <i className="uil text-2xl pColor  uil-user" />
-                </button>
-              )}
-              <button>
-                <i className="uil text-2xl pColor  uil-heart" />
-              </button>
-              <button>
-                <i className="uil text-2xl pColor  uil-shopping-cart" />
-              </button>
-            </div>
-          </div> */}
         </div>
       </nav>
       <nav className="bg-white fixed z-50  w-full hidden left-0 top-16     border-gray-200">

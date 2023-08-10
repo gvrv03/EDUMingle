@@ -35,14 +35,14 @@ const Sidebar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
       onClick={toggleDrawer(anchor, false)}
     >
-     <HomeNavSidebar/>
+      <HomeNavSidebar />
     </aside>
   );
   return (
     <>
-      <button onClick={toggleDrawer("left", true)}>
-        <i className="uil uil-bars  text-xl" />
-      </button>
+      <IconButton color="inherit" onClick={toggleDrawer("left", true)}>
+        <i className="uil uil-bars  grid place-items-center text-xl" />
+      </IconButton>
 
       <SwipeableDrawer
         anchor="left"

@@ -14,7 +14,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import NavigationMyAcc from "@/Components/MyAccount/NavigationMyAcc";
 import HomeNavSidebar from "@/Components/Sidebar/HomeNavSidebar";
-const drawerWidth = 350;
+import NavBar from "@/Components/NavBar";
+const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
   const router = useRouter();
@@ -26,36 +27,29 @@ function ResponsiveDrawer({ window, children }) {
 
   const drawer = (
     <>
-      <div className="hidden md:block">
-        <div className="bg-sky-50 flex gap-5 w-full p-5">
-          <div className="w-10 bg-white rounded-full h-10 grid place-items-center ">
-            <img src={userDetails?.User?.image} className="w-full" alt="" />
-          </div>
-          <div>
-            <h4>Hello,</h4>
-            <h2 className="font-semibold text-base">
-              {userDetails?.User?.name}
-            </h2>
-          </div>
+      <div className="bg-sky-50 flex gap-5 w-full p-5">
+        <div className="w-10 bg-white rounded-full h-10 grid place-items-center ">
+          <img src={userDetails?.User?.image} className="w-full" alt="" />
         </div>
-
-        <div className="w-full bg-white ">
-          <NavigationMyAcc />
-        </div>
-
-        <div className=" w-full bg-white grid place-items-center gap-5 p-5">
-          <button
-            onClick={() => {
-              setSignOutState(true);
-            }}
-            className="pBtn w-full py-3 "
-          >
-            Log Out
-          </button>
+        <div>
+          <h4>Hello,</h4>
+          <h2 className="font-semibold text-base">{userDetails?.User?.name}</h2>
         </div>
       </div>
-      <div className="md:hidden block">
-        <HomeNavSidebar />
+
+      <div className="w-full bg-white ">
+        <NavigationMyAcc />
+      </div>
+
+      <div className=" w-full bg-white grid place-items-center gap-5 p-5">
+        <button
+          onClick={() => {
+            setSignOutState(true);
+          }}
+          className="pBtn w-full py-3 "
+        >
+          Log Out
+        </button>
       </div>
     </>
   );
@@ -76,51 +70,7 @@ function ResponsiveDrawer({ window, children }) {
             boxShadow: "none",
           }}
         >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <div className="flex items-center justify-between w-full">
-              <div className="font-semibold">WebEase</div>
-              <div className="flex gap-3">
-                <form className="w-[100%]    flex items-center px-2 border  rounded ">
-                  <input
-                    type="search"
-                    className="w-full bg-transparent outline-none  text-xs p-2"
-                    placeholder="Search..."
-                  />
-
-                  <button>
-                    <i className="uil uil-search pColor text-lg" />
-                  </button>
-                </form>
-                <IconButton color="inherit">
-                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
-                </IconButton>{" "}
-                <IconButton
-                  color="inherit"
-                  onClick={() => {
-                    if (userDetails?.isLogin) {
-                      return router.push("/MyAccount");
-                    }
-                    return setsignInModal(true);
-                  }}
-                >
-                  <i
-                    className={`uil  text-xl  w-5 grid place-items-center h-5 pColor pColor ${
-                      userDetails?.isLogin ? "uil-user-check  " : "uil-user"
-                    } `}
-                  />
-                </IconButton>
-              </div>
-            </div>
-          </Toolbar>
+          <NavBar />
         </AppBar>
         <Box
           component="nav"
