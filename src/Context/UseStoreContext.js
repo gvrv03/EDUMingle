@@ -19,7 +19,11 @@ export function UseStoreContextProvider({ children }) {
     totatlPages: 0,
   });
 
-  //----------------------------SignInModal State //----------------------------
+  //----------------------------Modal State State //----------------------------
+  const [signInModal, setsignInModal] = useState(false);
+  const [SignOutState, setSignOutState] = useState(false);
+  const [filterState, setfilterState] = useState(false);
+  const [sortState, setsortState] = useState(false);
 
   const SavedProduct = async (productID) => {
     try {
@@ -32,9 +36,6 @@ export function UseStoreContextProvider({ children }) {
     }
   };
 
-
-  //----------------------------SignInModal State //----------------------------
-  const [signInModal, setsignInModal] = useState(false);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       setTimeout(() => {
@@ -53,6 +54,12 @@ export function UseStoreContextProvider({ children }) {
         userOrders,
         SavedProduct,
         setuserOrders,
+        SignOutState,
+        setSignOutState,
+        filterState,
+        setfilterState,
+        sortState,
+        setsortState,
       }}
     >
       {children}

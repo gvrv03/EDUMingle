@@ -5,17 +5,17 @@ import React, { useState } from "react";
 import Login from "../Login/Login";
 import Register from "../Login/Register";
 
-const Authentication = () => {
+const Authentication = ({ state, setstate }) => {
   const [isLoginState, setisLoginState] = useState(true);
-  const { userDetails,signInModal, setsignInModal } = useAppStore();
-  
+  const { userDetails } = useAppStore();
+
   return (
     <>
       {!userDetails?.isLogin && (
         <div
           className={`${
-            signInModal ? "fixed" : "hidden"
-          }  w-full h-screen grid place-items-center  top-0  bottom-0 left-0  z-50 `}
+            state ? "fixed" : "hidden"
+          }  w-full h-screen grid place-items-center  top-0  bottom-0 left-0  z-[9999] `}
         >
           <div className="bg-black absolute w-full h-full  opacity-50" />
           {/* <!-- Modal content --> */}
@@ -49,7 +49,7 @@ const Authentication = () => {
               <button
                 type="button"
                 onClick={() => {
-                  setsignInModal(false);
+                  setstate(false);
                 }}
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center "
                 data-modal-hide="defaultModal"

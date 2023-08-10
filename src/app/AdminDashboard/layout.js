@@ -12,58 +12,67 @@ import { useAppStore } from "@/Context/UseStoreContext";
 import { DashNav } from "@/NavItem/TopNav";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import NavigationMyAcc from "@/Components/MyAccount/NavigationMyAcc";
-import HomeNavSidebar from "@/Components/Sidebar/HomeNavSidebar";
-const drawerWidth = 350;
+const drawerWidth = 250;
 
 function ResponsiveDrawer({ window, children }) {
-  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { userDetails, setSignOutState, setsignInModal } = useAppStore();
+  const router = useRouter();
+  const { userDetails,setSignOutState } = useAppStore();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
-    <>
-      <div className="hidden md:block">
-        <div className="bg-sky-50 flex gap-5 w-full p-5">
-          <div className="w-10 bg-white rounded-full h-10 grid place-items-center ">
-            <img src={userDetails?.User?.image} className="w-full" alt="" />
-          </div>
-          <div>
-            <h4>Hello,</h4>
-            <h2 className="font-semibold text-base">
-              {userDetails?.User?.name}
-            </h2>
-          </div>
+    <div className="p-3">
+      <div className=" rounded-md bg-sky-100 flex gap-3 items-center w-full p-3">
+        <div className="w-10 bg-white  border-gray-600 border-2  rounded-full">
+          <img src={userDetails?.User?.image} className="w-full" alt="" />
         </div>
-
-        <div className="w-full bg-white ">
-          <NavigationMyAcc />
-        </div>
-
-        <div className=" w-full bg-white grid place-items-center gap-5 p-5">
-          <button
-            onClick={() => {
-              setSignOutState(true);
-            }}
-            className="pBtn w-full py-3 "
-          >
-            Log Out
+        <div className=" text-sm md:text-xs">
+          <h4>Hello,</h4>
+          <h2 className="font-semibold ">{userDetails?.User?.name}</h2>
+          <button className=" flex items-center  mt-1 text-[10px] pColor font-semibold">
+            My Account
+            <i className="uil uil-angle-right-b ml-2 " />
           </button>
         </div>
       </div>
-      <div className="md:hidden block">
-        <HomeNavSidebar />
+      <div className="justify-between flex-col flex gap-4  mt-5">
+        <button
+          className=" text-left  px-5    font-semibold bg-sky-50 py-2 pColor   flex gap-4   rounded-md "
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          <i className={`uil uil-estate pColor`} />
+          <span className="text-sm hover:font-semibold transition-all delay-100  ">
+            {" "}
+            Home
+          </span>{" "}
+        </button>
+        {DashNav.map((text, index) => (
+          <button
+            className=" text-left  px-5   flex gap-4  rounded-md "
+            key={index}
+            onClick={() => {
+              router.push(text.location);
+            }}
+          >
+            <i className={`${text.icon}`} />
+            <span className="text-sm  hover:font-semibold transition-all delay-100 ">
+              {" "}
+              {text.name}
+            </span>{" "}
+          </button>
+        ))}
       </div>
-    </>
+    </div>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  if (userDetails?.isLogin) {
+  if (userDetails.isAdmin || userDetails.isRoot) {
     return (
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
@@ -76,6 +85,7 @@ function ResponsiveDrawer({ window, children }) {
             boxShadow: "none",
           }}
         >
+
           <Toolbar>
             <IconButton
               color="inherit"
@@ -87,36 +97,22 @@ function ResponsiveDrawer({ window, children }) {
               <MenuIcon />
             </IconButton>
             <div className="flex items-center justify-between w-full">
-              <div className="font-semibold">WebEase</div>
+              <div className="font-serif font-semibold">WebEase</div>
               <div className="flex gap-3">
-                <form className="w-[100%]    flex items-center px-2 border  rounded ">
-                  <input
-                    type="search"
-                    className="w-full bg-transparent outline-none  text-xs p-2"
-                    placeholder="Search..."
-                  />
-
-                  <button>
-                    <i className="uil uil-search pColor text-lg" />
-                  </button>
-                </form>
                 <IconButton color="inherit">
-                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
-                </IconButton>{" "}
+                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor uil uil-bell" />
+                </IconButton>
+                <IconButton color="inherit">
+                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor uil uil-cog" />
+                </IconButton>
                 <IconButton
                   color="inherit"
+                  className="bg-blue-50"
                   onClick={() => {
-                    if (userDetails?.isLogin) {
-                      return router.push("/MyAccount");
-                    }
-                    return setsignInModal(true);
+                    setSignOutState(true);
                   }}
                 >
-                  <i
-                    className={`uil  text-xl  w-5 grid place-items-center h-5 pColor pColor ${
-                      userDetails?.isLogin ? "uil-user-check  " : "uil-user"
-                    } `}
-                  />
+                  <i className=" text-xl     w-5 grid place-items-center h-5 text-blue-800 uil uil-signout   " />
                 </IconButton>
               </div>
             </div>
@@ -164,6 +160,7 @@ function ResponsiveDrawer({ window, children }) {
           component="main"
           sx={{
             flexGrow: 1,
+            px: 2,
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
@@ -172,8 +169,7 @@ function ResponsiveDrawer({ window, children }) {
       </Box>
     );
   }
-
-  return <div>You Need To Sign In</div>;
+  return <div>Access Denied</div>;
 }
 
 ResponsiveDrawer.propTypes = {

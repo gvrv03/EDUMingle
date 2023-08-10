@@ -13,8 +13,8 @@ const NavBar = () => {
   const { setsignInModal, userDetails } = useAppStore();
   return (
     <>
-      <nav className="bg-white fixed z-50  w-full left-0    md:px-0 px-5  border-gray-200">
-        <div className="flex flex-wrap justify-between   gap-5 items-center container m-auto py-4">
+      <nav className="bg-white fixed z-50  top-0 w-full left-0    md:px-0 px-5  border-gray-200">
+        <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
             <div className="flex md:w-full  gap-5">
               <div className="md:hidden block">
@@ -54,9 +54,8 @@ const NavBar = () => {
               </form>
 
               <div className="flex justify-between items-center gap-2 md:gap-5">
-                <button className="flex items-center gap-1 font-semibold">
+                <button className="flex items-center  font-semibold">
                   <i className="uil text-2xl pColor  uil-shopping-cart" />
-                  <span className="md:block hidden">Cart</span>
                 </button>
 
                 <button
@@ -66,18 +65,14 @@ const NavBar = () => {
                     }
                     return setsignInModal(true);
                   }}
-                  className="flex items-center gap-1 font-semibold"
+                  className="flex items-center  font-semibold"
                 >
                   <i
                     className={`uil text-2xl pColor ${
                       userDetails?.isLogin ? "uil-user-check  " : "uil-user"
                     } `}
                   />
-                  <span className="md:block hidden">
-                    {userDetails?.User?.name
-                      ? userDetails?.User?.name?.split(" ")
-                      : "User"}
-                  </span>
+                 
                 </button>
               </div>
             </div>

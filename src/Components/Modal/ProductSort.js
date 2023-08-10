@@ -7,7 +7,7 @@ const ProductSort = ({ state, setstate }) => {
       <div
         className={`${
           state ? "fixed" : "hidden"
-        }  w-full h-screen grid place-items-center md:hidden top-0  bottom-0 left-0  z-50 `}
+        }  w-full h-screen grid place-items-center md:hidden top-0  bottom-0 left-0  z-[9999]`}
       >
         <div className="bg-black absolute w-full h-full  opacity-50" />
         {/* <!-- Modal content --> */}

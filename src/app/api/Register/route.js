@@ -52,6 +52,7 @@ export const PUT = Authentication(async (req, userid) => {
   try {
     const Data = await req.json();
     const { userData } = Data;
+
     const checkUser = await User.findByIdAndUpdate(userid, {
       ...userData,
       image:

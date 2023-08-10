@@ -17,15 +17,15 @@ const AllUserOrders = () => {
   }, [page]);
   const { isLoading, data, count } = userOrders ? userOrders : {};
   return (
-    <>
+    <div className="mt-[69px] relative  md:mt-0">
       {!isLoading  && count === 0 && <div  className="p-5" >No Order Found</div>}
-      {data?.length === 0 && isLoading && <FullScreenLoader />}
-      <div className=" flex  mx-5   flex-col gap-5 mt-5">
+      {data?.length === 0 && isLoading && <FullScreenLoader styleHeight={"md:h-[70vh]"} />}
+      <div className=" flex    flex-col gap-2 ">
         {data?.map((item, index) => {
           return <OrderCard orderDetail={item} key={index} />;
         })}{" "}
       </div>
-    </>
+    </div>
   );
 };
 

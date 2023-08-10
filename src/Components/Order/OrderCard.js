@@ -4,7 +4,7 @@ import PendingPaymentInititate from "../Payment/PendingPaymentInititate";
 
 const OrderCard = ({ orderDetail }) => {
   return (
-    <div className="bg-white  border flex-col md:flex-row  justify-between  flex gap-10  p-5">
+    <div className="bg-white   flex-col md:flex-row  justify-between  flex gap-10  p-5">
       <div className="  w-full  items-center flex justify-between  gap-5 ">
         <div className="flex  gap-5 items-center" >
           <div className="h-20  rounded-full overflow-hidden">

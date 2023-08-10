@@ -5,6 +5,7 @@ import { UseStoreContextProvider } from "@/Context/UseStoreContext";
 import { UserAuthContexProvider } from "@/Context/UserAuthContext";
 import { Toaster } from "react-hot-toast";
 import Authentication from "@/Components/Modal/Authentication";
+import RenderAllModal from "@/Components/Modal/RenderAllModal";
 
 export const metadata = {
   title: "Create Next App",
@@ -31,8 +32,9 @@ export default function RootLayout({ children }) {
             <Toaster />
             <NavBar />
             {/* <main className="  md:px-0 container  pb-2 pt-[64px]  md:pt-28   m-auto  text-sm md:text-base"> */}
-            <main className="  md:px-0 container  pb-2 pt-[64px]  md:pt-20   m-auto  text-sm md:text-base">
+            <main className="  md:px-0   pb-2 pt-[56px]  md:pt-16   m-auto  text-sm md:text-base">
               {children}
+              <RenderAllModal />
             </main>
             {/* <Footer /> */}
           </UserAuthContexProvider>

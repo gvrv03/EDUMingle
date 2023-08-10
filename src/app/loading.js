@@ -1,5 +1,5 @@
 
-import LoadingSpinner from "@/Components/LoadingSpinner";
+import LoadingSpinner, { FullScreenLoader } from "@/Components/LoadingSpinner";
 import React from "react";
 
 const Alloading = () => {
@@ -8,9 +8,12 @@ const Alloading = () => {
       className="grid bottom-0 place-items-center w-full h-[90vh] left-0
      bg-white top-0 "
     >
-      <LoadingSpinner />
+      <FullScreenLoader />
+
+      {/* <LoadingSpinner /> */}
     </div>
   );
 };
 
 export default Alloading;
+``

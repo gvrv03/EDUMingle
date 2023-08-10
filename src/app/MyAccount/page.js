@@ -4,12 +4,12 @@ import React, { memo } from "react";
 
 const MyAccount = () => {
   return (
-    <div>
+    <>
       <MyAcc />
       <div className="hidden md:block" >
         <UserProfile />{" "}
       </div>{" "}
-    </div>
+    </>
   );
 };
 

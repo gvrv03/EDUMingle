@@ -16,10 +16,11 @@ export async function POST(request) {
     const random = new Random();
     const OTP = random.integer(100000, 999999);
 
-    console.log("OTP is: ", OTP);
     const userExist = await User.findOne({ phoneNo });
     const hashedOTP = await bcrypt.hash(OTP.toString(), saltRounds);
     const result = await Fast2SMSSend(phoneNo, OTP.toString());
+    console.log("OTP is: ", OTP);
+    console.log("hash OTP :" + hashedOTP);
     if (result.return) {
       return NextResponse.json({
         userExist: userExist ? true : false,

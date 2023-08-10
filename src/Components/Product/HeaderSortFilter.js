@@ -1,15 +1,11 @@
 "use client";
+import { useAppStore } from "@/Context/UseStoreContext";
 import React, { useState } from "react";
-import ProductFilter from "../Modal/ProductFilter";
-import ProductSort from "../Modal/ProductSort";
 
 const SortFilter = () => {
-  const [filterState, setfilterState] = useState(false);
-  const [sortState, setsortState] = useState(false);
+  const { setsortState, setfilterState } = useAppStore();
   return (
-    <div className="fixed w-full left-0 z-40  top-16 md:hidden px-5 bg-white">
-      <ProductFilter state={filterState} setstate={setfilterState} />
-      <ProductSort state={sortState} setstate={setsortState} />
+    <div className="fixed w-full left-0 z-40   top-14 md:hidden px-5 bg-white">
       <div className="py-2  justify-between flex">
         <button
           onClick={() => {

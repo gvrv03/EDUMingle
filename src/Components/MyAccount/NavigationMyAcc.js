@@ -33,11 +33,7 @@ const NavigationMyAcc = () => {
           <span>Need Help</span>
         </button>
       </div>
-      <div className="bg-white  w-full p-5 md:p-0  ">
-        <button className="w-full bg-gray-100 p-2 px-2 rounded-sm font-medium   text-base  md:text-xs  ">
-          Dashboard
-        </button>
-      </div>
+     
       <div className="bg-white  w-full flex flex-col gap-5 md:gap-3  p-5 md:p-0 ">
         <AccountCardHeader
           styleCus="font-semibold text-base"
