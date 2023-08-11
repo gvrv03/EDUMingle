@@ -70,7 +70,7 @@ function ResponsiveDrawer({ window, children }) {
             boxShadow: "none",
           }}
         >
-          <NavBar />
+          <NavBar position="relative" />
         </AppBar>
         <Box
           component="nav"
@@ -117,6 +117,7 @@ function ResponsiveDrawer({ window, children }) {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
+            <Toolbar />
           {children}
         </Box>
       </Box>

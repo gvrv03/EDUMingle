@@ -8,7 +8,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
-const NavBar = (props) => {
+const NavBar = ({ shadow, position }) => {
   const router = useRouter();
   const pathName = usePathname();
   const { setsignInModal, userDetails, setSeaarchState } = useAppStore();
@@ -37,8 +37,8 @@ const NavBar = (props) => {
     <>
       <nav
         className={` ${
-          isSticky ? "sticky" : ""
-        } bg-white  z-50  top-0 w-full transition-all delay-75 ease-linear left-0    md:px-0 px-5  border-gray-200`}
+          isSticky ? position + " top-0" : ""
+        } bg-white  z-50  top-0 w-full  ${shadow} transition-all delay-100 ease-linear left-0    md:px-0 px-5  border-gray-200`}
       >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
@@ -75,13 +75,13 @@ const NavBar = (props) => {
                       pathName.substring(0, 5) === text.location.substring(0, 5)
                         ? "pColor   border-b-2 border-red-500 "
                         : ""
-                    }  text-left  font-semibold py-2 flex gap-5   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    }  text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
                     key={index}
                     onClick={() => {
                       router.push(text.location);
                     }}
                   >
-                    {/* <i className={`${text.icon}`} /> */}
+                    <i className={`${text.icon}  `} />
                     <span className="text-sm "> {text.name}</span>{" "}
                   </button>
                 ))}
