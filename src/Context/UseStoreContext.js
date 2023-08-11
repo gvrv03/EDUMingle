@@ -24,6 +24,7 @@ export function UseStoreContextProvider({ children }) {
   const [SignOutState, setSignOutState] = useState(false);
   const [filterState, setfilterState] = useState(false);
   const [sortState, setsortState] = useState(false);
+  const [SeaarchState, setSeaarchState] = useState(false);
 
   const SavedProduct = async (productID) => {
     try {
@@ -60,6 +61,8 @@ export function UseStoreContextProvider({ children }) {
         setfilterState,
         sortState,
         setsortState,
+        SeaarchState,
+        setSeaarchState,
       }}
     >
       {children}

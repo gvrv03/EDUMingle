@@ -4,19 +4,18 @@ import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const router = useRouter();
-  const { setsignInModal, userDetails } = useAppStore();
+  const pathName = usePathname();
+  const { setsignInModal, userDetails, setSeaarchState } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      console.log(scrollPosition);
       const componentPosition = 200;
       const threshold = 100; // Adjust this threshold as needed
 
@@ -43,17 +42,17 @@ const NavBar = () => {
       >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
-            <div className="flex md:w-full  gap-5">
+            <div className="flex  items-center md:w-full  gap-5">
               <div className="md:hidden block">
                 <Sidebar />
               </div>
               <Link href="/" className="flex items-center">
                 <img
                   src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8  md:mr-3 "
+                  className=" h-6 md:h-8  mr-3 "
                   alt="Flowbite Logo"
                 />
-                <span className="self-center hidden md:block  text-xl font-semibold whitespace-nowrap">
+                <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
                   WebEase
                 </span>
               </Link>
@@ -67,20 +66,35 @@ const NavBar = () => {
                 </div>
               </div>
             </div>
+
             <div className="flex  justify-end w-full  gap-5">
-              <form className="w-[100%]    flex items-center px-2 border  rounded ">
-                <input
-                  type="search"
-                  className="w-full bg-transparent outline-none  text-xs p-2"
-                  placeholder="Search..."
-                />
-
-                <button>
-                  <i className="uil uil-search pColor text-lg" />
-                </button>
-              </form>
-
+              <div className="container items-center gap-5  justify-end  hidden md:flex  m-auto">
+                {TopNav.map((text, index) => (
+                  <button
+                    className={`  ${
+                      pathName.substring(0, 5) === text.location.substring(0, 5)
+                        ? "pColor   border-b-2 border-red-500 "
+                        : ""
+                    }  text-left  font-semibold py-2 flex gap-5   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    key={index}
+                    onClick={() => {
+                      router.push(text.location);
+                    }}
+                  >
+                    {/* <i className={`${text.icon}`} /> */}
+                    <span className="text-sm "> {text.name}</span>{" "}
+                  </button>
+                ))}
+              </div>
               <div className="flex justify-between items-center gap-2 ">
+                <IconButton
+                  color="inherit"
+                  onClick={() => {
+                    setSeaarchState(true);
+                  }}
+                >
+                  <i className=" text-2xl  w-5 grid place-items-center h-5 pColor   uil uil-search" />
+                </IconButton>{" "}
                 <IconButton color="inherit">
                   <i className=" text-2xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
                 </IconButton>{" "}
@@ -102,34 +116,6 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-        </div>
-      </nav>
-      <nav className="bg-white fixed z-50  w-full hidden left-0 top-16     border-gray-200">
-        <div className="container justify-between flex gap-5 m-auto">
-          {TopNav.map((text, index) => (
-            <button
-              className=" text-left  py-2 flex gap-5  hover:bg-red-500 hover:text-white px-5 rounded-md"
-              key={index}
-              onClick={() => {
-                router.push(text.location);
-              }}
-            >
-              {/* <i className={`${text.icon}`} /> */}
-              <span className="text-sm font-semibold "> {text.name}</span>{" "}
-            </button>
-          ))}
-          {Legal.map((text, index) => (
-            <button
-              className=" text-left    py-2 flex gap-5 hover:bg-red-500 hover:text-white px-5 rounded-md "
-              key={index}
-              onClick={() => {
-                router.push(text.location);
-              }}
-            >
-              {/* <i className={`${text.icon}`} /> */}
-              <span className="text-sm font-semibold "> {text.name}</span>{" "}
-            </button>
-          ))}
         </div>
       </nav>
     </>

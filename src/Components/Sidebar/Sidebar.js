@@ -40,9 +40,9 @@ const Sidebar = () => {
   );
   return (
     <>
-      <IconButton color="inherit" onClick={toggleDrawer("left", true)}>
-        <i className="uil uil-bars  grid place-items-center text-xl" />
-      </IconButton>
+      <button  onClick={toggleDrawer("left", true)}>
+        <i className="uil uil-bars u grid place-items-center text-xl" />
+      </button>
 
       <SwipeableDrawer
         anchor="left"

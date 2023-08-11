@@ -8,7 +8,7 @@ import OrderCard from "./OrderCard";
 const AllUserOrders = () => {
   const { fetchUserOrders } = useOrder();
   const { userOrders } = useAppStore();
-  const [page, setpage] = useState(1);
+  const [page] = useState(1);
   useEffect(() => {
     fetchUserOrders({
       page: page,

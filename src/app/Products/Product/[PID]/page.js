@@ -10,7 +10,7 @@ const ProductDetal = async ({ searchParams }) => {
   const product = await res?.data;
 
   return (
-    <div className="container  flex-col flex gap-2 m-auto">
+    <div className="  flex-col flex gap-2 m-auto">
       <ProductHome  product={product} />
       <div className="p-5  flex gap-5 flex-col md:flex-row md:gap-10 bg-white">
         <div className="flex-col flex gap-3">

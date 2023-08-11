@@ -11,7 +11,7 @@ import { useOrder } from "@/Context/UseOrderContext";
 const PendingPaymentInititate = ({ amount, produDID, title, rzpOrderID }) => {
   const [loading, setloading] = useState(false);
   const { userDetails } = useAppStore();
-  const { fetchOrders } = useOrder();
+  const { fetchUserOrders } = useOrder();
   //PAyemnt Integration
   const loadScript = (src) => {
     return new Promise((resolve) => {
@@ -90,10 +90,9 @@ const PendingPaymentInititate = ({ amount, produDID, title, rzpOrderID }) => {
       setloading(false);
       toast.success("Payment Success");
 
-      await fetchOrders({
-        queryObj: { User: localStorage.getItem("id") },
+      await fetchUserOrders({
         page: 1,
-        limit: 1000,
+        limit: 100,
       });
     } else {
       setloading(false);

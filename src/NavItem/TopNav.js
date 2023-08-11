@@ -14,6 +14,16 @@ export const Legal = [
     location: "/Leagle/PrivacyPolicy",
     icon: "pColor uil uil-shield-check",
   },
+  {
+    name: "About",
+    location: "/AboutUs",
+    icon: "pColor uil uil-info-circle",
+  },
+  {
+    name: "Contact",
+    location: "/ContactUs",
+    icon: "pColor uil uil-phone",
+  },
 ];
 
 export const UserAccountNav = [
@@ -94,16 +104,6 @@ const TopNav = [
     name: "Sitemap",
     location: "/Sitemap",
     icon: "pColor uil uil-sitemap",
-  },
-  {
-    name: "About",
-    location: "/AboutUs",
-    icon: "pColor uil uil-info-circle",
-  },
-  {
-    name: "Contact",
-    location: "/ContactUs",
-    icon: "pColor uil uil-phone",
   },
 ];
 
