@@ -1,9 +1,12 @@
+import AdminHome from '@/Components/Admin/AdminHome'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      Hey Man
+      <AdminHome/>
+      <AdminHome/>
+      <AdminHome/>
     </div>
   )
 }

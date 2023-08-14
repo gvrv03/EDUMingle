@@ -16,7 +16,7 @@ const NavBar = ({ shadow, position }) => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const componentPosition = 200;
+      const componentPosition = 100;
       const threshold = 100; // Adjust this threshold as needed
 
       if (scrollPosition > componentPosition - threshold) {
@@ -37,8 +37,8 @@ const NavBar = ({ shadow, position }) => {
     <>
       <nav
         className={` ${
-          isSticky ? position + " top-0" : ""
-        } bg-white  z-50  top-0 w-full  ${shadow} transition-all delay-100 ease-linear left-0    md:px-0 px-5  border-gray-200`}
+          isSticky ? `${position} top-0 ${shadow}` : ""
+        } bg-white  z-50  top-0 w-full   left-0    md:px-0 px-5  border-gray-200`}
       >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
@@ -85,18 +85,32 @@ const NavBar = ({ shadow, position }) => {
                     <span className="text-sm "> {text.name}</span>{" "}
                   </button>
                 ))}
+
+                {userDetails.isRoot || userDetails.isAdmin ? (
+                  <button
+                    className={`  text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    onClick={() => {
+                      router.push("/AdminDashboard");
+                    }}
+                  >
+                    <i className={`uil uil-bell pColor `} />
+                    <span className="text-sm ">Dashboard</span>{" "}
+                  </button>
+                ) : (
+                  ""
+                )}
               </div>
-              <div className="flex justify-between items-center gap-2 ">
+              <div className="flex  ">
                 <IconButton
                   color="inherit"
                   onClick={() => {
                     setSeaarchState(true);
                   }}
                 >
-                  <i className=" text-2xl  w-5 grid place-items-center h-5 pColor   uil uil-search" />
+                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-search" />
                 </IconButton>{" "}
                 <IconButton color="inherit">
-                  <i className=" text-2xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
+                  <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
                 </IconButton>{" "}
                 <IconButton
                   color="inherit"
@@ -108,7 +122,7 @@ const NavBar = ({ shadow, position }) => {
                   }}
                 >
                   <i
-                    className={`uil  text-2xl  w-5 grid place-items-center h-5 pColor pColor ${
+                    className={`uil  text-xl  w-5 grid place-items-center h-5 pColor pColor ${
                       userDetails?.isLogin ? "uil-user-check  " : "uil-user"
                     } `}
                   />

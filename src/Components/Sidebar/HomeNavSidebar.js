@@ -56,6 +56,19 @@ const HomeNavSidebar = () => {
             <span>{text.name}</span>{" "}
           </button>
         ))}
+        {userDetails.isRoot || userDetails.isAdmin ? (
+          <button
+            className=" text-left  py-2 flex gap-5 w-full"
+            onClick={() => {
+              router.push("/AdminDashboard");
+            }}
+          >
+            <i className={`uil uil-bell pColor `} />
+            <span className="text-sm ">Dashboard</span>{" "}
+          </button>
+        ) : (
+          ""
+        )}
 
         <Divider sx={{ margin: "10px 0 " }} />
 

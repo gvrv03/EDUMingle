@@ -159,11 +159,6 @@ export const DashNav = [
     location: "/Admin/AllFeedbacks",
     icon: "pColor uil uil-feedback",
   },
-  {
-    name: "Setting",
-    location: "/",
-    icon: "pColor uil uil-cog",
-  },
 ];
 
 export default TopNav;

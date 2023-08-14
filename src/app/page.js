@@ -1,3 +1,4 @@
+import Footer from "@/Components/Footer";
 import Category from "@/Components/Home/Category";
 import RecentlyViewed from "@/Components/Home/RecentlyViewed";
 import SlideShow from "@/Components/Home/SlideShow";
@@ -13,7 +14,9 @@ export default function Home() {
         <SlideShow />
         <RecentlyViewed />
         <TopProduct />
+
       </main>
+      <Footer/>
     </>
   );
 }
