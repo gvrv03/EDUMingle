@@ -10,8 +10,14 @@ const ProductDetal = async ({ searchParams }) => {
   const product = await res?.data;
 
   return (
-    <div className="  flex-col flex gap-2 m-auto">
-      <ProductHome  product={product} />
+    <div className=" md:m-2 flex-col flex gap-2 m-0">
+      <ProductHome product={product} />
+      <div className="bg-white p-5 text-justify ">
+        <article
+          className="hide-tailwind se-wrapper-inner   se-wrapper-wysiwyg sun-editor-editable IMPBGWhite"
+          dangerouslySetInnerHTML={{ __html: product?.artical }}
+        />
+      </div>
       <div className="p-5  flex gap-5 flex-col md:flex-row md:gap-10 bg-white">
         <div className="flex-col flex gap-3">
           <h1 className="font-semibold text-base">Top Brand</h1>
@@ -48,7 +54,7 @@ const ProductDetal = async ({ searchParams }) => {
           </div>
         </div>
       </div>
-
+     
       {/* <div className="p-5 bg-white flex-col flex gap-5 ">
         <MainCardHeader name="Related Product" />
         <div className="flex gap-5 w-full  no-scrollbar  overflow-x-scroll ">

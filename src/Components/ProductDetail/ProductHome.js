@@ -111,6 +111,9 @@ const ProductHome = ({ product }) => {
           </div>
         </div>
       </div>
+
+
+     
     </div>
   );
 };

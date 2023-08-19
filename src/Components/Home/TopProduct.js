@@ -32,7 +32,7 @@ const TopProduct = async () => {
                 title={product.title.substring(0, 40) + "..."}
                 thumbnail={product.thumbnail}
                 price={product.pricing.price}
-                styleOBJ=" w-36 md:w-48"
+                styleOBJ=" w-40 md:w-48"
                 comAtPrice={product.pricing.comAtPrice}
               />
             );

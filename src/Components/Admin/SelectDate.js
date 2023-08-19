@@ -14,17 +14,22 @@ export default function DatePickerValue() {
     <div className="bottom-0 rounded-t-3xl absolute p-5 -ml-3 border-t">
       <h5 className="text-sm font-semibold my-2">Select Date</h5>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DemoContainer  components={["DatePicker"]}>
-          <DatePicker  label="Start Date" defaultValue={dayjs("2022-04-17")} />
+        <DemoContainer components={["DatePicker"]}>
+          <DatePicker label="Start Date" defaultValue={dayjs("2022-04-17")} />
         </DemoContainer>{" "}
         <DemoContainer components={["DatePicker"]}>
           <DatePicker label="End Date" defaultValue={dayjs("2022-04-17")} />
         </DemoContainer>
       </LocalizationProvider>
 
-      <button className="pBtn p-2 w-full mt-5" type="button">
-        Apply
-      </button>
+      <div className="flex gap-5">
+        <button className="bg-gray-100  font-semibold  rounded-md  p-2 w-full mt-5" type="button">
+          Today
+        </button>
+        <button className="pBtn p-2 w-full mt-5  rounded-md " type="button">
+          Apply
+        </button>{" "}
+      </div>
     </div>
   );
 }

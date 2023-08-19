@@ -15,6 +15,7 @@ import { useState } from "react";
 import AdminNavBar from "@/Components/AdminNavBar";
 import NavBar from "@/Components/NavBar";
 import SelectDate from "@/Components/Admin/SelectDate";
+import Link from "next/link";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
@@ -27,19 +28,16 @@ function ResponsiveDrawer({ window, children }) {
 
   const drawer = (
     <div className="p-3 relative  h-full">
-      <div className="    rounded-md bg-sky-100 flex gap-3 items-center w-full p-3">
-        <div className="w-10 bg-white  border-gray-600 border-2  rounded-full">
-          <img src={userDetails?.User?.image} className="w-full" alt="" />
-        </div>
-        <div className=" text-sm md:text-xs">
-          <h4>Hello,</h4>
-          <h2 className="font-semibold ">{userDetails?.User?.name}</h2>
-          <button className=" flex items-center  mt-1 text-[10px] pColor font-semibold">
-            My Account
-            <i className="uil uil-angle-right-b ml-2 " />
-          </button>
-        </div>
-      </div>
+      <Link href="/AdminDashboard" className="flex items-center">
+        <img
+          src="https://flowbite.com/docs/images/logo.svg"
+          className=" h-6 md:h-8  mr-3 "
+          alt="Flowbite Logo"
+        />
+        <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
+          WebEase <span className="text-[7px] pColor">ADMIN</span>
+        </span>
+      </Link>
 
       <div className="justify-between flex-col flex gap-4  mt-5">
         <button
@@ -93,7 +91,7 @@ function ResponsiveDrawer({ window, children }) {
         >
           <AdminNavBar
             handleDrawerToggle={handleDrawerToggle}
-            shadow="shadow-sm"
+            shadow="border-b shadow-sm "
           />
         </AppBar>
         <Box
@@ -138,9 +136,9 @@ function ResponsiveDrawer({ window, children }) {
           component="main"
           sx={{
             flexGrow: 1,
-            px: 2,
             width: "{ sm: `calc(100% - ${drawerWidth}px)` }",
           }}
+          className="px-0 md:px-2"
         >
           <Toolbar />
           {children}

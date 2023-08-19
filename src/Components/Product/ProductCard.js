@@ -14,7 +14,7 @@ const ProductCard = ({
 }) => {
   const router = useRouter();
   return (
-    <div className=" relative border  p-2 w-fit bg-white ">
+    <div className=" relative border flex-col flex  p-2 w-full bg-white ">
       <div className="absolute  right-2 top-2 ">
         <SavedButton
           styleicon=" text-xs "
@@ -22,9 +22,16 @@ const ProductCard = ({
           productID={id}
         />
       </div>
-      <div className={` ${styleOBJ}  `}>
-        <img src={thumbnail} alt={fullTitle} />
-      </div>
+      <div
+        className={` ${styleOBJ}    backImage`}
+      >
+        <img
+          src={thumbnail}
+          className=" bg-white  bg-cover object-cover"
+          loading="lazy"
+          alt={fullTitle}
+        />
+      </div>{" "}
       <div
         onClick={() => {
           router.push(
@@ -34,10 +41,10 @@ const ProductCard = ({
               id
           );
         }}
-        className="mt-5  cursor-pointer flex flex-col gap-2"
+        className=" cursor-pointer flex flex-col "
       >
         <h2 className="font-semibold text-[95%] ">{title}</h2>
-        <div className="flex gap-2 text-[80%] ">
+        <div className="flex gap-2 items-center text-[80%] ">
           <h3 className="font-semibold ">₹ {price}</h3>
           <strike className=" text-gray-400 font-semibold ">
             ₹ {comAtPrice}

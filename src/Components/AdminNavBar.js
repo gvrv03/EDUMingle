@@ -9,8 +9,6 @@ import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
 const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
-  const router = useRouter();
-  const pathName = usePathname();
   const { setSignOutState } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
@@ -42,22 +40,14 @@ const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
       >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">
-            <div className="flex  items-center md:w-full  gap-5">
+            <div className="flex  items-center md:w-full  gap-2">
               <div className="md:hidden block">
                 <IconButton onClick={handleDrawerToggle} color="inherit">
                   <i className=" text-xl  w-5 grid place-items-center h-5 text-gray-500 uil uil-bars" />
                 </IconButton>
               </div>
-              <Link href="/AdminDashboard" className="flex items-center">
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className=" h-6 md:h-8  mr-3 "
-                  alt="Flowbite Logo"
-                />
-                <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
-                  WebEase <span className="text-[7px] pColor">ADMIN</span>
-                </span>
-              </Link>
+              <div className="flex items-center w-full">
+              </div>
             </div>
 
             <div className="flex  justify-end w-full  gap-5">

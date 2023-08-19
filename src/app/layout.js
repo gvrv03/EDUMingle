@@ -1,6 +1,7 @@
 import "./globals.css";
 import NavBar from "@/Components/NavBar";
 import Footer from "@/Components/Footer";
+import 'rsuite/dist/rsuite.min.css';
 import { UseStoreContextProvider } from "@/Context/UseStoreContext";
 import { UserAuthContexProvider } from "@/Context/UserAuthContext";
 import { Toaster } from "react-hot-toast";
