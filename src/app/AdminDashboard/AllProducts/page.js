@@ -4,7 +4,7 @@ import HeaderWithSearchAndCreate from "@/Components/Admin/HeaderWithSearchAndCre
 import { IconButton } from "@mui/material";
 import React from "react";
 
-const page = () => {
+const Page = () => {
   return (
     <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  ">
       <h2 className="font-semibold    gap-2 flex text-base  items-center ">
@@ -21,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

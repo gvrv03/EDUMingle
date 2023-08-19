@@ -40,7 +40,6 @@
     "recharts": "^2.7.3",
     "resend": "^0.17.1",
     "rsuite": "^5.37.4",
-    "styled-components": "^6.0.7",
     "suneditor": "^2.45.1",
     "suneditor-react": "^3.6.1",
     "tailwindcss": "3.3.3"
