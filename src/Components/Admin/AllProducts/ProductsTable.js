@@ -23,6 +23,7 @@ const ProductsTable = () => {
           {ProductsData?.map((item, index) => {
             return (
               <tr
+              key={index}
                 className={`   ${
                   index % 2 == 0 ? "bg-gray-50" : "bg-white"
                 }  `}
