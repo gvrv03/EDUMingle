@@ -1,24 +1,24 @@
 import { BlogsURL } from "@/helper/allLinks";
-import axios from "axios";
 import React from "react";
 import Pegination from "../Utility/Pegination";
 
 import BlogCard from "./BlogCard";
 
 export default async function AllBlogs({ page, setpage }) {
-  const res = await fetch(BlogsURL + `?page=${page}&limit=10`);
-  const Data = await res?.json();
+  // const res = await fetch(BlogsURL + `?page=${page}&limit=10`);
+  // const Data = await res?.json();
 
-  if (Data?.blogs === undefined) {
-    return (
-      <div className="h-screen w-full grid place-items-center  bg-white ">
-        Error occuured
-      </div>
-    );
-  }
+  // if (Data?.blogs === undefined) {
+  //   return (
+  //     <div className="h-screen w-full grid place-items-center  bg-white ">
+  //       Error occuured
+  //     </div>
+  //   );
+  // }
   return (
     <>
-      {Data?.blogs?.length === 0 && (
+      Blogs
+      {/* {Data?.blogs?.length === 0 && (
         <div className="w-full h-90 grid place-items-center bg-white mt-5">
           No Blogs Found
         </div>
@@ -39,7 +39,7 @@ export default async function AllBlogs({ page, setpage }) {
           );
         })}
       </section>
-      <Pegination page={page} totalPages={Data?.totalPages} setpage={setpage} />
+      <Pegination page={page} totalPages={Data?.totalPages} setpage={setpage} /> */}
     </>
   );
 }
