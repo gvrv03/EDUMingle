@@ -1,11 +1,12 @@
 import { BlogsURL } from "@/helper/allLinks";
 import React from "react";
 import Pegination from "../Utility/Pegination";
+
 import BlogCard from "./BlogCard";
 
 export default async function AllBlogs({ page, setpage }) {
   const res = await fetch(BlogsURL + `?page=${page}&limit=10`);
-  const Data= await res.json();
+  const Data = await res.json();
 
   if (Data?.blogs === undefined) {
     return (

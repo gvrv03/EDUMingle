@@ -3,16 +3,15 @@ import Link from "next/link";
 import NotFound from "../not-found";
 import { getSingleBlogURL } from "@/helper/allLinks";
 import BlogDetail from "@/Components/BlogComp/BlogDetail";
+import axios from "axios";
 
 export async function generateMetadata({ searchParams }) {
   // fetch data
-  const data = await fetch(getSingleBlogURL + searchParams.ID).then((res) =>
-    res.json()
-  );
 
-  const { title, category, keywords, description, image, author, _id } = data
-    ? data
-    : {};
+  const res = await axios.get(getSingleBlogURL + searchParams.ID);
+
+  const { title, category, keywords, description, image, author, _id } =
+    await res?.data;
 
   let metatitle = title?.replaceAll(" ", "_");
   return {
@@ -90,7 +89,7 @@ const page = async ({ searchParams }) => {
             </div>
           </section>
 
-<hr className="mt-5" />
+          <hr className="mt-5" />
           <section className="mt-5 bg-white ">
             <img src={image} alt={title} />
             <BlogDetail artical={artical} />
