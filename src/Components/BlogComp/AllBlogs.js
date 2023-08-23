@@ -6,7 +6,7 @@ import BlogCard from "./BlogCard";
 
 export default async function AllBlogs({ page, setpage }) {
   const res = await fetch(BlogsURL + `?page=${page}&limit=10`);
-  const Data = await res.json();
+  const Data = (await res.json()) ? res.json() : {};
 
   if (Data?.blogs === undefined) {
     return (
@@ -22,7 +22,6 @@ export default async function AllBlogs({ page, setpage }) {
           No Blogs Found
         </div>
       )}
-      {/* <BlogsHeader /> */}{" "}
       <section className="grid  grid-cols-2 mt-10 md:mt-0 md:grid-cols-5 w-full gap-5">
         {Data?.blogs?.map((i, index) => {
           return (
