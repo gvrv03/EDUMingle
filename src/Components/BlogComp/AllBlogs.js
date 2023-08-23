@@ -5,9 +5,9 @@ import BlogCard from "./BlogCard";
 
 export default async function AllBlogs({ page, setpage }) {
   const res = await fetch(BlogsURL + `?page=${page}&limit=10`);
-  const { blogs, totalPages } = await res.json();
+  const Data= await res.json();
 
-  if (blogs === undefined) {
+  if (Data?.blogs === undefined) {
     return (
       <div className="h-screen w-full grid place-items-center  bg-white ">
         Error occuured
@@ -16,14 +16,14 @@ export default async function AllBlogs({ page, setpage }) {
   }
   return (
     <>
-      {blogs.length === 0 && (
+      {Data?.blogs?.length === 0 && (
         <div className="w-full h-90 grid place-items-center bg-white mt-5">
           No Blogs Found
         </div>
       )}
       {/* <BlogsHeader /> */}{" "}
       <section className="grid  grid-cols-2 mt-10 md:mt-0 md:grid-cols-5 w-full gap-5">
-        {blogs?.map((i, index) => {
+        {Data?.blogs?.map((i, index) => {
           return (
             <BlogCard
               key={index}
@@ -38,7 +38,7 @@ export default async function AllBlogs({ page, setpage }) {
           );
         })}
       </section>
-      <Pegination page={page} totalPages={totalPages} setpage={setpage} />
+      <Pegination page={page} totalPages={Data?.totalPages} setpage={setpage} />
     </>
   );
 }
