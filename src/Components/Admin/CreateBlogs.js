@@ -1,16 +1,54 @@
 "use client";
 import TextEditor from "@/Components/Admin/TextEditor";
+import { useBlogs } from "@/Context/UseBlogsContext";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
+import { BtnSpinnerWhite } from "../LoadingSpinner";
 import { Uploader } from "rsuite";
+import { useAppStore } from "@/Context/UseStoreContext";
+import BlogDetail from "../BlogComp/BlogDetail";
 
 const CreateBlogs = () => {
+  const [previewImage, setPreviewImage] = useState(null);
   const [artical, setartical] = useState("");
   const [category, setcategory] = useState([]);
-  const [cat, setcat] = useState("");
-
   const [keyowrds, setkeyowrds] = useState([]);
+  const [title, settitle] = useState("");
+  const [imageUrls, setImageUrls] = useState("");
+  const [description, setdescription] = useState("");
+  const { createBlog } = useBlogs();
+  const [cat, setcat] = useState("");
   const [keyW, setkeyW] = useState("");
+  const [loading, setloading] = useState(false);
+  const { userDetails } = useAppStore();
+
+  const handleCreatePost = async () => {
+    setloading(true);
+    if (
+      !title ||
+      !previewImage ||
+      !artical ||
+      !category ||
+      !keyowrds ||
+      !description
+    ) {
+      setloading(false);
+
+      return toast.error("Fill all the Fields !");
+    }
+
+    await createBlog({
+      title,
+      image: previewImage,
+      author: userDetails?.User._id,
+
+      artical,
+      category,
+      keyowrds,
+      description,
+    });
+    setloading(false);
+  };
 
   const addKeywords = (keywo) => {
     setkeyowrds([...keyowrds, keywo]);
@@ -18,15 +56,12 @@ const CreateBlogs = () => {
   const removeSpecificKeywords = (keywo) => {
     setkeyowrds(keyowrds.filter((currentKeyword) => currentKeyword !== keywo));
   };
-
   const addCategory = (cate) => {
     setcategory([...category, cate]);
   };
   const removeSpecificCategory = (cate) => {
     setcategory(category.filter((currentCategory) => currentCategory !== cate));
   };
-
-  const [previewImage, setPreviewImage] = useState(null);
   const [FileName, setFileName] = useState(null);
   const handleFileChange = (fileList) => {
     const file = fileList.target.files[0];
@@ -48,23 +83,38 @@ const CreateBlogs = () => {
       <div className="flex justify-between border p-2 rounded-full bg-white w-full gap-5 items-center ">
         <input
           type="text"
+          onChange={(e) => {
+            settitle(e.target.value);
+          }}
           className="w-full  outline-none p-2 rounded-sm  px-5 "
           placeholder="Title"
         />
-        <div className="flex gap-2" >
+        <div className="flex gap-2">
           <button className="flex gap-2 p-2 outline-none  rounded-full md:px-5 bg-gray-50  items-center font-semibold text-gray-500   border ">
             <span className="text-sm hidden md:block ">Draft</span>
             <i className="uil uil-save  text-xl w-5 h-5 grid place-items-center " />
           </button>{" "}
-          <button className="flex gap-2 p-2 outline-none  rounded-full md:px-5 bg-red-600  items-center font-semibold text-white   border ">
-            <span className="text-sm hidden md:block ">Publish</span>
-            <i className="uil uil-forward  text-xl w-5 h-5 grid place-items-center " />
-          </button>
+          {!loading ? (
+            <button
+              onClick={handleCreatePost}
+              className="flex  w-full gap-2 p-2 outline-none  rounded-full md:px-5 bg-red-600  items-center font-semibold text-white   border "
+            >
+              <span className="text-sm hidden md:block ">Publish</span>
+              <i className="uil uil-forward  text-xl w-5 h-5 grid place-items-center " />
+            </button>
+          ) : (
+            <button className="border relative grid place-items-center w-10 rounded-full bg-red-600">
+              <BtnSpinnerWhite />
+            </button>
+          )}
         </div>
       </div>
       <textarea
         placeholder="Description "
         type="text"
+        onChange={(e) => {
+          setdescription(e.target.value);
+        }}
         className=" border p-2 px-5 outline-none   w-full "
       />
       <div className="w-full flex gap-5   flex-col-reverse md:flex-row">
@@ -201,12 +251,6 @@ const CreateBlogs = () => {
         </div>
       </div>
 
-      {/* <div className="IMPBGWhite" >
-        <div
-          className="hide-tailwind se-wrapper-inner se-wrapper-wysiwyg sun-editor-editable IMPBGWhite"
-          dangerouslySetInnerHTML={{ __html: artical }}
-        />
-      </div> */}
     </div>
   );
 };

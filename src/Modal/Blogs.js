@@ -29,7 +29,7 @@ const blogSchema = new Schema(
     },
     image: String,
     description: String,
-    keywords: String,
+    keywords: [String],
     artical: String,
     views: {
       type: Number,

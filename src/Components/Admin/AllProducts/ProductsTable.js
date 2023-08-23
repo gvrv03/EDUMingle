@@ -1,8 +1,10 @@
+"use client";
 import ProductsData from "@/SampleData/ProductsData";
 import { IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
 const ProductsTable = () => {
+  const [productID, setproductID] = useState("");
   return (
     <div class="  md:w-full    no-scrollbar w-screen   md:border overflow-x-auto h-[60vh]">
       <table className="w-full     p-2 text-sm shadow-sm   text-left text-gray-500 ">
@@ -18,15 +20,12 @@ const ProductsTable = () => {
           <th className=" w-fit px-2 text-center  py-4  pr-2 ">Edit/Delete</th>
         </thead>
         <br />
-
         <tbody className="    bg-red-600 text-[12px] ">
           {ProductsData?.map((item, index) => {
             return (
               <tr
-              key={index}
-                className={`   ${
-                  index % 2 == 0 ? "bg-gray-50" : "bg-white"
-                }  `}
+                key={index}
+                className={`   ${index % 2 == 0 ? "bg-gray-50" : "bg-white"}  `}
               >
                 <td className="py-3 text-center  px-2 ">{item?._id?.$oid}</td>
                 <td className="font-semibold  py-3 grid place-items-center text-center ">
@@ -49,11 +48,19 @@ const ProductsTable = () => {
                   {item?.pricing?.price}
                 </td>
                 <td className="py-3 px-2  text-center ">03/11/2003</td>
-                <td className="py-3 px-2  text-center  ">
+                <td className="py-3 px-2  relative  text-center  ">
                   <IconButton
                     className="uil  uil-ellipsis-h  "
                     color="inherit"
+                    onClick={() => {
+                      if (productID) {
+                        setproductID("");
+                      } else {
+                        setproductID(item?._id?.$oid);
+                      }
+                    }}
                   />
+                  <EditSet clickID={item?._id?.$oid} productID={productID} />
                 </td>
               </tr>
             );
@@ -65,4 +72,17 @@ const ProductsTable = () => {
   );
 };
 
+const EditSet = ({ clickID, productID }) => {
+  return (
+    <div
+      className={` ${
+        clickID === productID ? "flex" : "hidden"
+      } text-xs gap-2  items-center  shadow-md z-10 flex-col rounded-md -left-10  md:-left-5  top-5  bg-white p-2  absolute`}
+    >
+      <button className=" hover:font-semibold text-left w-full " > <i className="uil uil-eye" /> <span>View</span></button>
+      <button className=" hover:font-semibold text-left w-full " > <i className="uil uil-edit" /> <span>Update</span></button>
+      <button className=" hover:font-semibold text-red-500 w-full  text-left " > <i className="uil uil-trash" /> <span>Delete</span></button>
+    </div>
+  );
+};
 export default ProductsTable;
