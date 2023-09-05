@@ -27,16 +27,7 @@ function ResponsiveDrawer({ window, children }) {
 
   const drawer = (
     <>
-      <div className="bg-sky-50 flex gap-5 w-full p-5">
-        <div className="w-10 bg-white rounded-full h-10 grid place-items-center ">
-          <img src={userDetails?.User?.image} className="w-full" alt="" />
-        </div>
-        <div>
-          <h4>Hello,</h4>
-          <h2 className="font-semibold text-base">{userDetails?.User?.name}</h2>
-        </div>
-      </div>
-
+     <Toolbar/>
       <div className="w-full bg-white ">
         <NavigationMyAcc />
       </div>
@@ -64,16 +55,17 @@ function ResponsiveDrawer({ window, children }) {
         position="fixed"
         color="inherit"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: "100%",
           ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
         }}
+        className="md:border-b z-20 "
       >
-          <NavBar position="relative" />
-        
+        <NavBar position="relative" />
       </AppBar>
       <Box
         component="nav"
+        className="z-10"
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
@@ -117,7 +109,7 @@ function ResponsiveDrawer({ window, children }) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
-          <Toolbar />
+        <Toolbar />
         {children}
       </Box>
     </Box>

@@ -27,50 +27,42 @@ function ResponsiveDrawer({ window, children }) {
   };
 
   const drawer = (
-    <div className="p-3 relative  h-full">
-      <Link href="/AdminDashboard" className="flex items-center">
-        <img
-          src="https://flowbite.com/docs/images/logo.svg"
-          className=" h-6 md:h-8  mr-3 "
-          alt="Flowbite Logo"
-        />
-        <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
-          WebEase <span className="text-[7px] pColor">ADMIN</span>
-        </span>
-      </Link>
-
-      <div className="justify-between flex-col flex gap-4  mt-5">
-        <button
-          className=" text-left  px-5    font-semibold bg-sky-50 py-2 pColor   flex gap-4   rounded-md "
-          onClick={() => {
-            router.push("/");
-          }}
-        >
-          <i className={`uil uil-estate pColor`} />
-          <span className="text-sm hover:font-semibold transition-all delay-100  ">
-            {" "}
-            Home
-          </span>{" "}
-        </button>
-        {DashNav.map((text, index) => (
+    <>
+      <Toolbar />
+      <div className="px-3 relative  h-full">
+        <div className="justify-between flex-col flex gap-4  mt-5">
           <button
-            className=" text-left  px-5   flex gap-4  rounded-md "
-            key={index}
+            className=" text-left  px-5    font-semibold bg-sky-50 py-2 pColor   flex gap-4   rounded-md "
             onClick={() => {
-              router.push(text.location);
+              router.push("/");
             }}
           >
-            <i className={`${text.icon}`} />
-            <span className="text-sm  hover:font-semibold transition-all delay-100 ">
+            <i className={`uil uil-estate pColor`} />
+            <span className="text-sm hover:font-semibold transition-all delay-100  ">
               {" "}
-              {text.name}
+              Home
             </span>{" "}
           </button>
-        ))}
-      </div>
+          {DashNav.map((text, index) => (
+            <button
+              className=" text-left  px-5   flex gap-4  rounded-md "
+              key={index}
+              onClick={() => {
+                router.push(text.location);
+              }}
+            >
+              <i className={`${text.icon}`} />
+              <span className="text-sm  hover:font-semibold transition-all delay-100 ">
+                {" "}
+                {text.name}
+              </span>{" "}
+            </button>
+          ))}
+        </div>
 
-      <SelectDate />
-    </div>
+        <SelectDate />
+      </div>
+    </>
   );
 
   const container =
@@ -84,10 +76,11 @@ function ResponsiveDrawer({ window, children }) {
           position="fixed"
           color="inherit"
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            width: "100%",
             ml: { sm: `${drawerWidth}px` },
             boxShadow: "none",
           }}
+          className="z-20"
         >
           <AdminNavBar
             handleDrawerToggle={handleDrawerToggle}
@@ -98,6 +91,7 @@ function ResponsiveDrawer({ window, children }) {
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="mailbox folders"
+          className="z-10"
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
