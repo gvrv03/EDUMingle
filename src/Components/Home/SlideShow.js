@@ -11,7 +11,7 @@ const SlideShow = () => {
         <div className=" rounded-md">
           <img
             className="w-full md:h-full rounded-md h-52"
-            src="  https://img.ebonow.com/Posters/P1B.webp"
+            src="/Slideshow/slide1.svg"
             alt=""
           />
         </div>

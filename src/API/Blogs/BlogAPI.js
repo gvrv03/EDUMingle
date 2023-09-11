@@ -10,4 +10,13 @@ export const CreateBlogAPI = async (blogData) => {
 };
 
 export const UpdateBlogAPI = async () => {};
-export const FetchBlogsAPI = async () => {};
+
+export const FetchBlogsAPI = async (data) => {
+  const page = data?.page ? data?.page : 1;
+  const limit = data?.limit ? data?.limit : 10;
+  const queryObj = data?.queryObj ? data?.queryObj : {};
+  const url =
+    BlogsURL + `?page=${page}&limit=${limit}&query=${JSON.stringify(queryObj)}`;
+  const res = await axios.get(url);
+  return await res?.data;
+};

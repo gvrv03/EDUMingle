@@ -15,32 +15,23 @@ import { useState } from "react";
 import NavigationMyAcc from "@/Components/MyAccount/NavigationMyAcc";
 import HomeNavSidebar from "@/Components/Sidebar/HomeNavSidebar";
 import NavBar from "@/Components/NavBar";
+import MostPopBlogs from "@/Components/BlogComp/MostPopBlogs";
+import BlogCategory from "@/Components/BlogComp/BlogCategory";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { userDetails, setSignOutState, setsignInModal } = useAppStore();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   const drawer = (
     <>
-     <Toolbar/>
-      <div className="w-full bg-white ">
-        <NavigationMyAcc />
-      </div>
-
-      <div className=" w-full bg-white grid place-items-center gap-5 p-5">
-        <button
-          onClick={() => {
-            setSignOutState(true);
-          }}
-          className="pBtn w-full py-3 "
-        >
-          Log Out
-        </button>
+      <Toolbar />
+      <div className="p-5 flex-col flex gap-5">
+        <MostPopBlogs />
+        <BlogCategory />
       </div>
     </>
   );
@@ -111,6 +102,10 @@ function ResponsiveDrawer({ window, children }) {
       >
         <Toolbar />
         {children}
+        <div className="mt-5 p-5 bg-white flex-col flex gap-5 md:hidden">
+          <MostPopBlogs />
+          <BlogCategory />
+        </div>
       </Box>
     </Box>
   );

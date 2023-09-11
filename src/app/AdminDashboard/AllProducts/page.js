@@ -14,9 +14,9 @@ const Page = () => {
         />
         <span>All Products</span>
       </h2>
-      <HeaderWithSearchAndCreate/>
+      <HeaderWithSearchAndCreate create="/AdminDashboard/Blogs/CreateBlog" />
       <hr />
-      <ProductsTable/>
+      <ProductsTable />
     </div>
   );
 };

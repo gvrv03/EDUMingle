@@ -85,8 +85,8 @@ const TopNav = [
     icon: "pColor uil uil-document-layout-left",
   },
   {
-    name: "Projects",
-    location: "/Projects",
+    name: "Study Material",
+    location: "/StudyMaterial",
     icon: "pColor uil uil-files-landscapes-alt",
   },
   {
@@ -115,8 +115,8 @@ export const DashNav = [
   },
   {
     name: "Posts",
-    location: "/AdminDashboard/AllBlogs",
-    
+    location: "/AdminDashboard/Blogs/AllBlogs",
+
     icon: "pColor uil uil-notebooks",
   },
   {

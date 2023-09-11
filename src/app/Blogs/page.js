@@ -1,5 +1,7 @@
 "use client";
 import AllBlogs from "@/Components/BlogComp/AllBlogs";
+import BlogCategory from "@/Components/BlogComp/BlogCategory";
+import MostPopBlogs from "@/Components/BlogComp/MostPopBlogs";
 import SortFilter from "@/Components/Product/HeaderSortFilter";
 import AllBlogsSkeleton from "@/Components/Skeleton/AllBlogsSkeleton";
 import React, { Suspense } from "react";
@@ -15,6 +17,7 @@ const AllProducts = () => {
       <Suspense fallback={<AllBlogsSkeleton />}>
         <AllBlogs page={page} setpage={setpage} />
       </Suspense>
+     
     </div>
   );
 };

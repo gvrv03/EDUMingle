@@ -6,9 +6,18 @@ import { toast } from "react-hot-toast";
 
 const useStoreContext = createContext();
 export function UseStoreContextProvider({ children }) {
-  
   //----------------------------UserDetail State //----------------------------
   const [userDetails, setuserDetails] = useState({});
+
+  //----------------------------All Blogs State //----------------------------
+  const [blogsAll, setblogsAll] = useState({
+    data: [],
+    isLoading: false,
+    error: null,
+    count: 0,
+    totatlPages: 0,
+  });
+
   //----------------------------All User Orders State //----------------------------
   const [userOrders, setuserOrders] = useState({
     data: [],
@@ -23,6 +32,7 @@ export function UseStoreContextProvider({ children }) {
   const [filterState, setfilterState] = useState(false);
   const [sortState, setsortState] = useState(false);
   const [SeaarchState, setSeaarchState] = useState(false);
+  const [TableOfContentState, setTableOfContentState] = useState(false);
 
   const SavedProduct = async (productID) => {
     try {
@@ -61,6 +71,10 @@ export function UseStoreContextProvider({ children }) {
         setsortState,
         SeaarchState,
         setSeaarchState,
+        blogsAll,
+        setblogsAll,
+        TableOfContentState,
+        setTableOfContentState,
       }}
     >
       {children}

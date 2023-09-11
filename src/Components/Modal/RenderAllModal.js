@@ -6,6 +6,7 @@ import ProductFilter from "./ProductFilter";
 import ProductSort from "./ProductSort";
 import SearchModal from "./SearchModal";
 import SignOutModal from "./SignOut";
+import TablOfContentModal from "./TablOfContentModal";
 
 const RenderAllModal = () => {
   const {

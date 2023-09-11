@@ -1,3 +1,4 @@
+import BlogTable from "@/Components/Admin/AllBlogs/BlogTable";
 import ProductsTable from "@/Components/Admin/AllProducts/ProductsTable";
 import CreateBlogs from "@/Components/Admin/CreateBlogs";
 import HeaderWithSearchAndCreate from "@/Components/Admin/HeaderWithSearchAndCreate";
@@ -14,9 +15,9 @@ const Page = () => {
         />
         <span>All Blogs</span>
       </h2>
-      <HeaderWithSearchAndCreate/>
+      <HeaderWithSearchAndCreate create="/AdminDashboard/Blogs/CreateBlog" />
       <hr />
-      <ProductsTable/>
+      <BlogTable />
     </div>
   );
 };
