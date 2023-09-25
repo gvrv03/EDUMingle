@@ -76,7 +76,7 @@ const page = async ({ searchParams }) => {
     <>
       <div className="bg-white h-full p-5   w-full  ">
         <div className="">
-          <section className="mt-5 gap-5   md:flex-row flex-col flex   bg-white w-full">
+          <section className="mt-10 md:mt-0 gap-5   md:flex-row flex-col flex   bg-white w-full">
             <div className="w-full md:w-[70%]">
               <section className="">
                 <h1 className="font-bold text-lg md:text-3xl">{title}</h1>
@@ -109,7 +109,7 @@ const page = async ({ searchParams }) => {
               <BlogDetail artical={artical} />
             </div>
             <SlideTableofCon/>
-            
+
           </section>
         </div>
       </div>

@@ -52,7 +52,7 @@ function ResponsiveDrawer({ window, children }) {
         }}
         className="md:border-b z-20 "
       >
-        <NavBar position="relative" />
+        <NavBar position="relative"  />
       </AppBar>
       <Box
         component="nav"

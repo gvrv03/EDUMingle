@@ -56,7 +56,7 @@ const NavBar = ({ shadow, position }) => {
                   WebEase
                 </span>
               </Link>
-              <div className="  hidden md:flex  gap-2  items-center">
+              {/* <div className="  hidden md:flex  gap-2  items-center">
                 <i className="uil pColor text-2xl  uil-map-marker" />
                 <div>
                   <h6 className="text-xs md:text-sm   font-normal">Hello</h6>
@@ -64,7 +64,7 @@ const NavBar = ({ shadow, position }) => {
                     Select your Address
                   </h6>
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="flex  justify-end w-full  gap-5">

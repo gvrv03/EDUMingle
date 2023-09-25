@@ -27,7 +27,7 @@
   all: initial;
 }
 :root {
-  --primaryColor: red;
+  --primaryColor: #331564;
   --secondaryColor: #d61609;
   --bgColor: rgb(241, 241, 255);
   --tirtiaryColor: yellow;
