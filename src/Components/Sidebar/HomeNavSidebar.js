@@ -1,17 +1,18 @@
 import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
 import { Divider, IconButton } from "@mui/material";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 const HomeNavSidebar = () => {
   const { userDetails, setSignOutState } = useAppStore();
   const router = useRouter();
+  const pathName = usePathname();
 
   return (
     <div>
       {userDetails?.isLogin ? (
-        <div className="flex justify-between w-full p-5 bg-blue-900 text-white ">
+        <div className="flex justify-between w-full py-2 px-5 bg-blue-900 text-white ">
           {" "}
           <button
             onClick={() => {
@@ -43,10 +44,14 @@ const HomeNavSidebar = () => {
           <i className="uil uil-user" /> <span className="">Sign In</span>
         </button>
       )}
-      <div className=" px-5  ">
+      <div className=" px-5 mt-5  ">
         {TopNav.map((text, index) => (
           <button
-            className=" text-left  py-2 flex gap-5 w-full"
+            className={`${
+              pathName.substring(0, 5) === text.location.substring(0, 5)
+                ? "bg-blue-50 rounded-md font-semibold" 
+                : ""
+            } text-left  py-2 px-5  hover:bg-blue-50 hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
             key={index}
             onClick={() => {
               router.push(text.location);
@@ -58,7 +63,7 @@ const HomeNavSidebar = () => {
         ))}
         {userDetails.isRoot || userDetails.isAdmin ? (
           <button
-            className=" text-left  py-2 flex gap-5 w-full"
+            className=" text-left  px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold flex gap-5 w-full"
             onClick={() => {
               router.push("/AdminDashboard");
             }}
@@ -74,7 +79,11 @@ const HomeNavSidebar = () => {
 
         {Legal.map((text, index) => (
           <button
-            className=" text-left    py-2 flex gap-5 w-full"
+          className={`${
+            pathName.substring(0, 5) === text.location.substring(0, 5)
+              ? "bg-blue-50 rounded-md"
+              : ""
+          } text-left  py-2 px-5 hover:bg-blue-50 hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
             key={index}
             onClick={() => {
               router.push(text.location);

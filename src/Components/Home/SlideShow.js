@@ -29,21 +29,24 @@ const SlideShow = () => {
             />
           </svg>
 
-          <div className="mt-5 md:mt-10 flex-col flex  gap-1  md:gap-8"   >
-            <h1 className="text-white font-semibold text-base md:text-7xl">
+          <div className="mt-5 md:mt-10 flex-col flex   gap-1  md:gap-8">
+            <h1 className="text-white font-semibold text-sm md:text-7xl">
               Release the potential of the brand.
             </h1>
-            <h1 className="text-white   text-xs md:text-4xl ">
-              Release the potential of the brand.
-            </h1>
+            <h5 className="text-white   text-[10px] md:text-4xl  ">
+              Get web solutions that add value to your business
+            </h5>
           </div>
           <button className="bg-[#CFD1FE]  text-xs md:text-xl md:px-10 md:py-3 px-5 py-2 rounded-full absolute  md:bottom-10 md:left-10 bottom-5 left-5 text-black font-semibold">
             Know More
           </button>
 
-          <img  className="absolute right-5  md:right-10 md:top-10 top-5 h-[80%]" src="/Slideshow/Slide1Img.svg" alt="" srcset="" />
-
-
+          <img
+            className="absolute right-5  md:right-10 md:top-10 top-5 h-[80%]"
+            src="/Slideshow/Slide1Img.svg"
+            alt=""
+            srcset=""
+          />
         </div>
 
         {/* <div className="  bg-[#331564]  h-[190px] md:h-[500px] rounded-md">
