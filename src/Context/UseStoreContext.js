@@ -26,6 +26,12 @@ export function UseStoreContextProvider({ children }) {
     count: 0,
     totatlPages: 0,
   });
+
+  //----------------------------All Home Data State //----------------------------
+  const [HomeData, setHomeData] = useState({
+    AppName: "iConnect",
+    AppLogo:"https://flowbite.com/docs/images/logo.svg"
+  });
   //----------------------------Modal State State //----------------------------
   const [signInModal, setsignInModal] = useState(false);
   const [SignOutState, setSignOutState] = useState(false);
@@ -75,6 +81,8 @@ export function UseStoreContextProvider({ children }) {
         setblogsAll,
         TableOfContentState,
         setTableOfContentState,
+        HomeData,
+        setHomeData,
       }}
     >
       {children}

@@ -11,7 +11,7 @@ import Sidebar from "./Sidebar/Sidebar";
 const NavBar = ({ shadow, position }) => {
   const router = useRouter();
   const pathName = usePathname();
-  const { setsignInModal, userDetails, setSeaarchState } = useAppStore();
+  const { setsignInModal, userDetails, setSeaarchState ,HomeData} = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -48,12 +48,12 @@ const NavBar = ({ shadow, position }) => {
               </div>
               <Link href="/" className="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={HomeData.AppLogo}
                   className=" h-6 md:h-8  mr-3 "
                   alt="Flowbite Logo"
                 />
                 <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
-                  WebEase
+                {HomeData.AppName}
                 </span>
               </Link>
               {/* <div className="  hidden md:flex  gap-2  items-center">

@@ -7,8 +7,6 @@ import { useAppStore } from "@/Context/UseStoreContext";
 import { IconButton } from "@mui/material";
 import HomeNavSidebar from "./HomeNavSidebar";
 const Sidebar = () => {
-  const router = useRouter();
-  const { userDetails, setSignOutState } = useAppStore();
 
   const [state, setState] = React.useState({
     top: false,

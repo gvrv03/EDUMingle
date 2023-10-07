@@ -1,5 +1,7 @@
 import Footer from "@/Components/Footer";
 import Category from "@/Components/Home/Category";
+import Catlog from "@/Components/Home/Catlog";
+import Contact from "@/Components/Home/Contact";
 import RecentlyViewed from "@/Components/Home/RecentlyViewed";
 import SlideShow from "@/Components/Home/SlideShow";
 import TopProduct from "@/Components/Home/TopProduct";
@@ -12,9 +14,10 @@ export default function Home() {
       <main className=" flex flex-col  gap-2 ">
         <Category />
         <SlideShow />
-        <RecentlyViewed />
+        <Catlog/>
+        {/* <RecentlyViewed /> */}
         <TopProduct />
-
+        <Contact/>
       </main>
       <Footer/>
     </>

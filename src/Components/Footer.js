@@ -1,7 +1,10 @@
+"use client";
+import { useAppStore } from "@/Context/UseStoreContext";
 import Link from "next/link";
 import React, { memo } from "react";
 
 const Footer = () => {
+  const { HomeData } = useAppStore();
   return (
     <footer className="bg-white mt-2">
       <div className="px-5 py-6 ">
@@ -9,12 +12,12 @@ const Footer = () => {
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
               <img
-                src="https://flowbite.com/docs/images/logo.svg"
+                src={HomeData.AppLogo}
                 className="h-8 mr-3"
                 alt="WebEase Logo"
               />
               <span className="self-center  font-semibold whitespace-nowrap ">
-                WebEase
+                {HomeData.AppName}
               </span>
             </Link>
           </div>

@@ -2,6 +2,7 @@
 import { useUserAuth } from "@/Context/UserAuthContext";
 import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
+
 import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -9,7 +10,7 @@ import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
 const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
-  const { setSignOutState } = useAppStore();
+  const { setSignOutState, HomeData } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +32,7 @@ const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <>
       <nav
@@ -46,12 +48,13 @@ const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
               </div>
               <Link href="/" className="flex items-center">
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src={HomeData.AppLogo}
                   className=" h-6 md:h-8  mr-3 "
                   alt="Flowbite Logo"
                 />
                 <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
-                  WebEase <span className="text-[7px] pColor">ADMIN</span>
+                  {HomeData.AppName}{" "}
+                  <span className="text-[7px] pColor">ADMIN</span>
                 </span>
               </Link>
             </div>
