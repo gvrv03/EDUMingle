@@ -1,6 +1,7 @@
 import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
 import { Divider, IconButton } from "@mui/material";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
@@ -46,31 +47,27 @@ const HomeNavSidebar = () => {
       )}
       <div className=" px-5 mt-5  ">
         {TopNav.map((text, index) => (
-          <button
+          <Link
             className={`${
               pathName.substring(0, 5) === text.location.substring(0, 5)
-                ? "bg-blue-50 rounded-md font-semibold" 
+                ? "bg-blue-50 rounded-md font-semibold"
                 : ""
-            } text-left  py-2 px-5  hover:bg-blue-50 hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
+            } text-left  text-black  hover:text-black hover:no-underline  py-2 px-5  hover:bg-blue-50 hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
             key={index}
-            onClick={() => {
-              router.push(text.location);
-            }}
+            href={text.location}
           >
             <i className={`${text.icon}`} />
             <span>{text.name}</span>{" "}
-          </button>
+          </Link>
         ))}
         {userDetails.isRoot || userDetails.isAdmin ? (
-          <button
-            className=" text-left  px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold flex gap-5 w-full"
-            onClick={() => {
-              router.push("/AdminDashboard");
-            }}
+          <Link
+            className=" text-left text-black  hover:text-black hover:no-underline px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold flex gap-5 w-full"
+            href="/AdminDashboard"
           >
             <i className={`uil uil-bell pColor `} />
             <span className="text-sm ">Dashboard</span>{" "}
-          </button>
+          </Link>
         ) : (
           ""
         )}
@@ -78,20 +75,18 @@ const HomeNavSidebar = () => {
         <Divider sx={{ margin: "10px 0 " }} />
 
         {Legal.map((text, index) => (
-          <button
-          className={`${
-            pathName.substring(0, 5) === text.location.substring(0, 5)
-              ? "bg-blue-50 rounded-md"
-              : ""
-          } text-left  py-2 px-5 hover:bg-blue-50 hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
+          <Link
+            className={`${
+              pathName.substring(0, 5) === text.location.substring(0, 5)
+                ? "bg-blue-50 rounded-md"
+                : ""
+            } text-left  py-2 px-5 hover:bg-blue-50 text-black  hover:text-black hover:no-underline hover:rounded-md hover:font-semibold  flex gap-5 w-full`}
             key={index}
-            onClick={() => {
-              router.push(text.location);
-            }}
+            href={text.location}
           >
             <i className={`${text.icon}`} />
             <span>{text.name}</span>{" "}
-          </button>
+          </Link>
         ))}
       </div>
     </div>

@@ -11,7 +11,8 @@ import Sidebar from "./Sidebar/Sidebar";
 const NavBar = ({ shadow, position }) => {
   const router = useRouter();
   const pathName = usePathname();
-  const { setsignInModal, userDetails, setSeaarchState ,HomeData} = useAppStore();
+  const { setsignInModal, userDetails, setSeaarchState, HomeData } =
+    useAppStore();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +54,7 @@ const NavBar = ({ shadow, position }) => {
                   alt="Flowbite Logo"
                 />
                 <span className="self-center  text-base md:text-xl font-semibold whitespace-nowrap">
-                {HomeData.AppName}
+                  {HomeData.AppName}
                 </span>
               </Link>
               {/* <div className="  hidden md:flex  gap-2  items-center">
@@ -70,32 +71,28 @@ const NavBar = ({ shadow, position }) => {
             <div className="flex  justify-end w-full  gap-5">
               <div className="container items-center gap-5  justify-end  hidden md:flex  m-auto">
                 {TopNav.map((text, index) => (
-                  <button
+                  <Link
                     className={`  ${
                       pathName.substring(0, 5) === text.location.substring(0, 5)
                         ? "pColor   border-b-2 border-red-500 "
                         : ""
-                    }  text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    }  hover:text-black hover:no-underline text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
                     key={index}
-                    onClick={() => {
-                      router.push(text.location);
-                    }}
+                    href={text.location}
                   >
                     <i className={`${text.icon}  `} />
                     <span className="text-sm "> {text.name}</span>{" "}
-                  </button>
+                  </Link>
                 ))}
 
                 {userDetails.isRoot || userDetails.isAdmin ? (
-                  <button
-                    className={`  text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
-                    onClick={() => {
-                      router.push("/AdminDashboard");
-                    }}
+                  <Link
+                    className={`  text-left   hover:text-black hover:no-underline font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    href="/AdminDashboard"
                   >
                     <i className={`uil uil-bell pColor `} />
                     <span className="text-sm ">Dashboard</span>{" "}
-                  </button>
+                  </Link>
                 ) : (
                   ""
                 )}
@@ -109,9 +106,9 @@ const NavBar = ({ shadow, position }) => {
                 >
                   <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-search" />
                 </IconButton>{" "}
-                <IconButton color="inherit">
+                {/* <IconButton color="inherit">
                   <i className=" text-xl  w-5 grid place-items-center h-5 pColor   uil uil-shopping-cart" />
-                </IconButton>{" "}
+                </IconButton>{" "} */}
                 <IconButton
                   color="inherit"
                   onClick={() => {

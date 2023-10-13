@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 const Category = () => {
   return (
-    <div className="flex gap-5 md:gap-10 w-full  no-scrollbar md:justify-center items-center overflow-x-scroll p-5 bg-white ">
+    <div className="flex gap-5 md:gap-10 w-full  no-scrollbar  items-center overflow-x-scroll p-5 bg-white ">
       <CardCircle image="/Category/Menu.svg" title="Explore" />
       <CardCircle image="/Category/Code.svg" title="Tutorials" />
       <CardCircle image="/Category/Study.svg" title="Academics" />

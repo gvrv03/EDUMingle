@@ -1,5 +1,6 @@
 "use client";
 import { IconButton } from "@mui/material";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -14,14 +15,9 @@ const HeaderWithSearchAndCreate = ({ create }) => {
           placeholder='{ "Key" : "Value" }'
         />
         <button className="uil uil-search border p-2  rounded-sm px-4" />
-        <button
-          onClick={() => {
-            router.push(create);
-          }}
-          className="flex border p-2 px-4 gap-2 rounded-sm  "
-        >
+        <Link href={create} className="flex border p-2 px-4 gap-2 rounded-sm  ">
           <i className="uil uil-plus " /> <span>Create</span>
-        </button>
+        </Link>
       </form>{" "}
       <div className="flex justify-between text-sm ">
         <div className="flex gap-2">

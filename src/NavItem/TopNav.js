@@ -136,7 +136,7 @@ export const DashNav = [
   },
   {
     name: "Products",
-    location: "/AdminDashboard/AllProducts",
+    location: "/AdminDashboard/Products/AllProducts",
     icon: "pColor uil  uil-shopping-cart-alt",
   },
   {

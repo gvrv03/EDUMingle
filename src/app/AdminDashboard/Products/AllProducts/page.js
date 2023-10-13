@@ -14,7 +14,7 @@ const Page = () => {
         />
         <span>All Products</span>
       </h2>
-      <HeaderWithSearchAndCreate create="/AdminDashboard/Blogs/CreateBlog" />
+      <HeaderWithSearchAndCreate create="/AdminDashboard/Products/CreateProduct" />
       <hr />
       <ProductsTable />
     </div>

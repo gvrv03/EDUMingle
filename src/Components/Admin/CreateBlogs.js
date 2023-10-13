@@ -41,7 +41,6 @@ const CreateBlogs = () => {
       title,
       image: previewImage,
       author: userDetails?.User._id,
-
       artical,
       category,
       keyowrds,

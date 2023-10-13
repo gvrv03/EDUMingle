@@ -7,7 +7,7 @@ const LatestOrder = () => {
         <i className="uil uil-shopping-cart pColor bg-gray-100 w-6 h-6 text-sm p-1 grid place-items-center rounded-full" />
         <h4 className="font-semibold text-base ">Latest Order</h4>
       </div>{" "}
-      <div className="grid grid-cols-1  gap-5">
+      <div className="grid grid-cols-1  overflow-scroll w-full gap-5">
         <table  >
           <thead className="text-xs rounded-md bg-gray-50 p-5" >
             <th className=" px-2 text-left  py-2" >ID</th>
