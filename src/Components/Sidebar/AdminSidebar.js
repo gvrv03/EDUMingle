@@ -1,13 +1,8 @@
 import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Divider from "@mui/material/Divider";
-import { useRouter } from "next/navigation";
-import TopNav, { Legal } from "@/NavItem/TopNav";
-import { useAppStore } from "@/Context/UseStoreContext";
-import { IconButton } from "@mui/material";
-import HomeNavSidebar from "./HomeNavSidebar";
-const Sidebar = () => {
-
+import AdminNavBar from "../AdminNavBar";
+import AdminNavSidebar from "./AdminNavSidebar";
+const AdminSidebar = () => {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -33,13 +28,13 @@ const Sidebar = () => {
       onKeyDown={toggleDrawer(anchor, false)}
       onClick={toggleDrawer(anchor, false)}
     >
-      <HomeNavSidebar />
+      <AdminNavSidebar />
     </aside>
   );
   return (
     <>
-      <button  onClick={toggleDrawer("left", true)}>
-        <i className="uil uil-align pColor u grid place-items-center text-2xl" />
+      <button onClick={toggleDrawer("left", true)}>
+        <i className="uil uil-angle-right pColor u grid place-items-center text-xl" />
       </button>
 
       <SwipeableDrawer
@@ -53,4 +48,4 @@ const Sidebar = () => {
     </>
   );
 };
-export default React.memo(Sidebar);
+export default React.memo(AdminSidebar);

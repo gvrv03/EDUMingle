@@ -4,12 +4,14 @@ import { Divider, IconButton } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import { useState } from "react";
+import AdminNavBar from "../AdminNavBar";
+import AdminSidebar from "./AdminSidebar";
 
 const HomeNavSidebar = () => {
   const { userDetails, setSignOutState } = useAppStore();
   const router = useRouter();
   const pathName = usePathname();
-
   return (
     <div>
       {userDetails?.isLogin ? (
@@ -61,13 +63,15 @@ const HomeNavSidebar = () => {
           </Link>
         ))}
         {userDetails.isRoot || userDetails.isAdmin ? (
-          <Link
-            className=" text-left text-black  hover:text-black hover:no-underline px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold flex gap-5 w-full"
-            href="/AdminDashboard"
-          >
-            <i className={`uil uil-bell pColor `} />
-            <span className="text-sm ">Dashboard</span>{" "}
-          </Link>
+          <div className=" text-left text-black items-center   flex justify-between hover:text-black hover:no-underline px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold  gap-5 w-full">
+            <div onClick={()=>{
+              router.push("/AdminDashboard")
+            }} className="flex gap-5">
+              <i className={`uil uil-bell pColor `} />
+              <span className="text-sm ">Dashboard</span>{" "}
+            </div>
+            <AdminSidebar />
+          </div>
         ) : (
           ""
         )}
