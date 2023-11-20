@@ -55,7 +55,7 @@ const ProductSort = ({ state, setstate }) => {
               <input
                 type="radio"
                 name="sortProduct"
-                checked={true}
+                // checked={true}
                 className="w-4 h-4 pColor  outline-none    "
               />
               <label className="ml-2 text-sm font-medium text-gray-900 ">

@@ -14,6 +14,7 @@ export default function Home() {
       <main className=" flex flex-col  gap-2 ">
         <Category />
         <SlideShow />
+        
         <Catlog/>
         {/* <RecentlyViewed /> */}
         <TopProduct />

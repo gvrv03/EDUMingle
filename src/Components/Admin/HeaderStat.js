@@ -19,7 +19,7 @@ const HeaderStat = () => {
             {icon}
             <div className=" ">
               <div className="flex gap-5">
-                <h2 className="title-font   font-semibold   ">{value}</h2>
+                <h2 className="title-font   font-semibold  text-xl ">{value}</h2>
                 {loading && <BtnSpinner />}
               </div>
 
@@ -41,19 +41,19 @@ const HeaderStat = () => {
             />
             <HeaderCard
               name="Users"
-              value="400"
+              value="200"
               loading={false}
               icon={<SupervisorAccountIcon className="pColor text-3xl" />}
             />
 
             <HeaderCard
-              name="Users"
+              name="Contacts"
               value="400"
               loading={false}
               icon={<SupervisorAccountIcon className="pColor text-3xl" />}
             />    
             <HeaderCard
-              name="Users"
+              name="Feedbacks"
               value="400"
               loading={false}
               icon={<SupervisorAccountIcon className="pColor text-3xl" />}
@@ -65,7 +65,7 @@ const HeaderStat = () => {
               icon={<ShoppingBagIcon className="pColor text-3xl" />}
             />
             <HeaderCard
-              name="Contact"
+              name="Works"
               value="100"
               loading={false}
               icon={<PhoneIcon className="pColor text-3xl" />}

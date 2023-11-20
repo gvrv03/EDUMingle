@@ -160,6 +160,11 @@ export const DashNav = [
     location: "/Admin/AllFeedbacks",
     icon: "pColor uil uil-feedback",
   },
+  {
+    name: "Documenst",
+    location: "/AdminDashboard/UploadDoc",
+    icon: "pColor uil  uil-file-check-alt",
+  },
 ];
 
 export default TopNav;
