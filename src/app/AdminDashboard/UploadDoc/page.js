@@ -1,13 +1,11 @@
 "use client";
-import { CldUploadWidget } from "next-cloudinary";
 import React from "react";
-import { CldUploadButton } from "next-cloudinary";
 import UploadDocument from "@/Components/Admin/UploadDocuments/UploadDocument";
 const page = () => {
   return (
-    <div className="bg-white p-5" >
+    <div className="bg-white p-5">
+      <h6 className="mb-5" >Upload Documents</h6>
       <UploadDocument />
-      {/* <CldUploadButton signatureEndpoint="https://res.cloudinary.com/dunnpktnn" /> */}
     </div>
   );
 };

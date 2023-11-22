@@ -12,8 +12,8 @@ export default Catlog;
 
 const SingleDetail = () => {
   return (
-    <section class="text-gray-600 bg-white p-5 ">
-      <div class="grid md:grid-cols-4  place-items-center grid-cols-2 gap-5 text-center">
+    <section className="text-gray-600 bg-white p-5 ">
+      <div className="grid md:grid-cols-4  place-items-center grid-cols-2 gap-5 text-center">
         <CatlogCard noOf="25k" title="University" />
         <CatlogCard noOf="25k" title="Colleges" />
         <CatlogCard noOf="25k" title="Courses" />

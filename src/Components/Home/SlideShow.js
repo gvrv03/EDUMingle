@@ -45,7 +45,7 @@ const SlideShow = () => {
             className="absolute right-5  md:right-10 md:top-10 top-5 h-[80%]"
             src="/Slideshow/Slide1Img.svg"
             alt=""
-            srcset=""
+            srcSet=""
           />
         </div>
 

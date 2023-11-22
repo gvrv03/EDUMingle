@@ -6,7 +6,7 @@ import React, { useState } from "react";
 const ProductsTable = () => {
   const [productID, setproductID] = useState("");
   return (
-    <div class="  md:w-full    no-scrollbar w-screen   md:border overflow-x-auto h-[60vh]">
+    <div className="  md:w-full    no-scrollbar w-screen   md:border overflow-x-auto h-[60vh]">
       <table className="w-full     p-2 text-sm shadow-sm   text-left text-gray-500 ">
         <thead className=" text-gray-700 uppercase text-[12px] bg-gray-100 ">
           <th className=" w-fit px-2 text-center  py-4  pl-2">Sr.No.</th>

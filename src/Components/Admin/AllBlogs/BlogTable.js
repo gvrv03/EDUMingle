@@ -21,7 +21,7 @@ const BlogTable = () => {
   const [blogID, setblogID] = useState("");
   const { data, isLoading, count } = blogsAll ? blogsAll : {};
   return (
-    <div class="  md:w-full    no-scrollbar w-screen   md:border overflow-x-auto h-[60vh]">
+    <div className="  md:w-full    no-scrollbar w-screen   md:border overflow-x-auto h-[60vh]">
       {data?.length === 0 && isLoading && (
         <FullScreenLoader styleHeight={"md:h-[100vh]"} />
       )}

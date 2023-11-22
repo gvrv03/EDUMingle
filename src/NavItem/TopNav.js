@@ -161,7 +161,7 @@ export const DashNav = [
     icon: "pColor uil uil-feedback",
   },
   {
-    name: "Documenst",
+    name: "Documents",
     location: "/AdminDashboard/UploadDoc",
     icon: "pColor uil  uil-file-check-alt",
   },
