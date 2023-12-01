@@ -1,13 +1,15 @@
 "use client";
+import DefaultBTN from "@/Components/Utility/DefaultBTN";
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { toast } from "react-hot-toast";
 import { uploadData } from "./Actions/UploadAction";
-import SubmitButton from "./SubmitButton";
 
 const UploadDocument = () => {
   const formRef = useRef();
   const [files, setfiles] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const handleInputFiles = (e) => {
     const files = e.target.files;
@@ -27,27 +29,44 @@ const UploadDocument = () => {
   };
 
   const handleUpload = async (e) => {
-    e.preventDefault()
-    if (!files.length) return alert("No image Selected");
-
-    const formData = new FormData();
-    files.forEach((file) => {
-      formData.append("files", file);
-    });
-    const res = await uploadData(formData);
+    e.preventDefault();
+    try {
+      setloading(true);
+      if (!files.length) {
+        setloading(false);
+        return alert("No image Selected");
+      }
+      const formData = new FormData();
+      files.forEach((file) => {
+        formData.append("files", file);
+      });
+      const res = await uploadData(formData,"Extay");
+      if (res.msg) {
+        toast.success(res.msg);
+        setloading(false);
+      } else {
+        toast.error(res.errorMsg);
+        setloading(false);
+      }
+    } catch (error) {
+      toast.error(error.message);
+      setloading(false);
+    }
   };
 
   return (
     <form action="" ref={formRef}>
       <div>
         <input
-          type="file"
           accept="image/*"
           multiple
+          type="file"
           onChange={handleInputFiles}
+          draggable
+          className=" text-transparent   md:file:rounded-md md:file:h-36  w-full file:bg-white   file:text-red-400 file:cursor-pointer file:border file:outline-none file:font-semibold file:rounded-full file:w-full file:border-dashed file:border-gray-300 file:px-5 file:py-2 file:mr-2 cursor-pointer "
         />
 
-        <h5>Preview</h5>
+        <h5 className="mt-5">Preview</h5>
         <div className="flex gap-10 ">
           {files.map((file, index) => {
             return (
@@ -73,8 +92,13 @@ const UploadDocument = () => {
           })}
         </div>
       </div>
-
-      <SubmitButton onClick={handleUpload} value="Upload to Cloudinary" />
+      <DefaultBTN
+        nameBtn="Upload to Cloudinary"
+        func={handleUpload}
+        loading={loading}
+        btnStyle="border  pBtn rounded-md mt-5 px-10 py-3"
+      />
+      {/* <SubmitButton funcBtn={handleUpload} value="Upload to Cloudinary" /> */}
     </form>
   );
 };

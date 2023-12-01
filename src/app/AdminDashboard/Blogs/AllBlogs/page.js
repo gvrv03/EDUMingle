@@ -7,7 +7,8 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  ">
+    <div className=" bg-white p-5   md:mt-2 flex-col flex gap-5  ">
+    {/* <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  "> */}
       <h2 className="font-semibold    gap-2 flex text-base  items-center ">
         <IconButton
           color="inherit"

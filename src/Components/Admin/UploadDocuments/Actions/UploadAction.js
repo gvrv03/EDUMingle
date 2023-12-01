@@ -26,17 +26,17 @@ export const saveDataToLocal = async (formData) => {
   return await Promise.all(multipleNuffersPromise);
 };
 
-const uploadDataToCloudinary = async (file) => {
+const uploadDataToCloudinary = async (file, path) => {
   const multipleData = file.map((file) =>
-    cloudinary.v2.uploader.upload(file.filepath, { folder: "BlogImages" })
+    cloudinary.v2.uploader.upload(file.filepath, { folder: path })
   );
   return await Promise.all(multipleData);
 };
 
-export const uploadData = async (data) => {
+export const uploadData = async (data, path) => {
   try {
     const newFiles = await saveDataToLocal(data);
-    const photos = await uploadDataToCloudinary(newFiles);
+    const photos = await uploadDataToCloudinary(newFiles, path);
     newFiles.map((file) => fs.unlink(file.filepath));
     revalidatePath("/");
     return { msg: "Upload Success!" };
