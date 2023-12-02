@@ -18,5 +18,6 @@ export const FetchBlogsAPI = async (data) => {
   const url =
     BlogsURL + `?page=${page}&limit=${limit}&query=${JSON.stringify(queryObj)}`;
   const res = await axios.get(url);
+  
   return await res?.data;
 };

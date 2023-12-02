@@ -1,7 +1,7 @@
 import { ProductsURL, savedProductToFavoriteURL } from "@/helper/allLinks";
 import axios from "axios";
 
-export const fetchProducts = async (data) => {
+export const fetchProductsAPI = async (data) => {
   const page = data?.page ? data?.page : 1;
   const limit = data?.limit ? data?.limit : 10;
   const queryObj = data?.queryObj ? data?.queryObj : {};

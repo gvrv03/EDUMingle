@@ -3,8 +3,15 @@ import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "react-hot-toast";
 
-const HeaderWithSearchAndCreate = ({ create }) => {
+const HeaderWithSearchAndCreate = ({
+  create,
+  totalPages,
+  page,
+  setPage,
+  setLimit,limit
+}) => {
   const router = useRouter();
   return (
     <div className="flex  flex-col gap-5">
@@ -33,7 +40,15 @@ const HeaderWithSearchAndCreate = ({ create }) => {
         <div className="flex gap-2">
           <div>
             Row per Page :{" "}
-            <select className="outline-none border p-1">
+            <select
+            value={limit}
+              onChange={(e) => {
+                setLimit(e.target.value);
+              }}
+              className="outline-none border p-1"
+            >
+              <option value="">All</option>
+              <option value="5">5</option>
               <option value="10">10</option>
               <option value="50">50</option>
               <option value="100">100</option>
@@ -42,14 +57,28 @@ const HeaderWithSearchAndCreate = ({ create }) => {
         </div>
       </div>{" "}
       <div className="flex justify-end items-center gap-5 text-sm ">
-        <span>1-10 of 13</span>
+        <span>
+          {page}-10 of {totalPages}
+        </span>
         <div>
           {" "}
           <IconButton
+            onClick={() => {
+              if (page > 1) {
+                setPage((page) => page - 1);
+              }
+            }}
             className="uil text-xl  uil-angle-left  "
             color="inherit"
           />{" "}
           <IconButton
+            onClick={() => {
+              if (page < totalPages) {
+                setPage((page) => page + 1);
+              } else {
+                toast.error("You reach at the End!");
+              }
+            }}
             className="uil text-xl  uil-angle-right  "
             color="inherit"
           />

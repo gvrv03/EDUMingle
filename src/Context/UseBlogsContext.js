@@ -7,6 +7,7 @@ import { useAppStore } from "./UseStoreContext";
 const useBlogsContext = createContext();
 export function UseBlogsContexProvider({ children }) {
   const { setblogsAll } = useAppStore();
+
   const createBlog = async (blogData) => {
     try {
       const res = await CreateBlogAPI(blogData);
@@ -25,23 +26,29 @@ export function UseBlogsContexProvider({ children }) {
         isLoading: true,
         error: null,
         count: 0,
-        totatlPages: 0,
+        totalPages: 0,
       });
       const BlogData = await FetchBlogsAPI(data);
       return setblogsAll({
         data: BlogData?.blogs,
         isLoading: false,
         count: BlogData?.blogCount,
-        totatlPages: BlogData?.totalPages,
+        totalPages: BlogData?.totalPages,
       });
     } catch (error) {
-      console.log(error);
+      setblogsAll({
+        data: [],
+        isLoading: false,
+        count: 0,
+        error: error.message,
+        totalPages: 0,
+      });
       return toast.error(error?.response?.data?.errorMsg);
     }
   };
 
   return (
-    <useBlogsContext.Provider value={{ createBlog ,fetchBlogs}}>
+    <useBlogsContext.Provider value={{ createBlog, fetchBlogs }}>
       {children}
     </useBlogsContext.Provider>
   );

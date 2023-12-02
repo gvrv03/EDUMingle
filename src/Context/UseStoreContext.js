@@ -12,25 +12,33 @@ export function UseStoreContextProvider({ children }) {
   //----------------------------All Blogs State //----------------------------
   const [blogsAll, setblogsAll] = useState({
     data: [],
-    isLoading: false,
+    isLoading: true,
     error: null,
     count: 0,
-    totatlPages: 0,
+    totalPages: 0,
   });
 
   //----------------------------All User Orders State //----------------------------
   const [userOrders, setuserOrders] = useState({
     data: [],
-    isLoading: false,
+    isLoading: true,
     error: null,
     count: 0,
-    totatlPages: 0,
+    totalPages: 0,
+  });
+  //----------------------------All Products State //----------------------------
+  const [AllProducts, setAllProducts] = useState({
+    data: [],
+    isLoading: true,
+    error: null,
+    count: 0,
+    totalPages: 0,
   });
 
   //----------------------------All Home Data State //----------------------------
   const [HomeData, setHomeData] = useState({
-    AppName: "iConnect",
-    AppLogo:"https://flowbite.com/docs/images/logo.svg"
+    AppName: "DevTown",
+    AppLogo: "https://flowbite.com/docs/images/logo.svg",
   });
   //----------------------------Modal State State //----------------------------
   const [signInModal, setsignInModal] = useState(false);
@@ -62,6 +70,8 @@ export function UseStoreContextProvider({ children }) {
   return (
     <useStoreContext.Provider
       value={{
+        AllProducts,
+        setAllProducts,
         signInModal,
         setsignInModal,
         userDetails,

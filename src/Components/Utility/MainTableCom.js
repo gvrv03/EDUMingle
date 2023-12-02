@@ -1,107 +1,185 @@
 "use client";
-import React from "react";
 import moment from "moment";
-import { FullScreenLoader } from "../LoadingSpinner";
-import { IconButton } from "@mui/material";
 import TableSkeleton from "../Skeleton/TableSkeleton";
-const MainTableCom = ({
+// import React from "react";
+// import { FullScreenLoader } from "../LoadingSpinner";
+// import { IconButton } from "@mui/material";
+// const MainTableCom = ({
+//   data,
+//   colData,
+//   isLoading,
+//   count,
+//   itemID,
+//   setItemID,
+// }) => {
+//   return (
+//     <div className="  md:w-full      no-scrollbar w-[92vw] h-[50vh]     overflow-scroll">
+//       {data?.length === 0 && isLoading ? (
+//         <TableSkeleton />
+//       ) : (
+//         <table className="w-full      text-sm shadow-sm   text-left text-gray-500 ">
+//           <thead className=" text-gray-700 uppercase text-[12px] border-b  shadow-md ">
+//             <tr>
+//               {colData?.map((col, index) => {
+//                 return (
+//                   <th key={index} className=" w-fit  text-left py-4   px-5">
+//                     {col === "image" ||
+//                     col === "artical" ||
+//                     col === "comments" ||
+//                     col === "images" ||
+//                     col === "pricing" ||
+//                     col === "productOrganization" ||
+//                     col === "thumbnail" ||
+//                     col === "keywords" ||
+//                     col === "reviews"
+//                       ? null
+//                       : col}
+//                   </th>
+//                 );
+//               })}
+//             </tr>
+//           </thead>
+//           <tbody className="    text-[12px] ">
+//             {data?.map((item, index) => {
+//               return (
+//                 <tr
+//                   key={index}
+//                   className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
+//                 >
+//                   {colData?.map((col, index) => {
+//                     return (
+//                       <td
+//                         key={index}
+//                         className="py-2  text-left text-xs   px-5"
+//                       >
+//                         {col === "image" ||
+//                         col === "artical" ||
+//                         col === "comments" ||
+//                         col === "images" ||
+//                         col === "pricing" ||
+//                         col === "productOrganization" ||
+//                         col === "thumbnail" ||
+//                         col === "keywords" ||
+//                         col === "reviews"
+//                           ? null
+//                           : col === "date"
+//                           ? moment(item[col]).format("DD/MM/YYYY")
+//                           : col === "createdAt"
+//                           ? moment(item[col]).format("DD/MM/YYYY")
+//                           : col === "updatedAt"
+//                           ? moment(item[col]).format("DD/MM/YYYY")
+//                           : item[col]}
+//                       </td>
+//                     );
+//                   })}
+//                 </tr>
+//               );
+//             })}
+//           </tbody>
+//         </table>
+//       )}
+
+//       {!isLoading && count === 0 && <div className="p-5">No Order Found</div>}
+//     </div>
+//     // <>
+//     // <div>
+//     //   fsdf</div></>
+//   );
+// };
+
+// export default MainTableCom;
+
+import * as React from "react";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TablePagination from "@mui/material/TablePagination";
+import TableRow from "@mui/material/TableRow";
+
+export default function MaintableCom({
   data,
   colData,
   isLoading,
   count,
   itemID,
   setItemID,
-}) => {
+}) {
   return (
-    <div className="  md:w-full      no-scrollbar w-[92vw] border   overflow-x-auto ">
-      {data?.length === 0 && isLoading ? (
+    <Paper style={{padding:"5px", boxShadow:"none", border:"none",width: "100%" }}   >
+      {isLoading ? (
         <TableSkeleton />
       ) : (
-        <table className="w-full      text-sm shadow-sm   text-left text-gray-500 ">
-          <thead className=" text-gray-700 uppercase text-[12px] border-b  shadow-md ">
-            <tr>
-              {colData?.map((col, index) => {
-                return (
-                  <th key={index} className=" w-fit  text-left py-4   px-5">
+        <TableContainer sx={{ maxHeight: 570 }}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                {colData?.map((col, index) => (
+                  <TableCell
+                    key={index}
+                    style={{
+                      fontSize: "12px",
+                      textTransform: "capitalize",
+                      fontWeight: 600,
+                    }}
+                    align="left"
+                  >
                     {col === "image" ||
                     col === "artical" ||
                     col === "comments" ||
-                    col === "keywords"
+                    col === "images" ||
+                    col === "pricing" ||
+                    col === "productOrganization" ||
+                    col === "thumbnail" ||
+                    col === "keywords" ||
+                    col === "reviews"
                       ? null
                       : col}
-                  </th>
+                  </TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {data?.map((item, index) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                    {colData?.map((col, index) => {
+                      return (
+                        <TableCell
+                          key={index}
+                          style={{ fontSize: "12px" }}
+                          align="left"
+                        >
+                          {col === "image" ||
+                          col === "artical" ||
+                          col === "comments" ||
+                          col === "images" ||
+                          col === "pricing" ||
+                          col === "productOrganization" ||
+                          col === "thumbnail" ||
+                          col === "keywords" ||
+                          col === "reviews"
+                            ? null
+                            : col === "date"
+                            ? moment(item[col]).format("DD/MM/YYYY")
+                            : col === "createdAt"
+                            ? moment(item[col]).format("DD/MM/YYYY")
+                            : col === "updatedAt"
+                            ? moment(item[col]).format("DD/MM/YYYY")
+                            : item[col]}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
                 );
               })}
-            </tr>
-          </thead>
-          <tbody className="    text-[12px] ">
-            {data?.map((item, index) => {
-              return (
-                <tr
-                  key={index}
-                  className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
-                >
-                  {colData?.map((col, index) => {
-                    return (
-                      <td
-                        key={index}
-                        className="py-2  text-left text-xs   px-5"
-                      >
-                        {col === "image" ||
-                        col === "artical" ||
-                        col === "comments" ||
-                        col === "keywords"
-                          ? null
-                          : col === "date"
-                          ? moment(item[col]).format("DD/MM/YYYY")
-                          : col === "createdAt"
-                          ? moment(item[col]).format("DD/MM/YYYY")
-                          : col === "updatedAt"
-                          ? moment(item[col]).format("DD/MM/YYYY")
-                          : item[col]}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+            </TableBody>
+          </Table>
+          {count === 0 && "No Data Found"}
+        </TableContainer>
       )}
-
-      {!isLoading && count === 0 && <div className="p-5">No Order Found</div>}
-    </div>
-    // <>
-    // <div>
-    //   fsdf</div></>
+    </Paper>
   );
-};
-
-export default MainTableCom;
-
-// <td className="font-semibold  py-3 grid place-items-center text-center ">
-// <img
-//   src={item?.image}
-//   className="w-10 rounded-full bg-gray-100  h-10 p-1 "
-// />
-// </td>
-// <th className="py-3 px-2  ">{item?.title}</th>
-// <td className="py-3 px-2 text-center  ">{item?.category}</td>
-// <td className="  p-1  text-[10px] font-semibold text-center text-orange-400">
-// {item?.author}
-// </td>
-// <td className="py-3 px-2  text-center ">03/11/2003</td>
-// <td className="py-3 px-2  relative  text-center  ">
-// <IconButton
-//   className="uil  uil-ellipsis-h  "
-//   color="inherit"
-//   onClick={() => {
-//     if (itemID) {
-//       setItemID("");
-//     } else {
-//       setItemID(item?._id);
-//     }
-//   }}
-// />
-// {/* <EditSet clickID={item?._id} itemID={itemID} /> */}
-// </td>
+}
