@@ -5,7 +5,7 @@ import { useAppStore } from "@/Context/UseStoreContext";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
-const page = () => {
+const SendMailToUser = () => {
   const [EditorData, setEditorData] = useState("");
   const [singleUserEmail, setSingleUserEmail] = useState("");
   const [userEmail, setUserEmail] = useState([]);
@@ -123,4 +123,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default SendMailToUser;
