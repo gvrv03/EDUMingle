@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
 import Sidebar from "./Sidebar/Sidebar";
 
-const AdminNavBar = ({ shadow, position, handleDrawerToggle }) => {
+const AdminNavBar = ({ shadow, position }) => {
   const { setSignOutState, HomeData } = useAppStore();
   const [isSticky, setIsSticky] = useState(false);
   useEffect(() => {

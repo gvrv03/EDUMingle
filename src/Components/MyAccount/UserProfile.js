@@ -168,9 +168,9 @@ const UserProfile = () => {
 
         <div className="flex-col gap-2 flex justify-between">
           <div>
-            <h4 className="font-semibold mb-1">
+            <label className="font-semibold mb-1">
               What happens when I update my email address (or mobile number)?
-            </h4>
+            </label>
             <p>
               Your login email id (or mobile number) changes, likewise. You will
               receive all your account related communication on your updated
@@ -179,20 +179,20 @@ const UserProfile = () => {
           </div>
 
           <div>
-            <h4 className="font-semibold mb-1">
+            <label className="font-semibold mb-1">
               When will my account be updated with the new email address (or
               mobile number)?
-            </h4>
+            </label>
             <p>
               It happens as soon as you confirm the verification code sent to
               your email (or mobile) and save the changes.
             </p>
           </div>
           <div>
-            <h4 className="font-semibold mb-1">
+            <label className="font-semibold mb-1">
               What happens to my existing account when I update my email address
               (or mobile number)?
-            </h4>
+            </label>
             <p>
               Updating your email address (or mobile number) does not invalidate
               your account. Your account remains fully functional. You will

@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <div className="mt-3  no-scrollbar md:mt-1">
+    <div className="  no-scrollbar m-2 mt-3">
       <div className="flex-col flex gap-2" >
         <HeaderStat />
         <AdminHome />

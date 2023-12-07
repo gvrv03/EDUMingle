@@ -3,6 +3,7 @@ import DefaultBTN from "@/Components/Utility/DefaultBTN";
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
+import { CldUploadButton } from "next-cloudinary";
 import { toast } from "react-hot-toast";
 import { uploadData } from "./Actions/UploadAction";
 
@@ -40,7 +41,7 @@ const UploadDocument = () => {
       files.forEach((file) => {
         formData.append("files", file);
       });
-      const res = await uploadData(formData,"Extay");
+      const res = await uploadData(formData, "Extay");
       if (res.msg) {
         toast.success(res.msg);
         setloading(false);
@@ -98,6 +99,8 @@ const UploadDocument = () => {
         loading={loading}
         btnStyle="border  pBtn rounded-md mt-5 px-10 py-3"
       />
+
+      <CldUploadButton uploadPreset="<Upload Preset>" />
       {/* <SubmitButton funcBtn={handleUpload} value="Upload to Cloudinary" /> */}
     </form>
   );

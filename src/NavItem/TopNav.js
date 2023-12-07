@@ -126,7 +126,7 @@ export const DashNav = [
   },
   {
     name: "Messages",
-    location: "/",
+    location: "/AdminDashboard/Mails",
     icon: "pColor uil uil-message",
   },
   {

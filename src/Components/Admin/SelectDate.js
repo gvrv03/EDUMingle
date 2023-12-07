@@ -11,7 +11,7 @@ export default function DatePickerValue() {
   const [value, setValue] = React.useState(dayjs("2022-04-17"));
 
   return (
-    <div className="bottom-0 rounded-t-3xl absolute p-5 -ml-3 border-t">
+    <div className="bottom-0 hidden rounded-t-3xl absolute p-5 -ml-3 border-t">
       <h5 className="text-sm font-semibold my-2">Select Date</h5>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DemoContainer components={["DatePicker"]}>

@@ -24,3 +24,7 @@ export const getUserOrderURL = baseUrl + "api/GetUserOrders";
 //Blogs
 export const BlogsURL = baseUrl + "api/Blogs";
 export const getSingleBlogURL = baseUrl + "api/Blogs/Post/";
+
+
+//Send Email
+export const sendEmailURL = baseUrl + "api/SendEmail";

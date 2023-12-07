@@ -1,4 +1,5 @@
 "use client";
+import { SendEmailAPI } from "@/API/Email/SendMail";
 import { SavedProductAPI } from "@/API/Products/ProductAPI";
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
@@ -66,7 +67,17 @@ export function UseStoreContextProvider({ children }) {
       }, 15000);
     }
   }, []);
+//-----------Send an Email -----------
+  const sendEmail = async ({ userEmails, subject, emailData }) => {
+    const { error } = await SendEmailAPI({ userEmails, subject, emailData });
+    if (error) {
+      return toast.error(error.message);
+    }
+    return toast.success("Email Send");
+  };
 
+
+  
   return (
     <useStoreContext.Provider
       value={{
@@ -93,6 +104,7 @@ export function UseStoreContextProvider({ children }) {
         setTableOfContentState,
         HomeData,
         setHomeData,
+        sendEmail
       }}
     >
       {children}

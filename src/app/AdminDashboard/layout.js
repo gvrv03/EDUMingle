@@ -82,10 +82,7 @@ function ResponsiveDrawer({ window, children }) {
           }}
           className="z-20"
         >
-          <AdminNavBar
-            handleDrawerToggle={handleDrawerToggle}
-            shadow="border-b shadow-sm "
-          />
+          <AdminNavBar shadow="border-b shadow-sm " />
         </AppBar>
         <Box
           component="nav"
@@ -129,10 +126,11 @@ function ResponsiveDrawer({ window, children }) {
         <Box
           component="main"
           sx={{
+            // background:"red",
             flexGrow: 1,
             width: "{ sm: `calc(100% - ${drawerWidth}px)` }",
           }}
-          className="px-0 md:px-2"
+          className="px-0 -mt-2"
         >
           <Toolbar />
           {children}

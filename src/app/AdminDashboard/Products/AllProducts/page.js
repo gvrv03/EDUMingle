@@ -28,7 +28,7 @@ const Page = () => {
   }
   return (
     // <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  ">
-    <div className=" bg-white p-5   md:mt-2 flex-col flex gap-5  ">
+    <div className=" bg-white p-5    flex-col flex gap-5  ">
       <h2 className="font-semibold    gap-2 flex text-base  items-center ">
         <IconButton
           color="inherit"
@@ -40,11 +40,12 @@ const Page = () => {
         limit={limit}
         page={page}
         setLimit={setLimit}
+        noOfData={data?.length}
         setPage={setPage}
         totalPages={totalPages}
         create="/AdminDashboard/Products/CreateProduct"
       />
-      <hr />
+      {/* <hr /> */}
       <MainTableCom
         data={data}
         isLoading={isLoading}

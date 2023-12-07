@@ -27,7 +27,9 @@ function ResponsiveDrawer({ window, children }) {
 
   const drawer = (
     <>
-      <div className="bg-sky-50 flex gap-5 w-full p-5">
+      <Toolbar />
+
+      {/* <div className="bg-sky-50 flex gap-5 w-full p-5">
         <div className="w-10 bg-white rounded-full h-10 grid place-items-center ">
           <img src={userDetails?.User?.image} className="w-full" alt="" />
         </div>
@@ -35,7 +37,7 @@ function ResponsiveDrawer({ window, children }) {
           <h4>Hello,</h4>
           <h2 className="font-semibold text-base">{userDetails?.User?.name}</h2>
         </div>
-      </div>
+      </div> */}
 
       <div className="w-full bg-white ">
         <NavigationMyAcc />
@@ -65,17 +67,19 @@ function ResponsiveDrawer({ window, children }) {
           position="fixed"
           color="inherit"
           sx={{
-            width: { sm: `calc(100% - ${drawerWidth}px)` },
+            width: "100%",
+
             ml: { sm: `${drawerWidth}px` },
             boxShadow: "none",
           }}
         >
-          <NavBar position="relative" />
+          <NavBar />
         </AppBar>
         <Box
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
           aria-label="mailbox folders"
+          className="z-10  "
         >
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
           <Drawer
@@ -117,7 +121,7 @@ function ResponsiveDrawer({ window, children }) {
             width: { sm: `calc(100% - ${drawerWidth}px)` },
           }}
         >
-            <Toolbar />
+          <Toolbar />
           {children}
         </Box>
       </Box>
@@ -128,10 +132,6 @@ function ResponsiveDrawer({ window, children }) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 

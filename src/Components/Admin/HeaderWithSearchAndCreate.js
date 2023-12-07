@@ -10,7 +10,9 @@ const HeaderWithSearchAndCreate = ({
   totalPages,
   page,
   setPage,
-  setLimit,limit
+  setLimit,
+  limit,
+  noOfData,
 }) => {
   const router = useRouter();
   return (
@@ -41,7 +43,7 @@ const HeaderWithSearchAndCreate = ({
           <div>
             Row per Page :{" "}
             <select
-            value={limit}
+              value={limit}
               onChange={(e) => {
                 setLimit(e.target.value);
               }}
@@ -58,7 +60,7 @@ const HeaderWithSearchAndCreate = ({
       </div>{" "}
       <div className="flex justify-end items-center gap-5 text-sm ">
         <span>
-          {page}-10 of {totalPages}
+          {page}-{noOfData} of {totalPages}
         </span>
         <div>
           {" "}

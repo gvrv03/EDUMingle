@@ -39,7 +39,7 @@ const NavBar = ({ shadow, position }) => {
       <nav
         className={` ${
           isSticky ? `${position} top-0 ${shadow}` : ""
-        } bg-white  z-50  top-0 w-full   left-0    md:px-0 px-5  border-gray-200`}
+        } bg-white  md:border-b   z-50  top-0 w-full   left-0    md:px-0 px-5   border-gray-200`}
       >
         <div className="flex flex-wrap justify-between   gap-5 items-center  m-auto  md:px-5 py-3">
           <div className="  flex justify-between   w-full  gap-5">

@@ -1,95 +1,7 @@
 "use client";
+import * as React from "react";
 import moment from "moment";
 import TableSkeleton from "../Skeleton/TableSkeleton";
-// import React from "react";
-// import { FullScreenLoader } from "../LoadingSpinner";
-// import { IconButton } from "@mui/material";
-// const MainTableCom = ({
-//   data,
-//   colData,
-//   isLoading,
-//   count,
-//   itemID,
-//   setItemID,
-// }) => {
-//   return (
-//     <div className="  md:w-full      no-scrollbar w-[92vw] h-[50vh]     overflow-scroll">
-//       {data?.length === 0 && isLoading ? (
-//         <TableSkeleton />
-//       ) : (
-//         <table className="w-full      text-sm shadow-sm   text-left text-gray-500 ">
-//           <thead className=" text-gray-700 uppercase text-[12px] border-b  shadow-md ">
-//             <tr>
-//               {colData?.map((col, index) => {
-//                 return (
-//                   <th key={index} className=" w-fit  text-left py-4   px-5">
-//                     {col === "image" ||
-//                     col === "artical" ||
-//                     col === "comments" ||
-//                     col === "images" ||
-//                     col === "pricing" ||
-//                     col === "productOrganization" ||
-//                     col === "thumbnail" ||
-//                     col === "keywords" ||
-//                     col === "reviews"
-//                       ? null
-//                       : col}
-//                   </th>
-//                 );
-//               })}
-//             </tr>
-//           </thead>
-//           <tbody className="    text-[12px] ">
-//             {data?.map((item, index) => {
-//               return (
-//                 <tr
-//                   key={index}
-//                   className={`${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
-//                 >
-//                   {colData?.map((col, index) => {
-//                     return (
-//                       <td
-//                         key={index}
-//                         className="py-2  text-left text-xs   px-5"
-//                       >
-//                         {col === "image" ||
-//                         col === "artical" ||
-//                         col === "comments" ||
-//                         col === "images" ||
-//                         col === "pricing" ||
-//                         col === "productOrganization" ||
-//                         col === "thumbnail" ||
-//                         col === "keywords" ||
-//                         col === "reviews"
-//                           ? null
-//                           : col === "date"
-//                           ? moment(item[col]).format("DD/MM/YYYY")
-//                           : col === "createdAt"
-//                           ? moment(item[col]).format("DD/MM/YYYY")
-//                           : col === "updatedAt"
-//                           ? moment(item[col]).format("DD/MM/YYYY")
-//                           : item[col]}
-//                       </td>
-//                     );
-//                   })}
-//                 </tr>
-//               );
-//             })}
-//           </tbody>
-//         </table>
-//       )}
-
-//       {!isLoading && count === 0 && <div className="p-5">No Order Found</div>}
-//     </div>
-//     // <>
-//     // <div>
-//     //   fsdf</div></>
-//   );
-// };
-
-// export default MainTableCom;
-
-import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -108,19 +20,43 @@ export default function MaintableCom({
   setItemID,
 }) {
   return (
-    <Paper style={{padding:"5px", boxShadow:"none", border:"none",width: "100%" }}   >
+    <Paper
+      style={{
+        padding: "5px",
+        boxShadow: "none",
+        width: "100%",
+      }}
+    >
       {isLoading ? (
         <TableSkeleton />
       ) : (
-        <TableContainer sx={{ maxHeight: 570 }}>
+        <TableContainer
+          style={{
+            maxHeight: 500,
+            background: "white",
+            border: "0.5px solid #f5f5f5",
+          }}
+        >
           <Table stickyHeader aria-label="sticky table">
             <TableHead>
               <TableRow>
+                <TableCell
+                  style={{
+                    fontSize: "12px",
+                    padding: "8px",
+                    textTransform: "capitalize",
+                    fontWeight: 600,
+                  }}
+                  align="left"
+                >
+                  Sr.No.
+                </TableCell>
                 {colData?.map((col, index) => (
                   <TableCell
                     key={index}
                     style={{
                       fontSize: "12px",
+                      padding: "8px",
                       textTransform: "capitalize",
                       fontWeight: 600,
                     }}
@@ -131,6 +67,7 @@ export default function MaintableCom({
                     col === "comments" ||
                     col === "images" ||
                     col === "pricing" ||
+                    col === "__v" ||
                     col === "productOrganization" ||
                     col === "thumbnail" ||
                     col === "keywords" ||
@@ -145,17 +82,32 @@ export default function MaintableCom({
               {data?.map((item, index) => {
                 return (
                   <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                    <TableCell
+                      style={{
+                        fontSize: "12px",
+                        padding: "8px",
+                        color: "gray",
+                      }}
+                      align="center"
+                    >
+                      {index + 1}
+                    </TableCell>
                     {colData?.map((col, index) => {
                       return (
                         <TableCell
                           key={index}
-                          style={{ fontSize: "12px" }}
+                          style={{
+                            fontSize: "12px",
+                            padding: "8px",
+                            color: "gray",
+                          }}
                           align="left"
                         >
                           {col === "image" ||
                           col === "artical" ||
                           col === "comments" ||
                           col === "images" ||
+                          col === "__v" ||
                           col === "pricing" ||
                           col === "productOrganization" ||
                           col === "thumbnail" ||

@@ -30,7 +30,7 @@ const HeaderStat = () => {
       );
     };
     return (
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font ">
         <div className="   mx-auto">
           <div className="grid gap-5 grid-cols-2 md:grid-cols-6 ">
             <HeaderCard
