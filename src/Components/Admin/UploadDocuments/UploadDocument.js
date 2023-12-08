@@ -100,7 +100,7 @@ const UploadDocument = () => {
         btnStyle="border  pBtn rounded-md mt-5 px-10 py-3"
       />
 
-      <CldUploadButton uploadPreset="<Upload Preset>" />
+      {/* <CldUploadButton uploadPreset="<Upload Preset>" /> */}
       {/* <SubmitButton funcBtn={handleUpload} value="Upload to Cloudinary" /> */}
     </form>
   );

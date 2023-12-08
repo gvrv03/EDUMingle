@@ -64,13 +64,15 @@ const HomeNavSidebar = () => {
         ))}
         {userDetails.isRoot || userDetails.isAdmin ? (
           <div className=" text-left text-black items-center   flex justify-between hover:text-black hover:no-underline px-5 py-2 hover:bg-blue-50 hover:rounded-md hover:font-semibold  gap-5 w-full">
-            <div onClick={()=>{
-              router.push("/AdminDashboard")
-            }} className="flex gap-5">
+            <button
+              onClick={() => {
+                router.push("/AdminDashboard");
+              }}
+              className="flex gap-5"
+            >
               <i className={`uil uil-bell pColor `} />
               <span className="text-sm ">Dashboard</span>{" "}
-            </div>
-            <AdminSidebar />
+            </button>
           </div>
         ) : (
           ""

@@ -14,7 +14,7 @@ const Page = () => {
   const [colData, setcolData] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
-  const [filterBlogs, setfilterBlogs] = useState([])
+  const [filterBlogs, setfilterBlogs] = useState([]);
   useEffect(() => {
     fetchBlogs({
       page: page,
@@ -28,11 +28,11 @@ const Page = () => {
       setcolData(Object.keys(data[0]));
     }
   }
-//   function myFunction({ artical, image, ...rest }) {
-//     return setfilterBlogs((prev)=>({...prev,...rest}))
-//   }
-//   console.log(filterBlogs);
-//  data?.forEach((obj) => myFunction(obj));
+  //   function myFunction({ artical, image, ...rest }) {
+  //     return setfilterBlogs((prev)=>({...prev,...rest}))
+  //   }
+  //   console.log(filterBlogs);
+  //  data?.forEach((obj) => myFunction(obj));
   return (
     // <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  ">
     <div className=" bg-white p-5 flex-col flex gap-5  ">
@@ -60,15 +60,18 @@ const Page = () => {
       >
         Download
       </button> */}
-      <MaintableCom
-        data={data}
-        isLoading={isLoading}
-        colData={colData}
-        // EditSet={<EditSet  />}
-        itemID={blogID}
-        count={count}
-        setItemID={setblogID}
-      />
+
+      <div className="w-[92vw] md:w-auto  " >
+        <MaintableCom
+          data={data}
+          isLoading={isLoading}
+          colData={colData}
+          // EditSet={<EditSet  />}
+          itemID={blogID}
+          count={count}
+          setItemID={setblogID}
+        />
+      </div>
     </div>
   );
 };

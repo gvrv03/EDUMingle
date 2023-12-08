@@ -2,7 +2,7 @@ import * as React from "react";
 import SwipeableDrawer from "@mui/material/SwipeableDrawer";
 import AdminNavBar from "../AdminNavBar";
 import AdminNavSidebar from "./AdminNavSidebar";
-const AdminSidebar = () => {
+const AdminSidebar = ({barIcon}) => {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -34,7 +34,7 @@ const AdminSidebar = () => {
   return (
     <>
       <button onClick={toggleDrawer("left", true)}>
-        <i className="uil uil-angle-right pColor u grid place-items-center text-xl" />
+        <i className={`${barIcon} pColor u grid place-items-center `}/>
       </button>
 
       <SwipeableDrawer

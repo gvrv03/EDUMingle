@@ -46,15 +46,17 @@ const Page = () => {
         create="/AdminDashboard/Products/CreateProduct"
       />
       {/* <hr /> */}
-      <MainTableCom
-        data={data}
-        isLoading={isLoading}
-        colData={colData}
-        // EditSet={<EditSet  />}
-        itemID={productID}
-        count={count}
-        setItemID={setProductID}
-      />
+      <div className="w-[92vw] md:w-auto  ">
+        <MainTableCom
+          data={data}
+          isLoading={isLoading}
+          colData={colData}
+          // EditSet={<EditSet  />}
+          itemID={productID}
+          count={count}
+          setItemID={setProductID}
+        />
+      </div>
     </div>
   );
 };

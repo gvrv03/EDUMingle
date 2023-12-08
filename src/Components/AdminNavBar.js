@@ -7,6 +7,7 @@ import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { memo, useEffect, useState } from "react";
+import AdminSidebar from "./Sidebar/AdminSidebar";
 import Sidebar from "./Sidebar/Sidebar";
 
 const AdminNavBar = ({ shadow, position }) => {
@@ -44,7 +45,7 @@ const AdminNavBar = ({ shadow, position }) => {
           <div className="  flex justify-between   w-full  gap-5">
             <div className="flex  items-center md:w-full  gap-5">
               <div className="md:hidden block">
-                <Sidebar />
+                <AdminSidebar barIcon="uil uil-align text-2xl" />
               </div>
               <Link href="/" className="flex items-center">
                 <img

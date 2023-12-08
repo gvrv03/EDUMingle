@@ -109,8 +109,13 @@ const TopNav = [
 
 export const DashNav = [
   {
+    name: "Homepage",
+    location: "/",
+    icon: "pColor uil uil-estate",
+  },
+  {
     name: "Stats",
-    location: "/Admin",
+    location: "/AdminDashboard",
     icon: "pColor uil uil-graph-bar",
   },
   {

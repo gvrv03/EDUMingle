@@ -9,16 +9,9 @@ import { useState } from "react";
 import AdminNavBar from "../AdminNavBar";
 
 const AdminNavSidebar = () => {
-  const { userDetails, setSignOutState } = useAppStore();
-  const router = useRouter();
-  const pathName = usePathname();
-  const [adminNavState, setadminNavState] = useState(false);
   return (
     <div>
 
-      <div className="px-5 bg-sky-50 py-2  " >
-        <i className="uil text-xl uil-angle-left" />
-      </div>
       <div className=" px-5 mt-5  ">
         {DashNav.map((text, index) => (
           <Link

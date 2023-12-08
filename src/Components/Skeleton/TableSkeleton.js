@@ -15,8 +15,6 @@ const TableSkeleton = () => {
       <div className=" h-6 md:h-7 bg-gray-200 mb-6 rounded"></div>
       <div className=" h-6 md:h-7 bg-gray-200 mb-6 rounded"></div>
       <div className=" h-6 md:h-7 bg-gray-200 mb-6 rounded"></div>
-      <div className=" h-6 md:h-7 bg-gray-200 mb-6 rounded"></div>
-      <div className=" h-6 md:h-7 bg-gray-200 mb-6 rounded"></div>
     </div>
   );
 };

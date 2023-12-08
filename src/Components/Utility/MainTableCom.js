@@ -21,8 +21,9 @@ export default function MaintableCom({
 }) {
   return (
     <Paper
+    className="no-scrollbar "
       style={{
-        padding: "5px",
+        // padding: "5px",
         boxShadow: "none",
         width: "100%",
       }}
@@ -37,7 +38,7 @@ export default function MaintableCom({
             border: "0.5px solid #f5f5f5",
           }}
         >
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader className="no-scrollbar"  aria-label="sticky table">
             <TableHead>
               <TableRow>
                 <TableCell

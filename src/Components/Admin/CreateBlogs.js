@@ -78,7 +78,7 @@ const CreateBlogs = () => {
     }
   };
   return (
-    <div className="flex-col flex gap-5">
+    <div className="flex-col  flex gap-5">
       <div className="flex justify-between border p-2 rounded-full bg-white w-full gap-5 items-center ">
         <input
           type="text"
@@ -117,7 +117,7 @@ const CreateBlogs = () => {
         className=" border p-2 px-5 outline-none   w-full "
       />
       <div className="w-full flex gap-5   flex-col-reverse md:flex-row">
-        <TextEditor height="100vh" setartical={setartical} artical={artical} />
+        <TextEditor height="500px" setartical={setartical} artical={artical} />
         <div className="  flex-col flex gap-5 w-full md:w-[30%] bg-white ">
           {" "}
           <div className="border p-5">

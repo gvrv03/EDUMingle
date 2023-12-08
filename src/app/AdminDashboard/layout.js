@@ -31,7 +31,7 @@ function ResponsiveDrawer({ window, children }) {
       <Toolbar />
       <div className="px-3 relative  h-full">
         <div className="justify-between flex-col flex gap-4  mt-5">
-          <button
+          {/* <button
             className=" text-left  px-5    font-semibold bg-sky-50 py-2 pColor   flex gap-4   rounded-md "
             onClick={() => {
               router.push("/");
@@ -42,7 +42,7 @@ function ResponsiveDrawer({ window, children }) {
               {" "}
               Home
             </span>{" "}
-          </button>
+          </button> */}
           {DashNav.map((text, index) => (
             <button
               className=" text-left  px-5   flex gap-4  rounded-md "
