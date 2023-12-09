@@ -23,6 +23,7 @@ const HeaderWithSearchAndCreate = ({
           className="outline-none border  p-2  rounded-sm w-full"
           placeholder='{ "Key" : "Value" }'
         />
+        <button className="uil uil-sync border p-2  rounded-sm px-4" />
         <button className="uil uil-search border p-2  rounded-sm px-4" />
         <Link href={create} className="flex border p-2 px-4 gap-2 rounded-sm  ">
           <i className="uil uil-plus " /> <span>Create</span>

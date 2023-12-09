@@ -6,7 +6,23 @@ import {
   Fast2SMSURL,
   SendSMSToUserURL,
   signInUserURL,
+  getUsersURL,
 } from "@/helper/allLinks";
+
+//------------------Fetch Users------------------
+export const fetchUsersAPI = async (data) => {
+  const page = data?.page ? data?.page : 1;
+  const limit = data?.limit ? data?.limit : 10;
+  const queryObj = data?.queryObj ? data?.queryObj : {};
+  const headers = {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
+  const url =
+    getUsersURL +
+    `?page=${page}&limit=${limit}&query=${JSON.stringify(queryObj)}`;
+  const res = await axios.get(url, { headers });
+  return await res?.data;
+};
 
 //------------------Send Via Fast 2 SMS------------------
 export const Fast2SMSSend = async (phoneNo, OTP) => {

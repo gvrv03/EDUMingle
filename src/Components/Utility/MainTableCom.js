@@ -8,8 +8,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import IconButton from "@mui/material/IconButton";
 
 export default function MaintableCom({
   data,
@@ -21,7 +22,7 @@ export default function MaintableCom({
 }) {
   return (
     <Paper
-    className="no-scrollbar "
+      className="no-scrollbar "
       style={{
         // padding: "5px",
         boxShadow: "none",
@@ -38,7 +39,11 @@ export default function MaintableCom({
             border: "0.5px solid #f5f5f5",
           }}
         >
-          <Table stickyHeader className="no-scrollbar"  aria-label="sticky table">
+          <Table
+            stickyHeader
+            className="no-scrollbar"
+            aria-label="sticky table"
+          >
             <TableHead>
               <TableRow>
                 <TableCell
@@ -72,11 +77,24 @@ export default function MaintableCom({
                     col === "productOrganization" ||
                     col === "thumbnail" ||
                     col === "keywords" ||
-                    col === "reviews"
+                    col === "reviews" ||
+                    col === "notification" ||
+                    col === "password"
                       ? null
                       : col}
                   </TableCell>
                 ))}
+                <TableCell
+                  style={{
+                    fontSize: "12px",
+                    padding: "8px",
+                    textTransform: "capitalize",
+                    fontWeight: 600,
+                  }}
+                  align="left"
+                >
+                  Edit
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -113,7 +131,9 @@ export default function MaintableCom({
                           col === "productOrganization" ||
                           col === "thumbnail" ||
                           col === "keywords" ||
-                          col === "reviews"
+                          col === "reviews" ||
+                          col === "notification" ||
+                          col === "password"
                             ? null
                             : col === "date"
                             ? moment(item[col]).format("DD/MM/YYYY")
@@ -125,6 +145,19 @@ export default function MaintableCom({
                         </TableCell>
                       );
                     })}
+                    <TableCell
+                      style={{
+                        fontSize: "12px",
+                        padding: "8px",
+                        color: "gray",
+                      }}
+                      align="center"
+                    >
+                      {" "}
+                      <IconButton aria-label="select">
+                        <MoreVertIcon />
+                      </IconButton>
+                    </TableCell>
                   </TableRow>
                 );
               })}

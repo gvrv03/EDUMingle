@@ -157,7 +157,7 @@ export const DashNav = [
   },
   {
     name: "Users",
-    location: "/Admin/AllUsers",
+    location: "/AdminDashboard/Users/AllUsers",
     icon: "pColor uil uil-user",
   },
   {

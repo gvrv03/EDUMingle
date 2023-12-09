@@ -3,9 +3,8 @@ import DefaultBTN from "@/Components/Utility/DefaultBTN";
 import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
-import { CldUploadButton } from "next-cloudinary";
 import { toast } from "react-hot-toast";
-import { uploadData } from "./Actions/UploadAction";
+import { uploadData, getImagesfromCloudinary } from "@/API/Upload/uploadFile";
 
 const UploadDocument = () => {
   const formRef = useRef();
@@ -19,7 +18,6 @@ const UploadDocument = () => {
         return file;
       }
     });
-
     setfiles((prev) => [...newFiles, ...prev]);
     formRef.current.reset();
   };
@@ -33,15 +31,15 @@ const UploadDocument = () => {
     e.preventDefault();
     try {
       setloading(true);
-      if (!files.length) {
+      if (!files?.length) {
         setloading(false);
         return alert("No image Selected");
       }
       const formData = new FormData();
-      files.forEach((file) => {
-        formData.append("files", file);
+      files?.forEach((file) => {
+        formData?.append("files", file);
       });
-      const res = await uploadData(formData, "Extay");
+      const res = await uploadData(formData, "gvrv");
       if (res.msg) {
         toast.success(res.msg);
         setloading(false);
@@ -55,6 +53,10 @@ const UploadDocument = () => {
     }
   };
 
+  const handleGetImages = async () => {
+    const res = await getImagesfromCloudinary();
+    console.log(res);
+  };
   return (
     <form action="" ref={formRef}>
       <div>
@@ -64,7 +66,7 @@ const UploadDocument = () => {
           type="file"
           onChange={handleInputFiles}
           draggable
-          className=" text-transparent   md:file:rounded-md md:file:h-36  w-full file:bg-white   file:text-red-400 file:cursor-pointer file:border file:outline-none file:font-semibold file:rounded-full file:w-full file:border-dashed file:border-gray-300 file:px-5 file:py-2 file:mr-2 cursor-pointer "
+          className=" text-transparent   md:file:rounded-md md:file:h-36  file:h-16 w-full file:bg-white   file:text-red-400 file:cursor-pointer file:border file:outline-none file:font-semibold file:rounded-md file:w-full file:border-dashed file:border-gray-300 file:px-5 file:py-2 file:mr-2 cursor-pointer "
         />
 
         <h5 className="mt-5">Preview</h5>
@@ -99,7 +101,9 @@ const UploadDocument = () => {
         loading={loading}
         btnStyle="border  pBtn rounded-md mt-5 px-10 py-3"
       />
-
+      <button type="button" onClick={handleGetImages} className="mt-10 border">
+        Get Image
+      </button>
       {/* <CldUploadButton uploadPreset="<Upload Preset>" /> */}
       {/* <SubmitButton funcBtn={handleUpload} value="Upload to Cloudinary" /> */}
     </form>

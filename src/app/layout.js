@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             <Authentication />
             <Toaster  />
             {/* <main className="  md:px-0 container  pb-2 pt-[64px]  md:pt-28   m-auto  text-sm md:text-base"> */}
-            <main className="  md:px-0 no-scrollbar   bgGround  pb-2 m-auto  text-sm md:text-base">
+            <main className="  md:px-0 no-scrollbar bgGround     pb-2 m-auto  text-sm md:text-base">
               {children}
               <RenderAllModal />
             </main>

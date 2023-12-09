@@ -22,7 +22,6 @@ export const saveDataToLocal = async (formData) => {
       return { filepath: uploadDir, filename: file.name };
     })
   );
-
   return await Promise.all(multipleNuffersPromise);
 };
 
@@ -36,11 +35,23 @@ const uploadDataToCloudinary = async (file, path) => {
 export const uploadData = async (data, path) => {
   try {
     const newFiles = await saveDataToLocal(data);
-    const photos = await uploadDataToCloudinary(newFiles, path);
+    await uploadDataToCloudinary(newFiles, path);
     newFiles.map((file) => fs.unlink(file.filepath));
     revalidatePath("/");
     return { msg: "Upload Success!" };
   } catch (error) {
     return { errorMsg: error.message };
+  }
+};
+
+export const getImagesfromCloudinary = async () => {
+  try {
+    const result = await cloudinary.api.resources({
+      type: "upload",
+      max_results: 30, 
+    });
+    return result.resources;
+  } catch (error) {
+    return { error: error.message };
   }
 };

@@ -8,6 +8,7 @@ import {
   checkUser,
   checkUserExists,
   createUser,
+  fetchUsersAPI,
   SendSMSToUser,
   SignIn,
   UpdateUser,
@@ -16,12 +17,19 @@ import { toast } from "react-hot-toast";
 import { useAppStore } from "./UseStoreContext";
 const userAuthContext = createContext();
 export function UserAuthContexProvider({ children }) {
-  const { setsignInModal } = useAppStore();
-  const { userDetails, setuserDetails } = useAppStore();
+  const { setsignInModal, setuserDetails } = useAppStore();
   const [otpSend, setotpSend] = useState(false);
   const [timer, setTimer] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [OTPHash, setOTPHash] = useState("");
+  //----------------------------All Blogs State //----------------------------
+  const [usersAll, setUsersAll] = useState({
+    data: [],
+    isLoading: true,
+    error: null,
+    count: 0,
+    totalPages: 0,
+  });
 
   //-------------------SEND SMS to User -------------------
   const sendSMS = async (number) => {
@@ -190,6 +198,34 @@ export function UserAuthContexProvider({ children }) {
     return () => clearInterval(interval);
   }, [isTimerRunning, timer]);
 
+  // -------------------Fetch Users----------------
+  const fetchUsersAll = async (data) => {
+    try {
+      setUsersAll({
+        data: [],
+        isLoading: true,
+        error: null,
+        count: 0,
+        totalPages: 0,
+      });
+      const usersData = await fetchUsersAPI(data);
+      return setUsersAll({
+        data: usersData?.users,
+        isLoading: false,
+        count: usersData?.usersCount,
+        totalPages: usersData?.totalPages,
+      });
+    } catch (error) {
+      setUsersAll({
+        data: [],
+        isLoading: false,
+        count: 0,
+        error: error.message,
+        totalPages: 0,
+      });
+      return toast.error(error?.response?.data?.errorMsg);
+    }
+  };
   return (
     <userAuthContext.Provider
       value={{
@@ -203,6 +239,9 @@ export function UserAuthContexProvider({ children }) {
         isUserExist,
         signInUser,
         updateUserDetail,
+        usersAll,
+        setUsersAll,
+        fetchUsersAll
       }}
     >
       {children}
