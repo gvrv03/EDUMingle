@@ -1,26 +1,32 @@
 "use client";
-import { IconButton } from "@mui/material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import HeaderWithSearchAndCreate from "@/Components/Admin/HeaderWithSearchAndCreate";
 import MaintableCom from "@/Components/Utility/MainTableCom";
 import { useBlogs } from "@/Context/UseBlogsContext";
 import { useAppStore } from "@/Context/UseStoreContext";
-import jsonToExcelDownload from "@/Functions/jsonToExcelDownload";
-
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import { useEffect } from "react";
 const Page = () => {
   const { fetchBlogs } = useBlogs();
-  const { blogsAll } = useAppStore();
+  const { blogsAll, refresh } = useAppStore();
   const [colData, setcolData] = useState([]);
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
   const [filterBlogs, setfilterBlogs] = useState([]);
+
   useEffect(() => {
     fetchBlogs({
       page: page,
       limit: limit,
     });
-  }, [page, limit]);
+  }, [page, limit, refresh]);
   const [blogID, setblogID] = useState("");
   const { data, isLoading, count, totalPages } = blogsAll ? blogsAll : {};
   if (data?.length > 1) {
@@ -28,13 +34,8 @@ const Page = () => {
       setcolData(Object.keys(data[0]));
     }
   }
-  //   function myFunction({ artical, image, ...rest }) {
-  //     return setfilterBlogs((prev)=>({...prev,...rest}))
-  //   }
-  //   console.log(filterBlogs);
-  //  data?.forEach((obj) => myFunction(obj));
+
   return (
-    // <div className=" bg-white p-5 -mx-2 md:-mt-2 flex-col flex gap-5  ">
     <div className=" bg-white p-5 flex-col flex gap-5  ">
       <h2 className="font-semibold    gap-2 flex text-base  items-center ">
         <IconButton
@@ -52,16 +53,8 @@ const Page = () => {
         totalPages={totalPages}
         create="/AdminDashboard/Blogs/CreateBlog"
       />
-      {/* <button
-        type="submit"
-        onClick={() => {
-          jsonToExcelDownload([]);
-        }}
-      >
-        Download
-      </button> */}
 
-      <div className="w-[92vw] md:w-auto  " >
+      <div className="w-[92vw] md:w-auto  ">
         <MaintableCom
           data={data}
           isLoading={isLoading}

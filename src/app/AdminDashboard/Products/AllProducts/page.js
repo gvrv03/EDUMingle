@@ -8,7 +8,7 @@ import { IconButton } from "@mui/material";
 import { useAppStore } from "@/Context/UseStoreContext";
 
 const Page = () => {
-  const { AllProducts } = useAppStore();
+  const { AllProducts, refresh } = useAppStore();
   const { fetchProducts } = useProduct();
   const [colData, setcolData] = useState([]);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ const Page = () => {
       page: page,
       limit: limit,
     });
-  }, [page, limit]);
+  }, [page, limit, refresh]);
   const [productID, setProductID] = useState("");
   const { data, isLoading, totalPages, count } = AllProducts ? AllProducts : {};
   if (data?.length > 1) {

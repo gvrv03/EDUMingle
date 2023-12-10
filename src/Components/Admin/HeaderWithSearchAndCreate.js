@@ -1,7 +1,9 @@
 "use client";
+import { useAppStore } from "@/Context/UseStoreContext";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React from "react";
 import { toast } from "react-hot-toast";
 
@@ -15,6 +17,7 @@ const HeaderWithSearchAndCreate = ({
   noOfData,
 }) => {
   const router = useRouter();
+  const { handleGenerateRandomString } = useAppStore();
   return (
     <div className="flex  flex-col gap-5">
       <form className="flex  justify-between gap-2 w-full">
@@ -23,11 +26,21 @@ const HeaderWithSearchAndCreate = ({
           className="outline-none border  p-2  rounded-sm w-full"
           placeholder='{ "Key" : "Value" }'
         />
-        <button className="uil uil-sync border p-2  rounded-sm px-4" />
+        <button
+          type="button"
+          onClick={handleGenerateRandomString}
+          className="uil uil-sync border p-2  rounded-sm px-4"
+        />
         <button className="uil uil-search border p-2  rounded-sm px-4" />
-        <Link href={create} className="flex border p-2 px-4 gap-2 rounded-sm  ">
+        <button
+          onClick={() => {
+            router.push(create);
+          }}
+          type="button"
+          className="flex border p-2 px-4 gap-2 rounded-sm  "
+        >
           <i className="uil uil-plus " /> <span>Create</span>
-        </Link>
+        </button>
       </form>{" "}
       <div className="flex justify-between text-sm ">
         <div className="flex gap-2">

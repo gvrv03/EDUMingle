@@ -1,6 +1,7 @@
 "use client";
 import { SendEmailAPI } from "@/API/Email/SendMail";
 import { SavedProductAPI } from "@/API/Products/ProductAPI";
+import generateRandomString from "@/Functions/generateRandomString";
 import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 import { toast } from "react-hot-toast";
@@ -18,6 +19,13 @@ export function UseStoreContextProvider({ children }) {
     count: 0,
     totalPages: 0,
   });
+
+  //----------------------------Refresh State----------------------------
+  const [refresh, setrefresh] = useState("");
+  const handleGenerateRandomString = () => {
+    const newRandomString = generateRandomString(10); // Change 20 to the desired length
+    setrefresh(newRandomString);
+  };
 
   //----------------------------All User Orders State //----------------------------
   const [userOrders, setuserOrders] = useState({
@@ -67,7 +75,7 @@ export function UseStoreContextProvider({ children }) {
       }, 15000);
     }
   }, []);
-//-----------Send an Email -----------
+  //-----------Send an Email -----------
   const sendEmail = async ({ userEmails, subject, emailData }) => {
     const { error } = await SendEmailAPI({ userEmails, subject, emailData });
     if (error) {
@@ -76,8 +84,6 @@ export function UseStoreContextProvider({ children }) {
     return toast.success("Email Send");
   };
 
-
-  
   return (
     <useStoreContext.Provider
       value={{
@@ -104,7 +110,9 @@ export function UseStoreContextProvider({ children }) {
         setTableOfContentState,
         HomeData,
         setHomeData,
-        sendEmail
+        sendEmail,
+        refresh,
+        handleGenerateRandomString,
       }}
     >
       {children}

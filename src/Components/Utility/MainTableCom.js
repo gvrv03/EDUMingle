@@ -9,8 +9,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import IconButton from "@mui/material/IconButton";
+import EditData from "../Admin/EditData";
 
 export default function MaintableCom({
   data,
@@ -153,10 +152,7 @@ export default function MaintableCom({
                       }}
                       align="center"
                     >
-                      {" "}
-                      <IconButton aria-label="select">
-                        <MoreVertIcon />
-                      </IconButton>
+                      <EditData />
                     </TableCell>
                   </TableRow>
                 );

@@ -4,12 +4,14 @@ import React, { useEffect, useState } from "react";
 import { IconButton } from "@mui/material";
 import HeaderWithSearchAndCreate from "@/Components/Admin/HeaderWithSearchAndCreate";
 import MaintableCom from "@/Components/Utility/MainTableCom";
+import { useAppStore } from "@/Context/UseStoreContext";
 
 const GetUsers = () => {
+  const { refresh } = useAppStore();
   const { fetchUsersAll, usersAll } = useUserAuth();
   const [colData, setcolData] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10 );
+  const [limit, setLimit] = useState(10);
   const [userID, setuserID] = useState("");
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const GetUsers = () => {
       page: page,
       limit: limit,
     });
-  }, [page, limit]);
+  }, [page, limit, refresh]);
 
   const { data, isLoading, count, totalPages } = usersAll ? usersAll : {};
   if (data?.length > 1) {
