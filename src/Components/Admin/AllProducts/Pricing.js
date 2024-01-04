@@ -13,8 +13,10 @@ const Pricing = ({
 }) => {
   return (
     <div className="    bg-white">
-      <label className="font-semibold text-gray-500">Pricing</label>
-      <div className="flex mt-5 gap-5 flex-col md:flex-row">
+      <label className="font-semibold text-gray-500">
+      <i className="uil font-bold pColor rounded-full mr-2  uil-university" />
+        Pricing</label>
+      <div className="flex mt-2 gap-5 flex-col md:flex-row">
         <div className="flex flex-col gap-2 text-sm text-gray-500">
           <label>Price</label>
           <div className="border rounded-md     px-2">

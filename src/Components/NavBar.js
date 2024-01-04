@@ -57,15 +57,6 @@ const NavBar = ({ shadow, position }) => {
                   {HomeData.AppName}
                 </span>
               </Link>
-              {/* <div className="  hidden md:flex  gap-2  items-center">
-                <i className="uil pColor text-2xl  uil-map-marker" />
-                <div>
-                  <h6 className="text-xs md:text-sm   font-normal">Hello</h6>
-                  <h6 className="text-xs md:text-sm font-semibold">
-                    Select your Address
-                  </h6>
-                </div>
-              </div> */}
             </div>
 
             <div className="flex  justify-end w-full  gap-5">
@@ -74,23 +65,23 @@ const NavBar = ({ shadow, position }) => {
                   <Link
                     className={`  ${
                       pathName.substring(0, 5) === text.location.substring(0, 5)
-                        ? "pColor   border-b-2 border-red-500 "
+                        ? " font-bold   pColor   "
                         : ""
-                    }  hover:text-black hover:no-underline text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    }  text-gray-500 hover:no-underline text-left  font-semibold py-2 flex gap-2 items-center   hover:font-semibold  transition-all delay-75 ease-linear`}
                     key={index}
                     href={text.location}
                   >
-                    <i className={`${text.icon}  `} />
+                    <i className={`${text.icon}   text-gray-700`} />
                     <span className="text-sm "> {text.name}</span>{" "}
                   </Link>
                 ))}
 
                 {userDetails.isRoot || userDetails.isAdmin ? (
                   <Link
-                    className={`  text-left   hover:text-black hover:no-underline font-semibold py-2 flex gap-2 items-center   hover:font-semibold  hover:border-b-2 hover:border-red-500 transition-all delay-75 ease-linear`}
+                    className={`  text-left   text-gray-500 no-underline font-semibold py-2 flex gap-2 items-center   hover:font-semibold  transition-all delay-75 ease-linear`}
                     href="/AdminDashboard"
                   >
-                    <i className={`uil uil-bell pColor `} />
+                    <i className={`uil uil-bell text-gray-700 `} />
                     <span className="text-sm ">Dashboard</span>{" "}
                   </Link>
                 ) : (

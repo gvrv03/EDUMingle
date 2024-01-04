@@ -31,7 +31,7 @@ export default async function Allproducts({ page, setpage }) {
               key={index}
               id={product._id}
               fullTitle={product.title}
-              title={product.title.substring(0, 40) + "..."}
+              title={product.title}
               thumbnail={product.thumbnail}
               price={product.pricing.price}
               comAtPrice={product.pricing.comAtPrice}

@@ -11,14 +11,18 @@ export function UseBlogsContexProvider({ children }) {
   const createBlog = async (blogData) => {
     try {
       const res = await CreateBlogAPI(blogData);
-      if (res.isSuccess) {
-        toast.success(res.message);
+      if (!res?.isSuccess) {
+        return toast.error(res?.error);
       }
+      return toast.success(res?.message);
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error(
+        error?.response ? error?.response?.data?.error : error?.message
+      );
     }
   };
 
+  
   const fetchBlogs = async (data) => {
     try {
       setblogsAll({
@@ -43,7 +47,9 @@ export function UseBlogsContexProvider({ children }) {
         error: error.message,
         totalPages: 0,
       });
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 

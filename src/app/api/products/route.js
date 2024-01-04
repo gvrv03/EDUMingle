@@ -4,14 +4,26 @@ import ProductActual from "@/Modal/Product";
 initDB();
 
 import { NextResponse } from "next/server";
+import RootAuth from "@/Middleware/RootAuth";
 
 // --------------To Add Product--------------
-export const POST = async (request) => {
+export const POST = RootAuth(async (request) => {
   try {
     const Data = await request.json();
     const { productDetail, product } = Data;
-    const { title } = productDetail;
-
+    const { addeBy, title, description, artical, images, thumbnail, status } =
+      productDetail;
+    if (
+      !addeBy ||
+      !title ||
+      !description ||
+      !artical ||
+      !images ||
+      !thumbnail ||
+      !status
+    ) {
+      throw new Error("Fill all the Fields!");
+    }
     // --------------To check product existence----------------
     const titleExist = await ProductDetailData.findOne({ title });
     if (titleExist) {
@@ -66,16 +78,12 @@ export const POST = async (request) => {
     return NextResponse.json(
       {
         data: null,
-        error: "Internal Server Error",
-        errorMsg: error.message,
+        error: error?.message,
         isSuccess: false,
-      },
-      {
-        status: 500,
       }
     );
   }
-};
+});
 
 // --------------To Fetch All Products--------------
 export const GET = async (request) => {

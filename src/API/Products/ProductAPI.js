@@ -26,3 +26,15 @@ export const SavedProductAPI = async (productID) => {
   );
   return await response?.data;
 };
+
+export const AddProduct = async (data) => {
+  const headers = {
+    Authorization: "Bearer " + localStorage.getItem("token"),
+  };
+try {
+  const response = await axios.post(ProductsURL, data, { headers });
+  return await response?.data;
+} catch (error) {
+  console.log(error);
+}
+};

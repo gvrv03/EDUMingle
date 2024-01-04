@@ -29,7 +29,7 @@ const TopProduct = async () => {
                 key={index}
                 id={product._id}
                 fullTitle={product.title}
-                title={product.title.substring(0, 40) + "..."}
+                title={product.title}
                 thumbnail={product.thumbnail}
                 price={product.pricing.price}
                 styleOBJ=" w-40 md:w-48"

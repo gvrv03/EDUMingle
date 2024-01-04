@@ -26,7 +26,9 @@ export function UseOrderContexProvider({ children }) {
       });
     } catch (error) {
       console.log(error);
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error(
+        error?.response ? error?.response?.data?.errorMsg : error?.message
+      );
     }
   };
 

@@ -46,9 +46,11 @@ export function UseStoreContextProvider({ children }) {
 
   //----------------------------All Home Data State //----------------------------
   const [HomeData, setHomeData] = useState({
-    AppName: "DevTown",
-    AppLogo: "https://flowbite.com/docs/images/logo.svg",
+    AppName: "EduMingle",
+    AppLogo:
+      "https://play-lh.googleusercontent.com/FLoXQYURgVleY1gmvKqfQednzHzhIEkdfM3HBi9AdJwPX54YuGb5uFnDXKCiIMYL0Ds=w240-h480-rw",
   });
+
   //----------------------------Modal State State //----------------------------
   const [signInModal, setsignInModal] = useState(false);
   const [SignOutState, setSignOutState] = useState(false);
@@ -64,7 +66,9 @@ export function UseStoreContextProvider({ children }) {
         return toast.success(res.message);
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error(
+        error?.response ?  error?.response ? error?.response?.data?.errorMsg:error?.message : error?.message
+      );
     }
   };
 
@@ -75,6 +79,9 @@ export function UseStoreContextProvider({ children }) {
       }, 15000);
     }
   }, []);
+  
+  
+  
   //-----------Send an Email -----------
   const sendEmail = async ({ userEmails, subject, emailData }) => {
     const { error } = await SendEmailAPI({ userEmails, subject, emailData });

@@ -24,19 +24,6 @@ const CreateBlogs = () => {
 
   const handleCreatePost = async () => {
     setloading(true);
-    if (
-      !title ||
-      !previewImage ||
-      !artical ||
-      !category ||
-      !keyowrds ||
-      !description
-    ) {
-      setloading(false);
-
-      return toast.error("Fill all the Fields !");
-    }
-
     await createBlog({
       title,
       image: previewImage,
@@ -249,7 +236,6 @@ const CreateBlogs = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

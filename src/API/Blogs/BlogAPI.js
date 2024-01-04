@@ -5,8 +5,12 @@ export const CreateBlogAPI = async (blogData) => {
   const headers = {
     Authorization: "Bearer " + localStorage.getItem("token"),
   };
-  const response = await axios.post(BlogsURL, blogData, { headers });
-  return await response?.data;
+  try {
+    const response = await axios.post(BlogsURL, blogData, { headers });
+    return await response?.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const UpdateBlogAPI = async () => {};
@@ -18,6 +22,6 @@ export const FetchBlogsAPI = async (data) => {
   const url =
     BlogsURL + `?page=${page}&limit=${limit}&query=${JSON.stringify(queryObj)}`;
   const res = await axios.get(url);
-  
+
   return await res?.data;
 };

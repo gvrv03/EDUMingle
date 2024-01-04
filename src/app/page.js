@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <NavBar shadow="drop-shadow-md" position="fixed"  />
-      <main className=" flex flex-col  gap-2 ">
+      <main className=" flex flex-col  no-underline gap-2 ">
         <Category />
         <SlideShow />
         

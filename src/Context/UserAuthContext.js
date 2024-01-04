@@ -51,7 +51,7 @@ export function UserAuthContexProvider({ children }) {
         return await sendSMS(phone);
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
     }
   };
 
@@ -68,7 +68,7 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(response?.message);
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
     }
   };
 
@@ -106,7 +106,7 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(res?.message);
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
     }
   };
 
@@ -119,7 +119,7 @@ export function UserAuthContexProvider({ children }) {
         return toast.success(res?.message);
       }
     } catch (error) {
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
     }
   };
 
@@ -223,7 +223,7 @@ export function UserAuthContexProvider({ children }) {
         error: error.message,
         totalPages: 0,
       });
-      return toast.error(error?.response?.data?.errorMsg);
+      return toast.error( error?.response ? error?.response?.data?.errorMsg:error?.message);
     }
   };
   return (

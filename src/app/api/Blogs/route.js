@@ -9,7 +9,21 @@ import { NextResponse } from "next/server";
 export const POST = RootAuth(async (request) => {
   try {
     const Data = await request.json();
-    const { title } = Data;
+    const { title, category, author, image, description, keywords, artical } =
+      Data;
+
+    if (
+      !title ||
+      !category ||
+      !author ||
+      !image ||
+      !description ||
+      !keywords ||
+      !artical
+    ) {
+      throw new Error("Fill all the Fields!");
+    }
+
     const titleExist = await Blogs.findOne({ title });
     if (titleExist) {
       const updateBlog = await Blogs.findOneAndUpdate({ title }, Data);
@@ -40,12 +54,8 @@ export const POST = RootAuth(async (request) => {
     return NextResponse.json(
       {
         data: null,
-        error: "Internal Server Error",
-        errorMsg: error,
+        error: error?.message,
         isSuccess: false,
-      },
-      {
-        status: 500,
       }
     );
   }
