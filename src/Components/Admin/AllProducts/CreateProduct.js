@@ -4,13 +4,14 @@ import { useProduct } from "@/Context/UseProductContext";
 import { useAppStore } from "@/Context/UseStoreContext";
 import React from "react";
 import { useState } from "react";
+import { toast } from "react-hot-toast";
 import TextEditor from "../TextEditor";
 import Media from "./Media";
 import Pricing from "./Pricing";
 import ProductOrg from "./ProductOrg";
 
 const CreateProduct = () => {
-  const { createProduct } = useProduct();
+  const { createProduct, handleUploadFiles } = useProduct();
   const { userDetails } = useAppStore();
   const [loading, setloading] = useState(false);
   const [artical, setartical] = useState("");
@@ -22,20 +23,39 @@ const CreateProduct = () => {
   const [costPerItem, setcostPerItem] = useState(null);
   const [profit, setprofit] = useState(null);
   const [margin, setmargin] = useState(null);
-  //Files
-  const [thumbnail, setthumbnail] = useState("");
-  const [images, setimages] = useState([]);
-  const [file, setFile] = useState(null);
+
   //Product Organization
   const [status, setstatus] = useState("active");
   const [category, setcategory] = useState("");
   const [producttype, setproducttype] = useState("");
   const [collection, setcollection] = useState("");
   const [keywords, setkeywords] = useState("");
+
+  //Product file byte data
+  const [productByte, setproductByte] = useState({});
+  const [imagesByte, setimagesByte] = useState({});
+  const [thumbnailByte, setthumbnailByte] = useState({});
+
   const handleAddProduct = async () => {
     setloading(true);
 
-    
+    if (
+      !artical ||
+      !title ||
+      !description ||
+      !price ||
+      !category ||
+      !producttype ||
+      !collection ||
+      !keywords
+    ) {
+      setloading(false);
+      return toast.error("Fill all the fields!");
+    }
+
+    const { resImagesURL, resProductURL, resThumbnailURL } =
+      await handleUploadFiles(imagesByte, productByte, thumbnailByte, title);
+
     await createProduct({
       productDetail: {
         addeBy: userDetails?.User?._id,
@@ -43,8 +63,8 @@ const CreateProduct = () => {
         description,
         status: status,
         artical,
-        images: images?.urls,
-        thumbnail: thumbnail?.url,
+        images: resImagesURL,
+        thumbnail: resThumbnailURL,
         productOrganization: {
           category: category,
           type: producttype,
@@ -63,7 +83,7 @@ const CreateProduct = () => {
       },
       product: {
         Name: title,
-        Product: file?.url,
+        Product: resProductURL,
         date: Date.now,
       },
     });
@@ -149,12 +169,9 @@ const CreateProduct = () => {
 
           {/* -----------------Media Components----------------- */}
           <Media
-            setthumbnail={setthumbnail}
-            title={title}
-            thumbnail={thumbnail}
-            images={images}
-            setimages={setimages}
-            setFile={setFile}
+            setproductByte={setproductByte}
+            setimagesByte={setimagesByte}
+            setthumbnailByte={setthumbnailByte}
           />
         </div>{" "}
         <div className=" w-full md:w-[25%] flex gap-5 flex-col ">

@@ -50,7 +50,6 @@ export function UseProductContexProvider({ children }) {
         return toast.error(res?.error);
       }
       return toast.success(res?.message);
-
     } catch (error) {
       return toast.error(
         error?.response ? error?.response?.data?.error : error?.message
@@ -64,7 +63,7 @@ export function UseProductContexProvider({ children }) {
       const imageRef = ref(storage, path);
       await uploadBytes(imageRef, file[0]);
       const fileURL = await getDownloadURL(imageRef);
-      return { url: fileURL };
+      return fileURL;
     } catch (error) {
       return { error: error.message };
     }
@@ -85,7 +84,37 @@ export function UseProductContexProvider({ children }) {
         return { error: error.message };
       }
     }
-    return { urls };
+    return urls;
+  };
+
+  // ------------------------ Upload File data Link------------------------
+  const handleUploadFiles = async (
+    imagesFile,
+    productFile,
+    thumbnailFile,
+    title
+  ) => {
+    try {
+      const resProductURL = await UploadFileToFirebase(
+        productFile,
+        `Product/${title}/ProductFile/${productFile.name + v4()}`
+      );
+
+      const resThumbnailURL = await UploadFileToFirebase(
+        thumbnailFile,
+        `Product/${title}/Thumbnail/${thumbnailFile.name + v4()}`
+      );
+
+      const resImagesURL = await uploadMultipleFilesToFirebase(
+        imagesFile,
+        `Product/${title}/Images`
+      );
+
+      toast.success("Files Uploaded!");
+      return { resImagesURL, resProductURL, resThumbnailURL };
+    } catch (error) {
+      return toast.error(error.message);
+    }
   };
 
   return (
@@ -95,6 +124,7 @@ export function UseProductContexProvider({ children }) {
         UploadFileToFirebase,
         uploadMultipleFilesToFirebase,
         createProduct,
+        handleUploadFiles,
       }}
     >
       {children}
