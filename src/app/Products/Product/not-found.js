@@ -1,8 +1,8 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function NotFound() {
+export default function NotFoundProduct() {
   const router = useRouter();
   return (
     <div className="flex  items-center h-[70vh] justify-center w-full">
@@ -25,7 +25,7 @@ export default function NotFound() {
           </div>
         </div>
         <h1 className="mt-5 text-[36px] font-bold text-slate-800 lg:text-[50px]">
-          404 &#45; Blog not found
+          404 &#45; Product not found
         </h1>
         <p className="text-slate-600 mt-5 lg:text-lg">
           The page you are looking for doesn&#39;t exist or <br />
@@ -34,10 +34,10 @@ export default function NotFound() {
         <button
           className="pBtn px-10 py-2 mt-5"
           onClick={() => {
-            router.push("/Blogs");
+            router.push("/Products");
           }}
         >
-          Visit Blogs
+          Visit Products
         </button>
       </div>
     </div>

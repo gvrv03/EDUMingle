@@ -102,7 +102,7 @@ function ResponsiveDrawer({ window, children }) {
       >
         <Toolbar />
         {children}
-        <div className="mt-5 p-5 bg-white flex-col flex gap-5 md:hidden">
+        <div className=" p-5 bg-white flex-col flex gap-5 md:hidden">
           <MostPopBlogs />
           <BlogCategory />
         </div>

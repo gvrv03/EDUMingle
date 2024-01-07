@@ -62,9 +62,12 @@ export async function generateMetadata({ searchParams }) {
 const page = async ({ searchParams }) => {
   const res = await fetch(getSingleBlogURL + searchParams.ID);
   const data = await res.json();
+  
   const { title, category, description, image, artical, author, views } = data
     ? data
     : {};
+
+    
   if (artical === undefined) {
     return (
       <div className="bg-white h-full ">
@@ -74,7 +77,7 @@ const page = async ({ searchParams }) => {
   }
   return (
     <>
-      <div className="bg-white h-full p-5   w-full  ">
+      <div className="bg-white  p-5   w-full  ">
         <div className="">
           <section className="mt-10 md:mt-0 gap-5   md:flex-row flex-col flex   bg-white w-full">
             <div className="w-full md:w-[70%]">
@@ -109,7 +112,6 @@ const page = async ({ searchParams }) => {
               <BlogDetail artical={artical} />
             </div>
             <SlideTableofCon/>
-
           </section>
         </div>
       </div>

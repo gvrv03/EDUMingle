@@ -18,9 +18,6 @@ export const GET = async (req, { params }) => {
         error: error.message,
         errorMsg: "Internal Server Error",
         isSuccess: false,
-      },
-      {
-        status: 500,
       }
     );
   }

@@ -4,11 +4,19 @@ import MainCardHeader from "@/Components/Utility/MainCardHeader";
 import { getSingleProductURL } from "@/helper/allLinks";
 import axios from "axios";
 import React from "react";
+import NotFoundProduct from "../not-found";
 
 const ProductDetal = async ({ searchParams }) => {
   const res = await axios.get(getSingleProductURL + searchParams.product);
   const product = await res?.data;
-
+  const { artical } = product ? product : {};
+  if (artical === undefined) {
+    return (
+      <div className="bg-white h-full ">
+        <NotFoundProduct />
+      </div>
+    );
+  }
   return (
     <div className=" md:m-2 flex-col flex gap-2 m-0">
       <ProductHome product={product} />
@@ -54,7 +62,7 @@ const ProductDetal = async ({ searchParams }) => {
           </div>
         </div>
       </div>
-     
+
       {/* <div className="p-5 bg-white flex-col flex gap-5 ">
         <MainCardHeader name="Related Product" />
         <div className="flex gap-5 w-full  no-scrollbar  overflow-x-scroll ">

@@ -34,6 +34,8 @@ const CreateProduct = () => {
   const [keywords, setkeywords] = useState("");
   const handleAddProduct = async () => {
     setloading(true);
+
+    
     await createProduct({
       productDetail: {
         addeBy: userDetails?.User?._id,

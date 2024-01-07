@@ -11,7 +11,12 @@ import MenuItem from "@mui/material/MenuItem";
 const EditData = () => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-  const settings = ["Update", "View", "Delete", "Send Mail"];
+  const settings = [
+    { icon: "uil  text-[12px] uil-edit-alt", name: "Update" },
+    { icon: "uil  text-[12px] uil-eye", name: "View" },
+    { icon: "uil  text-[12px] uil-trash-alt", name: "Delete" },
+    { icon: "uil text-[12px] uil-message text-blue-500 font-semibold mx-2 mt-2 p-1 text-[9px] rounded-full  bg-blue-50 ", name: "Send Mail" },
+  ];
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -26,7 +31,7 @@ const EditData = () => {
         </IconButton>
       </Tooltip>
       <Menu
-        sx={{ mt: "45px" }}
+        sx={{ mt: "45px", padding: "10px  " }}
         id="menu-appbar"
         anchorEl={anchorElUser}
         anchorOrigin={{
@@ -41,19 +46,14 @@ const EditData = () => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
-          //   <MenuItem key={setting} onClick={handleCloseUserMenu}>
-
-          //     <Typography  fontSize="12px" textAlign="center">{setting}</Typography>
-          //   </MenuItem>
+        {settings.map((setting, index) => (
           <button
-            className="px-2 flex gap-2 "
+            className={` ${setting.icon}  items-center mb-[3px] hover:text-black text-gray-500 hover:font-semibold   px-2 flex gap-2 `}
             type="button"
-            key={setting}
+            key={index}
             onClick={handleCloseUserMenu}
           >
-            <i className="uil uil-sync" />
-            {setting}
+            {setting.name}
           </button>
         ))}
       </Menu>

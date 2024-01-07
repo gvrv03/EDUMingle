@@ -12,7 +12,7 @@ const ProductSlideShow = ({ images, thumbnail }) => {
         <div className="h-full   w-full md:w-96 rounded-md">
           <img className="  rounded-md " src={thumbnail} alt="" />
         </div>
-        {images.map((image, index) => {
+        {images?.map((image, index) => {
           return (
             <div key={index} className="h-full   w-full md:w-96 rounded-md">
               <img className="  rounded-md " src={image} alt="" />

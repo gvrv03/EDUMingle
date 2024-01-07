@@ -85,26 +85,11 @@ const TopNav = [
     icon: " uil uil-document-layout-left",
   },
   {
-    name: "Study Material",
-    location: "/StudyMaterial",
-    icon: " uil uil-files-landscapes-alt",
-  },
-  {
     name: "Products",
     location: "/Products",
     icon: " uil  uil-shopping-cart-alt",
   },
 
-  // {
-  //   name: "My Account",
-  //   location: "/MyAccount",
-  //   icon: " uil uil-user",
-  // },
-  {
-    name: "Sitemap",
-    location: "/Sitemap",
-    icon: " uil uil-sitemap",
-  },
 ];
 
 export const DashNav = [
