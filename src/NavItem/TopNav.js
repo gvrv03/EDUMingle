@@ -89,7 +89,6 @@ const TopNav = [
     location: "/Products",
     icon: " uil  uil-shopping-cart-alt",
   },
-
 ];
 
 export const DashNav = [
@@ -127,6 +126,11 @@ export const DashNav = [
   {
     name: "Products",
     location: "/AdminDashboard/Products/AllProducts",
+    icon: " uil  uil-shopping-cart-alt",
+  },
+  {
+    name: "Tutorials",
+    location: "/AdminDashboard/Tutorials/CreateTutorials",
     icon: " uil  uil-shopping-cart-alt",
   },
   {

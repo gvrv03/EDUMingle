@@ -7,30 +7,45 @@ import { BtnSpinnerWhite } from "../LoadingSpinner";
 import { Uploader } from "rsuite";
 import { useAppStore } from "@/Context/UseStoreContext";
 import BlogDetail from "../BlogComp/BlogDetail";
+import { FileUploader } from "react-drag-drop-files";
+const ImageTypes = ["JPEG", "SVG", "WEBP", "PNG"];
 
 const CreateBlogs = () => {
   const [previewImage, setPreviewImage] = useState(null);
+  const [Imagebyte, setImagebyte] = useState("");
   const [artical, setartical] = useState("");
   const [category, setcategory] = useState([]);
   const [keyowrds, setkeyowrds] = useState([]);
   const [title, settitle] = useState("");
-  const [imageUrls, setImageUrls] = useState("");
   const [description, setdescription] = useState("");
-  const { createBlog } = useBlogs();
+  const { createBlog, handleUploadThumbnail } = useBlogs();
   const [cat, setcat] = useState("");
   const [keyW, setkeyW] = useState("");
   const [loading, setloading] = useState(false);
   const { userDetails } = useAppStore();
+  const [FileName, setFileName] = useState(null);
 
   const handleCreatePost = async () => {
     setloading(true);
+    if (
+      !title ||
+      !category ||
+      !userDetails ||
+      !description ||
+      !keyowrds ||
+      !artical
+    ) {
+      setloading(false);
+      return toast.error("Fill all the Fields!");
+    }
+    const data = await handleUploadThumbnail(Imagebyte, title, FileName);
     await createBlog({
       title,
-      image: previewImage,
+      image: data,
       author: userDetails?.User._id,
       artical,
       category,
-      keyowrds,
+      keywords: keyowrds,
       description,
     });
     setloading(false);
@@ -48,20 +63,39 @@ const CreateBlogs = () => {
   const removeSpecificCategory = (cate) => {
     setcategory(category.filter((currentCategory) => currentCategory !== cate));
   };
-  const [FileName, setFileName] = useState(null);
-  const handleFileChange = (fileList) => {
-    const file = fileList.target.files[0];
-    if (file) {
-      setFileName(file.name);
-      const maxSize = 1 * 1024 * 1024; // 2MB
-      if (file.size > maxSize) {
-        return toast.error("File size exceeds the limit of 1MB.");
+  const handleFilePreview = (files, setPreviewImage) => {
+    const maxFileSize = 1 * 1024 * 1024; // 1MB
+    if (files.length > 0) {
+      const newFiles = [];
+      const invalidFiles = [];
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (file.size > maxFileSize) {
+          invalidFiles.push(file.name);
+        } else {
+          const reader = new FileReader();
+
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            newFiles.push({
+              name: file.name,
+              preview: reader.result,
+            });
+
+            if (newFiles.length + invalidFiles.length === files.length) {
+              // All files processed
+              setFileName(newFiles.map((f) => f.name));
+              setPreviewImage(newFiles.map((f) => f.preview));
+
+              if (invalidFiles.length > 0) {
+                toast.error(
+                  `File size exceeds the limit for: ${invalidFiles.join(", ")}`
+                );
+              }
+            }
+          };
+        }
       }
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setPreviewImage(reader.result);
-      };
     }
   };
   return (
@@ -210,11 +244,14 @@ const CreateBlogs = () => {
             <h5 className="text-gray-500">Thmbnail</h5>
 
             <div className="w-full">
-              <input
-                type="file"
-                draggable
-                className=" text-transparent    w-full file:bg-white   file:text-red-400 file:cursor-pointer file:border file:outline-none file:font-semibold file:rounded-full file:w-full file:border-dashed file:border-gray-300 file:px-5 file:py-2 file:mr-2 cursor-pointer "
-                onChange={handleFileChange}
+              <FileUploader
+                multiple={true}
+                handleChange={(file) => {
+                  setImagebyte(file);
+                  handleFilePreview(file, setPreviewImage);
+                }}
+                name="productImg"
+                types={ImageTypes}
               />
 
               {previewImage && (

@@ -27,7 +27,7 @@ const DefaultBTN = ({ nameBtn, func, btnStyle, loading }) => {
               fill="currentColor"
             />
           </svg>
-          Loading...
+          Waiting...
         </>
       ) : (
         nameBtn

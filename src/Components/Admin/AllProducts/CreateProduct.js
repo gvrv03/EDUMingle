@@ -17,6 +17,7 @@ const CreateProduct = () => {
   const [artical, setartical] = useState("");
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
+
   // Pricing
   const [price, setprice] = useState(null);
   const [compareprice, setcompareprice] = useState(null);
@@ -55,7 +56,6 @@ const CreateProduct = () => {
 
     const { resImagesURL, resProductURL, resThumbnailURL } =
       await handleUploadFiles(imagesByte, productByte, thumbnailByte, title);
-
     await createProduct({
       productDetail: {
         addeBy: userDetails?.User?._id,

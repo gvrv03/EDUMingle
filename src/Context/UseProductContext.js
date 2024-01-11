@@ -99,12 +99,10 @@ export function UseProductContexProvider({ children }) {
         productFile,
         `Product/${title}/ProductFile/${productFile.name + v4()}`
       );
-
       const resThumbnailURL = await UploadFileToFirebase(
         thumbnailFile,
         `Product/${title}/Thumbnail/${thumbnailFile.name + v4()}`
       );
-
       const resImagesURL = await uploadMultipleFilesToFirebase(
         imagesFile,
         `Product/${title}/Images`

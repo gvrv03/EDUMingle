@@ -1,8 +1,11 @@
 "use client";
 import { CreateBlogAPI, FetchBlogsAPI } from "@/API/Blogs/BlogAPI";
+import { storage } from "@/config/firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useCallback, useContext } from "react";
 import { createContext } from "react";
 import { toast } from "react-hot-toast";
+import { v4 } from "uuid";
 import { useAppStore } from "./UseStoreContext";
 const useBlogsContext = createContext();
 export function UseBlogsContexProvider({ children }) {
@@ -22,7 +25,6 @@ export function UseBlogsContexProvider({ children }) {
     }
   };
 
-  
   const fetchBlogs = async (data) => {
     try {
       setblogsAll({
@@ -53,8 +55,35 @@ export function UseBlogsContexProvider({ children }) {
     }
   };
 
+  // ------------------------ Firebase Blog Upload ------------------------
+  const UploadFileToFirebase = async (file, path) => {
+    try {
+      const imageRef = ref(storage, path);
+      await uploadBytes(imageRef, file[0]);
+      const fileURL = await getDownloadURL(imageRef);
+      return fileURL;
+    } catch (error) {
+      return { error: error.message };
+    }
+  };
+  // ------------------------ Upload Thmbnail data Link------------------------
+  const handleUploadThumbnail = async (imagesFile, title, FileName) => {
+    try {
+      const thumbnailURL = await UploadFileToFirebase(
+        imagesFile,
+        `Blog/${title}/thumbnail/${FileName}`
+      );
+      toast.success("Files Uploaded!");
+      return thumbnailURL;
+    } catch (error) {
+      return toast.error(error.message);
+    }
+  };
+
   return (
-    <useBlogsContext.Provider value={{ createBlog, fetchBlogs }}>
+    <useBlogsContext.Provider
+      value={{ createBlog, handleUploadThumbnail, fetchBlogs }}
+    >
       {children}
     </useBlogsContext.Provider>
   );

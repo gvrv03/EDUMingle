@@ -17,6 +17,7 @@ import HomeNavSidebar from "@/Components/Sidebar/HomeNavSidebar";
 import NavBar from "@/Components/NavBar";
 import MostPopBlogs from "@/Components/BlogComp/MostPopBlogs";
 import BlogCategory from "@/Components/BlogComp/BlogCategory";
+import { Suspense } from "react";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
@@ -30,8 +31,10 @@ function ResponsiveDrawer({ window, children }) {
     <>
       <Toolbar />
       <div className="p-5 flex-col flex gap-5">
-        <MostPopBlogs />
-        <BlogCategory />
+        <Suspense fallback={<div>Loading...</div>}>
+          <MostPopBlogs />
+          <BlogCategory />
+        </Suspense>
       </div>
     </>
   );
@@ -52,7 +55,7 @@ function ResponsiveDrawer({ window, children }) {
         }}
         className="md:border-b z-20 "
       >
-        <NavBar position="relative"  />
+        <NavBar position="relative" />
       </AppBar>
       <Box
         component="nav"

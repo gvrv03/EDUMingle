@@ -31,18 +31,6 @@ function ResponsiveDrawer({ window, children }) {
       <Toolbar />
       <div className="px-3 relative  h-full">
         <div className="justify-between flex-col flex gap-4  mt-5">
-          {/* <button
-            className=" text-left  px-5    font-semibold bg-sky-50 py-2 pColor   flex gap-4   rounded-md "
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            <i className={`uil uil-estate pColor`} />
-            <span className="text-sm hover:font-semibold transition-all delay-100  ">
-              {" "}
-              Home
-            </span>{" "}
-          </button> */}
           {DashNav.map((text, index) => (
             <button
               className=" text-left  px-5   flex gap-4  rounded-md "
