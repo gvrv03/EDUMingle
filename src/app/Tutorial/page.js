@@ -6,7 +6,7 @@ import React from "react";
 import { Suspense } from "react";
 import { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [page, setpage] = useState(1);
 
   return (
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
