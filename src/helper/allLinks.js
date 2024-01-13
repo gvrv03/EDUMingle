@@ -28,7 +28,7 @@ export const getSingleBlogURL = baseUrl + "api/Blogs/Post/";
 //Send Email
 export const sendEmailURL = baseUrl + "api/SendEmail";
 
-
 //Tutorial
 export const TutorialURL = baseUrl + "api/Tutorial/TutorialTitle";
 export const TutorialDescURL = baseUrl + "api/Tutorial/TutorialArtical";
+export const TutorialAllSubTitle = baseUrl + "api/Tutorial/TutSubTitle";

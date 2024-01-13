@@ -15,7 +15,7 @@ import { useAppStore } from "./UseStoreContext";
 const useTutorialContext = createContext();
 export function UseTutorialContexProvider({ children }) {
   const { handleGenerateRandomString } = useAppStore();
-  //----------------------------All Blogs State //----------------------------
+  //----------------------------All Tutorial State //----------------------------
   const [TutTitleAll, setTutTitleAll] = useState({
     data: [],
     isLoading: true,
@@ -23,6 +23,7 @@ export function UseTutorialContexProvider({ children }) {
     count: 0,
     totalPages: 0,
   });
+
 
   const createTutorial = async (Datat) => {
     try {

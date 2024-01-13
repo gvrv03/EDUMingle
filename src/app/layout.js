@@ -26,7 +26,8 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
         />
       </head>
-      <body>
+      <body contextMenu="context false" >
+        
         <UseStoreContextProvider>
           <UserAuthContexProvider>
             <Authentication />

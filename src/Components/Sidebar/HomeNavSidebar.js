@@ -4,10 +4,6 @@ import { Divider, IconButton } from "@mui/material";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
-import { useState } from "react";
-import AdminNavBar from "../AdminNavBar";
-import AdminSidebar from "./AdminSidebar";
-
 const HomeNavSidebar = () => {
   const { userDetails, setSignOutState } = useAppStore();
   const router = useRouter();
