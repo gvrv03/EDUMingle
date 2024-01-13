@@ -9,6 +9,7 @@ const page = ({ searchParams }) => {
   }
   return (
     <div className="bg-white p-2">
+      
       <Suspense fallback={<TutDescSkeleton />}>
         <SubTitleDesc subTitleID={searchParams?.ID} />
       </Suspense>{" "}

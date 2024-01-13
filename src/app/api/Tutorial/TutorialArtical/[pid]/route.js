@@ -7,7 +7,6 @@ initDB();
 
 export const GET = async ({ params }, props) => {
   try {
-    console.log(props);
     const getTut = await TutorialDetails.findOne({
       _id: props?.params?.pid,
     }).populate("TutTitle");

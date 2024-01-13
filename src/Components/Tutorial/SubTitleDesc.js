@@ -8,7 +8,7 @@ const SubTitleDesc = async ({ subTitleID }) => {
   const data = await res.data;
   const { TutArtical, SubTitle, TutTitle } = data ? data : {};
   return (
-    <div className="bg-white     w-full  ">
+    <div className="bg-white   mt-10 md:mt-0  p-5 w-full  ">
       <div className="">
         <section className="gap-5   md:flex-row flex-col flex   bg-white w-full">
           <div className="w-full md:w-[70%]">
@@ -30,7 +30,7 @@ const SubTitleDesc = async ({ subTitleID }) => {
             <hr className="mt-5" />
             <article
               className="hide-tailwind selection:bg-blue-800 selection:text-white se-wrapper-inner text-justify  se-wrapper-wysiwyg sun-editor-editable IMPBGWhite"
-              dangerouslySetInnerHTML={{ __html: data?.TutArtical?.toString() }}
+              dangerouslySetInnerHTML={{ __html: TutArtical?.toString() }}
             />
           </div>
         </section>

@@ -11,10 +11,14 @@ import NavBar from "@/Components/NavBar";
 import SidebarTut from "@/Components/Tutorial/SidebarTut";
 import { Suspense } from "react";
 import TutSidebarSkeleton from "@/Components/Skeleton/TutSidebarSkeleton";
+import SubTitSidebar from "@/Components/Sidebar/SubTitSidebar";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children, params }) {
+  const [loading, setloading] = useState(false);
+
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [subTitles, setsubTitles] = useState([]);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -22,11 +26,13 @@ function ResponsiveDrawer({ window, children, params }) {
   const drawer = (
     <>
       <Toolbar />
-      <Suspense fallback={<TutSidebarSkeleton />}>
       <SidebarTut
-        params={params}
+        ID={params?.slug}
+        loading={loading}
+        setloading={setloading}
+        subTitles={subTitles}
+        setsubTitles={setsubTitles}
       />
-      </Suspense>
     </>
   );
 
@@ -96,6 +102,14 @@ function ResponsiveDrawer({ window, children, params }) {
       >
         <Toolbar />
         {children}
+        <div className="fixed md:hidden  top-12 w-[100%] bg-white p-5">
+          <SubTitSidebar
+            Data={subTitles}
+            ID={params?.slug}
+            loading={loading}
+            setloading={setloading}
+          />
+        </div>
       </Box>
     </Box>
   );

@@ -7,13 +7,12 @@ import { revalidatePath } from "next/cache";
 initDB();
 
 import { NextResponse } from "next/server";
-export const GET = async (request) => {
+export const GET = async ({ params }, props) => {
   try {
-    const url = new URL(request.url);
     let SubTitles = [];
-    const searchParams = new URLSearchParams(url.search);
-    const query = searchParams.get("query"); // Retrieves the value of the 'query' parameter  Ex : ?query={"_id":"649ec1dc0227a5b8da286425"}
-    const TutorialData = await TutorialDetails.find(JSON.parse(query));
+    const TutorialData = await TutorialDetails.find({
+      TutTitle: props?.params?.TutID,
+    });
     TutorialData.map((item) => {
       SubTitles.push({
         SubTitle: item?.SubTitle,
