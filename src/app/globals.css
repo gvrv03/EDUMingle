@@ -16,6 +16,11 @@
     }
   }
 }
+
+.sun-editor-editable {
+  background: black !important;
+}
+
 .backImage {
   background-image: url("/tempImage.svg");
   background-repeat: no-repeat;

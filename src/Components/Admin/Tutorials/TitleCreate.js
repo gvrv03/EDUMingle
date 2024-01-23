@@ -5,7 +5,7 @@ import React from "react";
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { toast } from "react-hot-toast";
-const ImageTypes = ["JPEG", "SVG", "WEBP", "PNG"];
+const ImageTypes = ["JPEG", "SVG", "WEBP", "PNG","JPG"];
 
 const TitleCreate = () => {
   const [Title, setTitle] = useState("");

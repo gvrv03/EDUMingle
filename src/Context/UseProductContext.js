@@ -61,7 +61,7 @@ export function UseProductContexProvider({ children }) {
   const UploadFileToFirebase = async (file, path) => {
     try {
       const imageRef = ref(storage, path);
-      await uploadBytes(imageRef, file[0]);
+      await uploadBytes(imageRef, file);
       const fileURL = await getDownloadURL(imageRef);
       return fileURL;
     } catch (error) {
@@ -96,12 +96,12 @@ export function UseProductContexProvider({ children }) {
   ) => {
     try {
       const resProductURL = await UploadFileToFirebase(
-        productFile,
-        `Product/${title}/ProductFile/${productFile.name + v4()}`
+        productFile.file,
+        `Product/${title}/ProductFile/${productFile.name}`
       );
       const resThumbnailURL = await UploadFileToFirebase(
-        thumbnailFile,
-        `Product/${title}/Thumbnail/${thumbnailFile.name + v4()}`
+        thumbnailFile.file,
+        `Product/${title}/Thumbnail/${thumbnailFile.name}`
       );
       const resImagesURL = await uploadMultipleFilesToFirebase(
         imagesFile,

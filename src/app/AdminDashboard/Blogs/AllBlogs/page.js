@@ -29,7 +29,7 @@ const Page = () => {
   }, [page, limit, refresh]);
   const [blogID, setblogID] = useState("");
   const { data, isLoading, count, totalPages } = blogsAll ? blogsAll : {};
-  if (data?.length > 1) {
+  if (data?.length > 0) {
     if (colData.length === 0) {
       setcolData(Object.keys(data[0]));
     }

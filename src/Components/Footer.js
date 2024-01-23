@@ -23,7 +23,7 @@ const Footer = () => {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 className="mb-6  font-semibold text-gray-900 uppercase ">
+              <h2 className="mb-6 text-lg  font-semibold text-gray-900 uppercase ">
                 Resources
               </h2>
               <ul className="text-gray-500  font-medium">
@@ -43,7 +43,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6  font-semibold text-gray-900 uppercase ">
+              <h2 className="mb-6 text-lg  font-semibold text-gray-900 uppercase ">
                 Follow us
               </h2>
               <ul className="text-gray-500  font-medium">
@@ -66,7 +66,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6  font-semibold text-gray-900 uppercase ">
+              <h2 className="mb-6 text-lg  font-semibold text-gray-900 uppercase ">
                 Legal
               </h2>
               <ul className="text-gray-500  font-medium">

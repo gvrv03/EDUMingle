@@ -24,7 +24,6 @@ export function UseTutorialContexProvider({ children }) {
     totalPages: 0,
   });
 
-
   const createTutorial = async (Datat) => {
     try {
       const res = await CreateTutorialAPI(Datat);
@@ -96,6 +95,7 @@ export function UseTutorialContexProvider({ children }) {
       return { error: error.message };
     }
   };
+
   // ------------------------ Upload Thmbnail data Link------------------------
   const handleUploadThumbnail = async (imagesFile, title, fileName) => {
     try {

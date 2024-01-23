@@ -9,8 +9,6 @@ import Toolbar from "@mui/material/Toolbar";
 import { useState } from "react";
 import NavBar from "@/Components/NavBar";
 import SidebarTut from "@/Components/Tutorial/SidebarTut";
-import { Suspense } from "react";
-import TutSidebarSkeleton from "@/Components/Skeleton/TutSidebarSkeleton";
 import SubTitSidebar from "@/Components/Sidebar/SubTitSidebar";
 const drawerWidth = 300;
 
@@ -26,6 +24,7 @@ function ResponsiveDrawer({ window, children, params }) {
   const drawer = (
     <>
       <Toolbar />
+     
       <SidebarTut
         ID={params?.slug}
         loading={loading}
@@ -101,6 +100,7 @@ function ResponsiveDrawer({ window, children, params }) {
         }}
       >
         <Toolbar />
+
         {children}
         <div className="fixed md:hidden  top-12 w-[100%] bg-white p-5">
           <SubTitSidebar

@@ -1,7 +1,14 @@
 import Link from "next/link";
 import React from "react";
 import TutSidebarSkeleton from "../Skeleton/TutSidebarSkeleton";
-const SubTitNav = ({ Data, ID, loading, setloading }) => {
+const SubTitNav = ({ Data, ID, loading }) => {
+  if (Data.length == 0) {
+    return (
+      <div className="text-sm border-b  hover:bg-gray-50 p-2  text-left ">
+        No Data Found
+      </div>
+    );
+  }
   return (
     <div className="   flex-col flex ">
       {loading && <TutSidebarSkeleton />}

@@ -1,4 +1,5 @@
 "use client";
+import NavBar from "@/Components/NavBar";
 import SortFilter from "@/Components/Product/HeaderSortFilter";
 import AllBlogsSkeleton from "@/Components/Skeleton/AllBlogsSkeleton";
 import AllTutorial from "@/Components/Tutorial/AllTutorial";
@@ -10,12 +11,15 @@ const Page = () => {
   const [page, setpage] = useState(1);
 
   return (
-    <div className=" bg-white p-5  md:p-5  h-full">
-      <SortFilter />
-      <Suspense fallback={<AllBlogsSkeleton />}>
-        <AllTutorial page={page} setpage={setpage} />
-      </Suspense>
-    </div>
+    <>
+      <NavBar />
+      <div className=" bg-white p-5  md:p-5  h-full">
+        <SortFilter />
+        <Suspense fallback={<AllBlogsSkeleton />}>
+          <AllTutorial page={page} setpage={setpage} />
+        </Suspense>
+      </div>
+    </>
   );
 };
 

@@ -19,6 +19,7 @@ export default function MaintableCom({
   itemID,
   setItemID,
 }) {
+  console.log(colData);
   return (
     <Paper
       className="no-scrollbar "
@@ -45,17 +46,19 @@ export default function MaintableCom({
           >
             <TableHead>
               <TableRow>
-                <TableCell
-                  style={{
-                    fontSize: "12px",
-                    padding: "8px",
-                    textTransform: "capitalize",
-                    fontWeight: 600,
-                  }}
-                  align="left"
-                >
-                  Sr.No.
-                </TableCell>
+                {count > 0 && (
+                  <TableCell
+                    style={{
+                      fontSize: "12px",
+                      padding: "8px",
+                      textTransform: "capitalize",
+                      fontWeight: 600,
+                    }}
+                    align="left"
+                  >
+                    Sr.No.
+                  </TableCell>
+                )}
                 {colData?.map((col, index) => (
                   <TableCell
                     key={index}
@@ -83,17 +86,19 @@ export default function MaintableCom({
                       : col}
                   </TableCell>
                 ))}
-                <TableCell
-                  style={{
-                    fontSize: "12px",
-                    padding: "8px",
-                    textTransform: "capitalize",
-                    fontWeight: 600,
-                  }}
-                  align="left"
-                >
-                  Edit
-                </TableCell>
+                {count > 0 && (
+                  <TableCell
+                    style={{
+                      fontSize: "12px",
+                      padding: "8px",
+                      textTransform: "capitalize",
+                      fontWeight: 600,
+                    }}
+                    align="left"
+                  >
+                    Edit
+                  </TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
@@ -159,8 +164,12 @@ export default function MaintableCom({
               })}
             </TableBody>
           </Table>
-          {count === 0 && "No Data Found"}
         </TableContainer>
+      )}{" "}
+      {count === 0 && (
+        <div className="p-5 bg-white border text-center font-semibold">
+          No Data Found
+        </div>
       )}
     </Paper>
   );

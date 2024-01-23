@@ -1,10 +1,9 @@
-import ProductCard from "@/Components/Product/ProductCard";
 import ProductHome from "@/Components/ProductDetail/ProductHome";
-import MainCardHeader from "@/Components/Utility/MainCardHeader";
 import { getSingleProductURL } from "@/helper/allLinks";
 import axios from "axios";
 import React from "react";
 import NotFoundProduct from "../not-found";
+import "suneditor/dist/css/suneditor.min.css";
 
 const ProductDetal = async ({ searchParams }) => {
   const res = await axios.get(getSingleProductURL + searchParams.product);
@@ -22,7 +21,7 @@ const ProductDetal = async ({ searchParams }) => {
       <ProductHome product={product} />
       <div className="bg-white p-5 text-justify ">
         <article
-          className="hide-tailwind se-wrapper-inner   se-wrapper-wysiwyg sun-editor-editable IMPBGWhite"
+          className="hide-tailwind selection:bg-blue-800 selection:text-white se-wrapper-inner text-justify  se-wrapper-wysiwyg sun-editor-editable IMPBGWhite"
           dangerouslySetInnerHTML={{ __html: product?.artical }}
         />
       </div>

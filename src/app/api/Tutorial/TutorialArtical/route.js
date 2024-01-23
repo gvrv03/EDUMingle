@@ -10,15 +10,15 @@ export const POST = RootAuth(async (request) => {
   try {
     const Data = await request.json();
     const { TutTitle, SubTitle, TutArtical } = Data;
-    
+
     if (!TutTitle || !SubTitle || !TutArtical) {
       throw new Error("Fill all the Fields!");
     }
 
-    const subTitleExist = await TutorialDetails.findOne({ SubTitle,TutTitle });
+    const subTitleExist = await TutorialDetails.findOne({ SubTitle, TutTitle });
     if (subTitleExist) {
       const updateTut = await TutorialDetails.findOneAndUpdate(
-        { TutTitle },
+        { SubTitle },
         Data
       );
 
@@ -66,7 +66,8 @@ export const GET = async (request) => {
     const tutorialDescCount = await TutorialDetails.countDocuments(); // Get the total count of blogs
     const totalPages = Math.ceil(tutorialDescCount / limit); // Calculate the total number of pages
 
-    const TutorialDescData = await TutorialDetails.find(JSON.parse(query)).populate("TutTitle")
+    const TutorialDescData = await TutorialDetails.find(JSON.parse(query))
+      .populate("TutTitle")
       .sort({ createdAt: -1 })
       .skip(skipCount)
       .limit(limit);

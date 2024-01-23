@@ -1,5 +1,4 @@
 "use client";
-import { useUserAuth } from "@/Context/UserAuthContext";
 import { useAppStore } from "@/Context/UseStoreContext";
 import TopNav, { Legal } from "@/NavItem/TopNav";
 import { IconButton } from "@mui/material";

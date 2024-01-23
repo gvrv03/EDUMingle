@@ -22,7 +22,7 @@ const GetUsers = () => {
   }, [page, limit, refresh]);
 
   const { data, isLoading, count, totalPages } = usersAll ? usersAll : {};
-  if (data?.length > 1) {
+  if (data?.length > 0) {
     if (colData.length === 0) {
       setcolData(Object.keys(data[0]));
     }

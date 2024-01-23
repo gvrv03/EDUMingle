@@ -98,7 +98,7 @@ const SendMailToUser = () => {
         </div>
       </div>
 
-      <textarea
+      <input
         onChange={(e) => {
           setUserSubject(e.target.value);
         }}

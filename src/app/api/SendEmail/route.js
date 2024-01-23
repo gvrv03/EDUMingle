@@ -17,7 +17,6 @@ export const POST = RootAuth(async (req) => {
     if (error) {
       return NextResponse.json({ error });
     }
-
     return NextResponse.json({ data });
   } catch (error) {
     return NextResponse.json(error);

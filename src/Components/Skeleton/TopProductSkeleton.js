@@ -3,9 +3,10 @@ import { Skeleton } from "@mui/material";
 import React from "react";
 
 const TopProductSkeleton = () => {
+  
   return (
     <>
-      <section className="flex gap-5  w-full  no-scrollbar   overflow-x-scroll ">
+      <section className="flex p-5 gap-5 bg-white  w-full  no-scrollbar   overflow-x-scroll ">
         <ProductSkeleton />
         <ProductSkeleton />
         <ProductSkeleton />

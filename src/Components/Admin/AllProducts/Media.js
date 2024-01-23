@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 const fileTypes = ["ZIP", "RAR"];
-const ImageTypes = ["JPEG", "SVG", "WEBP", "PNG"];
+const ImageTypes = ["JPEG", "SVG", "WEBP", "PNG","JPG"];
 
 const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
   // ------------------- preview -------------------
@@ -26,7 +26,6 @@ const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
           reader.readAsDataURL(file);
           reader.onloadend = () => {
             newFiles.push({
-              name: file.name,
               preview: reader.result,
             });
 
@@ -70,10 +69,10 @@ const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
           <FileUploader
             multiple={false}
             handleChange={(file) => {
-              setthumbnailByte(file);
+              setthumbnailByte({ file: file, name: file.name });
               handleFilePreview([file], setthumbnailPreview);
             }}
-            name="productThuumbnail"
+            name="productThumbnail"
             types={ImageTypes}
           />
         </div>
@@ -82,7 +81,7 @@ const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
           <FileUploader
             multiple={false}
             handleChange={(file) => {
-              setproductByte(file);
+              setproductByte({ file: file, name: file.name });
               handleFilePreview(file, setproductPreview);
             }}
             name="file"

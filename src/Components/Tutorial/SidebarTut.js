@@ -3,15 +3,12 @@ import { TutorialAllSubTitle } from "@/helper/allLinks";
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import { useState } from "react";
-import { Suspense } from "react";
 import TutSidebarSkeleton from "../Skeleton/TutSidebarSkeleton";
 
 const SidebarTut = ({ ID, setsubTitles, subTitles, loading, setloading }) => {
   const getSubTitles = async () => {
     setloading(true);
-    const res = await axios.get(TutorialAllSubTitle + `/${ID}`);
-    const data = await res?.data;
+    const { data } = await axios.get(TutorialAllSubTitle + `/${ID}`);
     setloading(false);
     return setsubTitles(data);
   };
@@ -20,10 +17,10 @@ const SidebarTut = ({ ID, setsubTitles, subTitles, loading, setloading }) => {
     getSubTitles();
   }, []);
 
-  if (subTitles?.isSuccess == false) {
+  if (!loading && subTitles.length === 0) {
     return (
       <div className="text-sm border-b  hover:bg-gray-50 p-2  text-left ">
-        No Data Found
+        No Data Founds
       </div>
     );
   }
