@@ -165,8 +165,8 @@ export default function MaintableCom({
             </TableBody>
           </Table>
         </TableContainer>
-      )}{" "}
-      {count === 0 && (
+      )}
+      {!isLoading && count === 0 && (
         <div className="p-5 bg-white border text-center font-semibold">
           No Data Found
         </div>
