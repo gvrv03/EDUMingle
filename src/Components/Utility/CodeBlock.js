@@ -1,9 +1,10 @@
 "use client";
-import Gist from "react-gist";
+// import Gist from "react-gist";
 export default function CodeBlock({ gistid, file }) {
   return (
     <div>
-      <Gist id={gistid} file={file} />
+      ssx
+      {/* <Gist id={gistid} file={file} /> */}
     </div>
   );
 }

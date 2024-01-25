@@ -10,7 +10,6 @@ const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
   const [productPreview, setproductPreview] = useState([]);
   const [imagesPreview, setimagesPreview] = useState([]);
   const [thumbnailPreview, setthumbnailPreview] = useState([]);
-
   const handleFilePreview = (files, setPreviewImages) => {
     const maxFileSize = 1 * 1024 * 1024; // 1MB
     if (files.length > 0) {
@@ -48,7 +47,7 @@ const Media = ({ setproductByte, setimagesByte, setthumbnailByte }) => {
   return (
     <div className="      bg-white">
       <label className="font-semibold text-gray-500">
-        <i className="uil font-bold pColor rounded-full mr-2  uil-image" />
+        <i className="uil font-bold  pColor rounded-full mr-2  uil-image" />
         Media
       </label>
       <div className="gap-5 grid grid-cols-1 lg:grid-cols-3 rounded-md mt-2">
