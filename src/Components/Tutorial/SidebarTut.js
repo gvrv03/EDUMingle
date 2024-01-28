@@ -25,7 +25,7 @@ const SidebarTut = ({ ID, setsubTitles, subTitles, loading, setloading }) => {
     );
   }
   return (
-    <div className="   flex-col flex ">
+    <div className="  flex-col flex ">
       {loading && <TutSidebarSkeleton />}
       {subTitles?.map((item, index) => {
         return (
@@ -35,7 +35,7 @@ const SidebarTut = ({ ID, setsubTitles, subTitles, loading, setloading }) => {
               pathname: `/Tutorial/` + ID,
               search: "?ID=" + item?.ID,
             }}
-            className=" hover:no-underline text-sm border-b focus:no-underline text-gray-800  hover:bg-gray-100 hover:font-semibold p-2  text-left "
+            className=" hover:no-underline text-xs border-b focus:no-underline text-gray-800  hover:bg-gray-100 hover:font-semibold p-2  text-left "
           >
             {item?.SubTitle}
           </Link>
