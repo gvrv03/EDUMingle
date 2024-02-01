@@ -5,9 +5,12 @@ import axios from "axios";
 import { TutorialURL } from "@/helper/allLinks";
 import Image from "next/image";
 import moment from "moment";
-const DetailHome = async ({ subTitleID ,router}) => {
+const DetailHome = async ({ subTitleID, router }) => {
   const url = TutorialURL;
   const { data } = await axios.get(url + "/" + subTitleID);
+  if (!data) {
+    return <div>Not Found</div>;
+  }
   return (
     <div className="bg-white  md:mt-0 mt-16 p-2">
       <div className="p-2  text-xl font-bold font-sans flex items-center gap-2">
@@ -23,7 +26,10 @@ const DetailHome = async ({ subTitleID ,router}) => {
         </IconButton>
         {data?.Title}
       </div>
-      <div className="font-semibold p-5" > Date: {moment(data?.createdAt).format("DD/MM/YYYY")}</div>{" "}
+      <div className="font-semibold p-5">
+        {" "}
+        Date: {moment(data?.createdAt).format("DD/MM/YYYY")}
+      </div>{" "}
       <div className="w-full p-10 bg-gray-50 grid place-items-center">
         <Image width={500} height={500} src={data?.Thumbnail} />
       </div>{" "}
@@ -32,5 +38,4 @@ const DetailHome = async ({ subTitleID ,router}) => {
     </div>
   );
 };
-
 export default DetailHome;

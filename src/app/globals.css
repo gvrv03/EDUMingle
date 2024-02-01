@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @layer utilities {
   @variants responsive {
     /* Hide scrollbar for Chrome, Safari, and Opera */
@@ -17,7 +19,6 @@
   }
 }
 
-
 .backImage {
   background-image: url("/tempImage.svg");
   background-repeat: no-repeat;
@@ -29,14 +30,19 @@
   all: initial;
 }
 :root {
-  --primaryColor: #6200ff;
+  --primaryColor: rgb(2, 0, 36);
   --secondaryColor: #d61609;
   --bgColor: rgb(241, 241, 255);
   --tirtiaryColor: yellow;
+  --pGradientColor: linear-gradient(
+    180deg,
+    rgba(44, 14, 140, 1) 26%,
+    rgba(12, 0, 60, 1) 100%
+  );
 }
 .neomorphism {
   border-radius: 0px;
-  background: linear-gradient(145deg, #e6e6e6, #ffffff);
+  background: linear-gradient(top, #e6e6e6, #ffffff);
   box-shadow: 50px 50px 100px #e3e3e3, -50px -50px 100px #ffffff;
 }
 .pColor {
@@ -51,7 +57,8 @@
 }
 
 .pBtn {
-  background-color: var(--primaryColor);
+  background: var(--primaryColor);
+  background: var(--pGradientColor);
   font-weight: 700;
   color: white;
 }

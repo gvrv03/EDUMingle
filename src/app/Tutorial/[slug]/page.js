@@ -12,7 +12,7 @@ const MyTut = ({ searchParams, params }) => {
     return (
       <div className="bg-white flex md:flex-row flex-col gap-2 p-2">
         <Suspense fallback={<TutDescSkeleton />}>
-          <DetailHome  router={router}  subTitleID={params?.slug} />
+          <DetailHome router={router} subTitleID={params?.slug} />
         </Suspense>
 
         <div className=" w-full  md:w-[24.6%] p-2 bg-red-100 md:fixed right-2 ">
@@ -21,6 +21,7 @@ const MyTut = ({ searchParams, params }) => {
       </div>
     );
   }
+
   return (
     <div className="bg-white flex md:flex-row flex-col gap-2 p-2">
       <Suspense fallback={<TutDescSkeleton />}>

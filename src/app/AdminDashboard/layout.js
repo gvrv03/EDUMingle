@@ -5,23 +5,20 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { useAppStore } from "@/Context/UseStoreContext";
-import TopNav, { DashNav } from "@/NavItem/TopNav";
+import { DashNav } from "@/NavItem/TopNav";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import AdminNavBar from "@/Components/AdminNavBar";
 import NavBar from "@/Components/NavBar";
 import SelectDate from "@/Components/Admin/SelectDate";
-import Link from "next/link";
 const drawerWidth = 300;
 
 function ResponsiveDrawer({ window, children }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const router = useRouter();
-  const { userDetails, setSignOutState } = useAppStore();
+  const { userDetails } = useAppStore();
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -137,10 +134,6 @@ function ResponsiveDrawer({ window, children }) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 
