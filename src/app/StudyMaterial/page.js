@@ -1,11 +1,7 @@
 import React from "react";
 
-function Home() {
+const StudyMaterial = () => {
+  return <div>Study Material</div>;
+};
 
-
-  return (
-    <div>
-      
-    </div>
-  );
-}
+export default StudyMaterial;
